@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Femme Connection — Data Intelligence Hub V2 Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1b443a;
+  --green-dark: #0f1a17;
+  --pink: #ff99b9;
+  --pink-dark: #e8799f;
+  --terra: #e2745d;
+  --buff: #e6d1c4;
+  --surface: #f3efe9;
+  --white: #ffffff;
+  --black: #141414;
+  --text-secondary: #5a5047;
+  --text-tertiary: #8a7f75;
+  --border: #e0d8d0;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--surface);
+  color: var(--black);
+  line-height: 1.6;
+  font-size: 14px;
+}
+.nav-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--green-dark);
+  padding: 12px 40px;
+  display: flex; gap: 24px; align-items: center;
+  overflow-x: auto;
+  border-bottom: 2px solid var(--pink);
+}
+.nav-bar a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.nav-bar a:hover, .nav-bar a.active { color: var(--pink); }
+.nav-bar .nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-right: 24px;
+  letter-spacing: 0.02em;
+}
+main { max-width: 1200px; margin: 0 auto; padding: 40px 32px 80px; }
+.hero {
+  background: var(--green-dark);
+  border-radius: 16px;
+  padding: 64px 56px;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,153,185,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--pink);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.hero p {
+  color: rgba(255,255,255,0.65);
+  font-size: 15px;
+  max-width: 700px;
+  line-height: 1.7;
+}
+.hero-meta {
+  display: flex; gap: 32px; margin-top: 32px;
+  flex-wrap: wrap;
+}
+.hero-meta-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.hero-meta-item span { color: var(--pink); display: block; margin-top: 4px; font-size: 13px; }
+
+.section {
+  margin-bottom: 56px;
+  scroll-margin-top: 60px;
+}
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--terra);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 14px;
+  max-width: 800px;
+  margin-bottom: 24px;
+}
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+/* Dashboard Cards */
+.dash-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.dash-card-header {
+  background: var(--green-dark);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.dash-card-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--pink);
+  line-height: 1;
+}
+.dash-card-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+}
+.dash-card-body { padding: 32px; }
+
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.tag-pink { background: rgba(255,153,185,0.15); color: var(--pink); }
+.tag-green { background: rgba(27,68,58,0.1); color: var(--green); }
+.tag-terra { background: rgba(226,116,93,0.12); color: var(--terra); }
+.tag-buff { background: rgba(230,209,196,0.4); color: var(--text-secondary); }
+.tag-new { background: var(--pink); color: var(--green-dark); font-weight: 600; }
+
+h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+p { margin-bottom: 12px; }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .hero { padding: 40px 24px; }
+  .hero h1 { font-size: 28px; }
+  .dash-card-header { flex-direction: column; align-items: flex-start; }
+}
+
+.module-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 13px;
+}
+.module-chip strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: var(--green);
+}
+
+.card-green {
+  background: var(--green-dark);
+  border-radius: 10px;
+  padding: 20px 24px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.card-green h4 { color: var(--pink); }
+.card-green p { color: rgba(255,255,255,0.7); }
+
+.card-pink {
+  background: rgba(255,153,185,0.08);
+  border: 1px solid rgba(255,153,185,0.2);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.card-buff {
+  background: rgba(230,209,196,0.25);
+  border: 1px solid rgba(230,209,196,0.5);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.prompt-block {
+  background: var(--green-dark);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.75);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+.prompt-block-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--pink);
+  margin-bottom: 16px;
+  display: block;
+}
+.prompt-block .highlight { color: var(--pink); font-weight: 500; }
+.prompt-block .value { color: #a8e6cf; }
+.prompt-block .comment { color: rgba(255,255,255,0.3); }
+
+.sources-row {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 12px;
+}
+.source-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  color: var(--text-secondary);
+}
+
+.wizard-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  position: relative;
+}
+.wizard-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--pink);
+  line-height: 1;
+  min-width: 32px;
+}
+.wizard-content h4 { margin-bottom: 4px; text-transform: none; letter-spacing: 0; }
+
+.competitor-tier {
+  border-left: 3px solid var(--pink);
+  padding-left: 20px;
+  margin-bottom: 24px;
+}
+.competitor-tier.aspire { border-color: var(--green); }
+.competitor-tier.emerging { border-color: var(--terra); }
+
+.nav-structure {
+  background: var(--green-dark);
+  border-radius: 12px;
+  padding: 32px;
+  color: var(--white);
+}
+.nav-group {
+  margin-bottom: 24px;
+}
+.nav-group-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--pink);
+  margin-bottom: 8px;
+}
+.nav-item {
+  padding: 6px 0 6px 16px;
+  color: rgba(255,255,255,0.6);
+  font-size: 13px;
+  border-left: 2px solid rgba(255,255,255,0.1);
+  margin-bottom: 2px;
+}
+.nav-item.active {
+  color: var(--white);
+  border-left-color: var(--pink);
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 32px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.email-template {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.email-template .email-to {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+.email-template .email-subject {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--green);
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-bar">
+  <span class="nav-logo">FEMME × Antimony</span>
+  <a href="#nav">Navigation</a>
+  <a href="#competitors">Competitors & R&D</a>
+  <a href="#campaigns">Campaigns</a>
+  <a href="#influencer">Influencer Hub</a>
+  <a href="#marketing">Marketing</a>
+  <a href="#gtm">GTM</a>
+  <a href="#loyalty">Loyalty</a>
+  <a href="#content">Content Studio</a>
+  <a href="#reports">Reports</a>
+  <a href="#branding">Branding</a>
+  <a href="#prompts">Figma Prompts</a>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Version 2.0 — Build Brief</div>
+  <h1>Femme Connection<br>Data Intelligence Hub</h1>
+  <p>Comprehensive Figma Make build brief for the next iteration of the Data Intelligence Hub. This document covers all new dashboards, enhanced features, navigation restructure, and screen-by-screen Figma Make prompts.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">Prepared by<span>Antimony Studio</span></div>
+    <div class="hero-meta-item">For<span>Femme Connection</span></div>
+    <div class="hero-meta-item">Date<span>April 2026</span></div>
+    <div class="hero-meta-item">Canvas<span>1680 × 1050px</span></div>
+    <div class="hero-meta-item">New Screens<span>8+ additions</span></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECTION 01 — NAVIGATION RESTRUCTURE
+     ============================================================ -->
+<section class="section" id="nav">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">Navigation Restructure</h2>
+  <p class="section-desc">All dashboards now sit within a left-hand vertical navigation panel, grouped under five strategic categories. Top-bar navigation is removed. The nav should be 80px collapsed (icon-only) and 240px expanded (icon + label), with hover-expand or toggle behaviour.</p>
+  <div class="divider"></div>
+
+  <div class="nav-structure">
+    <div class="nav-group">
+      <div class="nav-group-title">Strategy</div>
+      <div class="nav-item active">Command Center (Homepage)</div>
+      <div class="nav-item">Go-To-Market</div>
+      <div class="nav-item">R&D — Research & Development</div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Channel Performance</div>
+      <div class="nav-item">E-commerce</div>
+      <div class="nav-item">Marketing</div>
+      <div class="nav-item">Email / CRM</div>
+      <div class="nav-item">Google Ads</div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Content & Campaigns</div>
+      <div class="nav-item">Content Studio</div>
+      <div class="nav-item">Influencer Hub</div>
+      <div class="nav-item">Campaign Planning</div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Intelligence</div>
+      <div class="nav-item">Competitor Intelligence</div>
+      <div class="nav-item">Loyalty & Sentiment</div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Reporting</div>
+      <div class="nav-item">Google Report</div>
+      <div class="nav-item">Klaviyo Report</div>
+      <div class="nav-item">Meta Report</div>
+      <div class="nav-item">Instagram & Facebook Report</div>
+      <div class="nav-item">Yotpo / Loyalty Report</div>
+      <div class="nav-item">Influencer Report</div>
+      <div class="nav-item">GTM Benchmarking Report</div>
+    </div>
+    <div class="nav-group" style="border-top:1px solid rgba(255,255,255,0.1); padding-top:16px;">
+      <div class="nav-group-title">System</div>
+      <div class="nav-item">Profile & Settings</div>
+      <div class="nav-item">Notifications</div>
+      <div class="nav-item">AI Assistant</div>
+    </div>
+  </div>
+
+  <div class="card-pink" style="margin-top:24px;">
+    <h4>Hyperlink Rule — All Dashboards</h4>
+    <p>Every dashboard must include contextual hyperlinks back to the source platform. If showing Klaviyo data, link to Klaviyo. If showing Particl data, link to Particl. If showing Meta data, link to Meta Business Manager. Google data links to Google Ads/Analytics. Panoramata data links to Panoramata. These appear as small external-link icons (↗) next to the relevant card or section header, with the platform name as tooltip. This lets the Femme team jump directly from insight to the channel backend for action.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 02 — COMPETITOR INTELLIGENCE + R&D
+     ============================================================ -->
+<section class="section" id="competitors">
+  <div class="section-label">Section 02</div>
+  <h2 class="section-title">Competitor Intelligence & R&D Dashboard</h2>
+  <p class="section-desc">Two connected screens: (A) Competitor Intelligence Dashboard with Sézane and Reformation as primary feeds via Particl, and (B) a new R&D (Research & Development) Dashboard for new product research and development intelligence.</p>
+  <div class="divider"></div>
+
+  <!-- COMPETITOR MAPPING -->
+  <h3>Competitor Mapping — Three Tiers</h3>
+  <p style="margin-bottom:24px;">Femme Connection sits in the Australian mid-market women's fashion segment. Competitors are framed across three strategic tiers that serve different competitive intelligence purposes.</p>
+
+  <div class="competitor-tier">
+    <h4>Tier 1 — Direct Competitors</h4>
+    <p>Brands competing in the same price range ($30–$120 AUD), similar customer demographic (30–55, value-conscious, style-led), and overlapping product categories (dresses, knitwear, tops, occasion-to-casual wear).</p>
+    <div class="sources-row" style="margin-top:8px;">
+      <div class="source-badge">Blue Bungalow</div>
+      <div class="source-badge">Adrift</div>
+      <div class="source-badge">Taking Shape</div>
+      <div class="source-badge">Rockmans</div>
+      <div class="source-badge">Katies</div>
+      <div class="source-badge">W.Lane</div>
+      <div class="source-badge">Noni B</div>
+      <div class="source-badge">Birdsnest</div>
+      <div class="source-badge">St Frock</div>
+      <div class="source-badge">Haven Co</div>
+    </div>
+    <p style="font-size:13px; color:var(--text-secondary);">Strategic focus: Price benchmarking, promo calendar overlap, product category gaps, best-seller tracking, email/SMS frequency comparison.</p>
+  </div>
+
+  <div class="competitor-tier aspire">
+    <h4>Tier 2 — Aspirational Competitors</h4>
+    <p>Brands that represent where Femme wants to position itself in terms of brand equity, customer experience, product quality perception, and content excellence. Higher price point but strong strategic learnings.</p>
+    <div class="sources-row" style="margin-top:8px;">
+      <div class="source-badge">Sézane</div>
+      <div class="source-badge">Reformation</div>
+      <div class="source-badge">Scanlan Theodore</div>
+      <div class="source-badge">Faithfull The Brand</div>
+      <div class="source-badge">Sir The Label</div>
+      <div class="source-badge">Zimmermann (product architecture only)</div>
+    </div>
+    <p style="font-size:13px; color:var(--text-secondary);">Strategic focus: Product development cadence, capsule drop strategy, content quality benchmarking, brand narrative structure, loyalty/community approach, email design quality.</p>
+  </div>
+
+  <div class="competitor-tier emerging">
+    <h4>Tier 3 — Emerging Threats</h4>
+    <p>Fast-growing D2C brands targeting overlapping demographics, particularly the 25–40 segment Femme is growing into. Often digitally native with strong social and influencer presence.</p>
+    <div class="sources-row" style="margin-top:8px;">
+      <div class="source-badge">Lullaby Club</div>
+      <div class="source-badge">Fayt The Label</div>
+      <div class="source-badge">Babyboo Fashion</div>
+      <div class="source-badge">Dissh</div>
+      <div class="source-badge">Petal & Pup</div>
+      <div class="source-badge">Showpo</div>
+      <div class="source-badge">Princess Polly</div>
+    </div>
+    <p style="font-size:13px; color:var(--text-secondary);">Strategic focus: Social engagement rates, TikTok velocity, pricing aggression, influencer partnerships, site traffic trends, mobile UX innovations.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COMPETITOR INTELLIGENCE DASHBOARD -->
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="dash-card-number">CI</div>
+        <div>
+          <div class="dash-card-name">Competitor Intelligence Dashboard</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.5);">Sézane + Reformation focus feeds · Particl-powered · Panoramata content benchmarking</div>
+        </div>
+      </div>
+      <span class="tag tag-new">NEW</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2">
+        <div>
+          <h4>Purpose</h4>
+          <p>Surface competitive intelligence from Sézane and Reformation as primary aspirational benchmarks, alongside direct competitor tracking. Provides pricing changes, high-performing products, content cadence, promo intensity, and strategic takeaways the Femme team can action.</p>
+          <h4 style="margin-top:16px;">Key Questions Answered</h4>
+          <p>What are Sézane and Reformation launching this month? How does their pricing compare to Femme by category? What content formats are driving their highest engagement? Where are the product gaps Femme could fill? What promo strategies are direct competitors running right now?</p>
+        </div>
+        <div>
+          <h4>Data Sources</h4>
+          <div class="sources-row">
+            <div class="source-badge">Particl (↗ link)</div>
+            <div class="source-badge">Panoramata (↗ link)</div>
+            <div class="source-badge">Shopify (internal)</div>
+          </div>
+          <h4 style="margin-top:16px;">Core KPIs</h4>
+          <div class="sources-row">
+            <div class="source-badge">Price Index vs. Competitors</div>
+            <div class="source-badge">New Product Velocity</div>
+            <div class="source-badge">Promo Intensity Score</div>
+            <div class="source-badge">Engagement Rate Benchmark</div>
+            <div class="source-badge">Category Share Shifts</div>
+            <div class="source-badge">Content Format Performance</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <h4>Module Layout — Top to Bottom</h4>
+      <div class="grid-3">
+        <div class="module-chip"><strong>Competitor Spotlight Feed</strong>Side-by-side cards for Sézane and Reformation. Shows latest drops, pricing moves, and top-performing products pulled from Particl. Each card has ↗ link to Particl profile.</div>
+        <div class="module-chip"><strong>Price Benchmark Matrix</strong>Category-by-category price comparison table: Femme vs. Direct vs. Aspirational. Columns: category, Femme avg price, competitor avg price, price index, gap indicator.</div>
+        <div class="module-chip"><strong>High Performer Tracker</strong>Rolling feed of best-selling competitor products (from Particl). Shows product image, name, brand, estimated sales velocity, price, and category tag.</div>
+        <div class="module-chip"><strong>Content Benchmarking</strong>Panoramata-powered. Shows competitor email frequency, SMS cadence, social posting rate, top-performing formats, and campaign calendar overlay.</div>
+        <div class="module-chip"><strong>Promo Calendar Heatmap</strong>12-month heatmap showing when each tracked competitor runs promos. Allows Femme to identify white space and avoid saturation periods.</div>
+        <div class="module-chip"><strong>AI Competitive Insight Panel</strong>AI summary card that synthesises: "This week, Reformation dropped 14 new styles in linen. Sézane's average dress price increased 8% QoQ. Direct competitor Blue Bungalow launched a 30% off sitewide sale."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R&D DASHBOARD -->
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="dash-card-number">R&D</div>
+        <div>
+          <div class="dash-card-name">Research & Development Dashboard</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.5);">New product research · Seasonal planning intelligence · Category gap analysis</div>
+        </div>
+      </div>
+      <span class="tag tag-new">NEW</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2">
+        <div>
+          <h4>Purpose</h4>
+          <p>Dedicated product development intelligence screen. Uses competitor data, internal sales performance, trend signals, and customer feedback to inform new season product development. Turns market research into actionable range planning inputs.</p>
+          <p>Fashion product development follows a structured cycle: market research → concept development → portfolio strategy → sampling → production. This dashboard supports the first two phases and feeds insights directly into range planning decisions.</p>
+        </div>
+        <div>
+          <h4>Product Development Intelligence Framework</h4>
+          <p>The R&D dashboard applies three lenses to product research:</p>
+          <p><strong>1. The 80/20 Portfolio Test:</strong> Which 20% of SKUs deliver 80% of revenue? Double down on performers, trim underachievers. Femme's dresses maintain 72% fit satisfaction and 78% quality satisfaction — this is the hero category to protect and expand.</p>
+          <p><strong>2. Core vs. Seasonal Balance:</strong> Stable, margin-rich core items (Femme Basics, best-selling knitwear) alongside trend-driven capsule drops every 4–6 weeks.</p>
+          <p><strong>3. Cannibalisation Check:</strong> Watch for overlapping SKUs that compete with each other instead of growing the category.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <h4>Module Layout — Top to Bottom</h4>
+      <div class="grid-3">
+        <div class="module-chip"><strong>Category Performance Heatmap</strong>Internal Shopify data. Grid: categories (Dresses, Knitwear, Tops, Pants, Basics, Accessories) × metrics (Revenue, Units, Margin, Return Rate, Restock Rate). Color-coded performance.</div>
+        <div class="module-chip"><strong>Competitor New Product Feed</strong>Particl-powered rolling feed of new products from tracked competitors. Filterable by category, price range, brand. Shows estimated sales velocity and days-since-launch.</div>
+        <div class="module-chip"><strong>Gap Analysis Matrix</strong>AI-identified gaps: categories or price points where competitors have products but Femme doesn't. "Reformation has 12 linen pieces priced $180–$280 AUD. Femme has 3 linen pieces at $65–$95. Opportunity to expand."</div>
+        <div class="module-chip"><strong>Trend Signal Feed</strong>Aggregated from social engagement, search volume, and competitor launches. Shows rising categories, materials, colours, and silhouettes with velocity indicators.</div>
+        <div class="module-chip"><strong>Seasonal Planning Calendar</strong>Quarterly view showing: Femme's planned drops, competitor launch windows, key retail moments (Mother's Day, EOFY, etc.), and recommended launch timing.</div>
+        <div class="module-chip"><strong>AI Product Strategist</strong>Embedded AI panel. Prompt: "Based on Q1 sales data and competitor activity, recommend the top 3 product categories for the Winter 2026 collection." Produces actionable range planning recommendations.</div>
+      </div>
+
+      <div class="card-green" style="margin-top:24px;">
+        <h4>Strategic Insight: New Season Product Development</h4>
+        <p>For mid-market women's fashion brands like Femme, best practice product development combines three inputs: (1) internal sales analytics (what sold, what returned, what restocked fastest), (2) competitive product intelligence (what competitors are launching, at what price, in what categories), and (3) trend forecasting (social velocity, search trends, seasonal themes). This dashboard unifies all three into one view so the buying and design team can make faster, data-backed range decisions instead of relying on intuition alone. The 4–6 week micro-collection cadence outlined in the GTM aligns with the drop-culture strategy — this dashboard provides the intelligence layer to decide what each drop should contain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 03 — CAMPAIGN & PRODUCTION PLANNING
+     ============================================================ -->
+<section class="section" id="campaigns">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">Campaign & Production Planning Dashboard</h2>
+  <p class="section-desc">A new dashboard that pulls insights from all connected data sources to brief campaigns. Includes a mock campaign brief for a real upcoming Femme campaign.</p>
+  <div class="divider"></div>
+
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="dash-card-number">CP</div>
+        <div>
+          <div class="dash-card-name">Campaign & Production Planning</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.5);">Data-informed campaign briefs · Production scheduling · Asset management</div>
+        </div>
+      </div>
+      <span class="tag tag-new">NEW</span>
+    </div>
+    <div class="dash-card-body">
+      <h4>Module Layout</h4>
+      <div class="grid-3">
+        <div class="module-chip"><strong>Campaign Calendar</strong>Timeline view of all active, upcoming, and past campaigns. Filterable by channel, status, and campaign type. Colour-coded by stage: Brief → Production → Live → Reporting.</div>
+        <div class="module-chip"><strong>AI Campaign Builder</strong>AI-powered brief generator. Input: campaign objective, audience, timing, budget. Output: full campaign brief with channel strategy, copy direction, creative references, and KPI targets.</div>
+        <div class="module-chip"><strong>Active Campaign Briefs</strong>Card grid of current campaign briefs. Each card shows: campaign name, channels, dates, status, team assignments, and a "View Brief" CTA.</div>
+        <div class="module-chip"><strong>Production Tracker</strong>Kanban-style board: Brief Signed Off → Creative in Production → Assets Delivered → Campaign Live → Reporting. Drag-and-drop cards.</div>
+        <div class="module-chip"><strong>Asset Library</strong>Grid view of all campaign assets (images from femmeconnection.com.au, copy blocks, email templates). Searchable and filterable by campaign and channel.</div>
+        <div class="module-chip"><strong>Performance Callback</strong>Post-campaign performance cards that pull live data from each channel once a campaign goes live. Shows ROAS, CVR, engagement, and AI-generated learnings.</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- MOCK CAMPAIGN BRIEF -->
+      <h3>Mock Campaign Brief — Mother's Day 2026</h3>
+      <p style="margin-bottom:20px;">Pre-populated example showing how the AI Campaign Builder produces a full brief from data inputs.</p>
+
+      <div class="card-pink">
+        <h4 style="color:var(--green);">Campaign: "For Her, From Us" — Mother's Day 2026</h4>
+        <div class="grid-2" style="margin-top:16px;">
+          <div>
+            <p><strong>Objective:</strong> Drive gifting-occasion revenue with a curated Mother's Day edit. Target 25% revenue uplift vs. Mother's Day 2025. Secondary goal: grow email list by 1,200 subscribers via gift-guide lead magnet.</p>
+            <p><strong>Campaign Period:</strong> 21 April – 11 May 2026 (3-week window)</p>
+            <p><strong>Target Audience:</strong> Primary: Women 28–45 purchasing for mothers/mother figures. Secondary: Self-purchasers 40–55 treating themselves.</p>
+            <p><strong>Hero Products:</strong> Kalinda Abstract Dress ($89), Royce Embroidered Midi ($95), Luxe Linen Wrap Top ($65), Marrakesh Floral Maxi ($99), Femme Basics Cashmere-Touch Knit ($75)</p>
+          </div>
+          <div>
+            <p><strong>Offer Strategy:</strong> Free gift wrapping on orders $75+. Loyalty members get 48hr early access. No sitewide discount — focus on perceived value and exclusivity per GTM guidelines (discounting down 48% YoY).</p>
+            <p><strong>Channel Plan:</strong></p>
+            <p>Meta (Attention Experts): Carousel + UGC-led conversion ads. Lookalike audiences from Klaviyo VIP segment. Budget: $4,500 across 3 weeks.</p>
+            <p>Google (Salt & FuseLab): Shopping ads for hero products + brand search. Budget: $2,800.</p>
+            <p>Email (Antimony/Klaviyo): 3-part sequence: Gift Guide → Last Chance → Thank You. Segment: full list + VIP early access segment.</p>
+            <p>Organic Social: 4x Instagram Reels (styling mothers), 2x TikTok POVs, 1x Pinterest gift guide board.</p>
+            <p><strong>KPIs:</strong> Revenue $32K target · ROAS 4.2x · Email OR 28% · New subs 1,200 · CVR 3.8%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 04 — INFLUENCER HUB
+     ============================================================ -->
+<section class="section" id="influencer">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">Influencer Hub — Campaign Pack System</h2>
+  <p class="section-desc">Enhanced influencer dashboard with a full campaign pack builder. Produces standalone exportable deliverables that can be sent to influencers/ambassadors via email, with all campaign materials included.</p>
+  <div class="divider"></div>
+
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="dash-card-number">IH</div>
+        <div>
+          <div class="dash-card-name">Influencer Hub + Campaign Pack Builder</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.5);">Performance insights · Campaign pack builder · End-to-end outbound flow</div>
+        </div>
+      </div>
+      <span class="tag tag-new">ENHANCED</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2">
+        <div>
+          <h4>Influencer Performance (Existing — Retained)</h4>
+          <p>Leaderboard of current ambassadors and influencers. Performance metrics: engagement rate, conversion attributed, content produced, UGC quality score. Tier badges (T1/T2/T3 per GTM). Sort/filter by tier, category, platform.</p>
+        </div>
+        <div>
+          <h4>Campaign Pack Builder (New)</h4>
+          <p>AI-assisted system that produces a complete influencer campaign pack as a standalone exportable deliverable. The pack includes everything an influencer needs for a campaign. Built with copy-and-paste functionality throughout, plus a "press to send" email trigger that populates the pack into an outbound email via Femme's marketing team.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <h3>Campaign Pack — Contents</h3>
+      <div class="grid-3">
+        <div class="module-chip"><strong>Campaign Overview</strong>Campaign name, dates, objectives, hashtags, key messages, brand voice guidelines. Auto-generated by AI from campaign brief data.</div>
+        <div class="module-chip"><strong>Discount Codes</strong>Unique influencer-specific discount code. Commission rate. Tracking link. Validity period. Copy-paste ready format.</div>
+        <div class="module-chip"><strong>Product Seeding List</strong>Hero products for this campaign. Images, product names, prices, sizing info, key selling points. Pulled from Shopify product data.</div>
+        <div class="module-chip"><strong>Photography Brief</strong>Shot list, mood references, styling direction, do's and don'ts, platform-specific format requirements (9:16, 4:5, 1:1), lighting notes.</div>
+        <div class="module-chip"><strong>Caption Copy</strong>Pre-written caption options for Instagram, TikTok, and Stories. Multiple variants so influencers can choose. Copy-paste ready.</div>
+        <div class="module-chip"><strong>Asset Library Access</strong>Downloadable folder link with: product flat-lays, lifestyle imagery, brand logos, pattern swatches, and approved colour palettes.</div>
+        <div class="module-chip"><strong>Deliverables & Timeline</strong>What's expected: number of posts, stories, reels. Deadlines. Approval process. Content submission method.</div>
+        <div class="module-chip"><strong>Legal & Disclosure</strong>Ad disclosure requirements (AU Ad Standards), usage rights, exclusivity period, payment terms summary.</div>
+        <div class="module-chip"><strong>Send to Influencer</strong>"Press to Send" button. Populates an email template with the full pack attached/inline. Email goes through Femme's marketing team for final review before sending.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 05 — MARKETING DASHBOARD
+     ============================================================ -->
+<section class="section" id="marketing">
+  <div class="section-label">Section 05</div>
+  <h2 class="section-title">Marketing Dashboard — Enhanced</h2>
+  <p class="section-desc">Major overhaul. Channels cleaned up to: Organic, Paid Social, Google Ads, Direct (email removed — it has its own dashboard). AI recommendations made actionable with button UI, email generation, and channel partner communication built in. Includes custom dashboard builder.</p>
+  <div class="divider"></div>
+
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="dash-card-number">MK</div>
+        <div>
+          <div class="dash-card-name">Marketing Dashboard</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.5);">Performance insights · Actionable AI recommendations · Channel partner comms · Custom dashboards</div>
+        </div>
+      </div>
+      <span class="tag tag-new">ENHANCED</span>
+    </div>
+    <div class="dash-card-body">
+
+      <h4>Channel Scope (Cleaned Up)</h4>
+      <div class="sources-row">
+        <div class="source-badge">Organic Social</div>
+        <div class="source-badge">Paid Social (Meta)</div>
+        <div class="source-badge">Google Ads</div>
+        <div class="source-badge">Direct Traffic</div>
+      </div>
+      <p style="margin-top:8px; font-size:13px; color:var(--text-secondary);">Email/CRM has been removed from this view and lives in its own dedicated dashboard.</p>
+
+      <div class="divider"></div>
+
+      <h3>AI Recommendations System — Actionable</h3>
+      <p>Every AI insight must be paired with an action pathway. The recommendation system splits into two modes: <strong>Opportunity (green)</strong> for good performance to capitalise on, and <strong>Alert (terracotta)</strong> for underperformance to address.</p>
+
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="card-green">
+          <h4>Opportunity Mode — "Double Down"</h4>
+          <p>When AI detects strong performance: "Instagram Reels CTR is 4.2%, 68% above benchmark. Recommendation: Increase Reels budget by 30% and replicate top-performing format across 3 additional product categories."</p>
+          <p style="margin-top:12px;"><strong>Action buttons:</strong></p>
+          <p>→ [Adjust Budget] opens campaign budget adjustment UI<br>
+          → [Email Attention Experts] pre-populates email to agency with insight + recommended action<br>
+          → [Create Campaign] jumps to Campaign Planning with pre-filled parameters<br>
+          → [Dismiss] with note field</p>
+        </div>
+        <div style="background:rgba(226,116,93,0.08); border:1px solid rgba(226,116,93,0.2); border-radius:10px; padding:20px 24px;">
+          <h4 style="color:var(--terra);">Alert Mode — "Investigate & Adjust"</h4>
+          <p>When AI detects underperformance: "Google Shopping ROAS has dropped 22% WoW. Top 3 Shopping campaigns showing CPM increase with no CVR improvement. Recommendation: Pause lowest-performing ad group, reallocate to brand search."</p>
+          <p style="margin-top:12px;"><strong>Action buttons:</strong></p>
+          <p>→ [Email Salt & FuseLab] pre-populates email with insight, data snapshot, and recommended adjustments<br>
+          → [View Campaign Details] links to Google Ads (↗)<br>
+          → [Schedule Review] adds a calendar event<br>
+          → [Dismiss] with note field</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Channel Partner Email Templates</h3>
+      <p>Pre-built email templates that auto-populate with the relevant insight data and recommended actions. The marketing team reviews and sends.</p>
+
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="email-template">
+          <div class="email-to">To: Salt & FuseLab (SEO + Google)</div>
+          <div class="email-subject">Femme Connection — Google Ads Performance Alert</div>
+          <p style="font-size:13px;">Hi Team, Our Data Intelligence Hub has flagged the following insight from this week's Google Ads performance: [AI-generated insight block]. Recommended next steps: [AI-generated action items]. Can we schedule a 15-min review to align on adjustments? Best, Mel — Femme Connection Marketing</p>
+        </div>
+        <div class="email-template">
+          <div class="email-to">To: Attention Experts (Meta Campaigns)</div>
+          <div class="email-subject">Femme Connection — Meta Campaign Opportunity</div>
+          <p style="font-size:13px;">Hi Team, We've identified a strong performance signal on our Meta campaigns: [AI-generated insight block]. We'd like to explore scaling this. Recommended adjustments: [AI-generated recommendations]. Let's discuss timing and budget reallocation. Best, Mel — Femme Connection Marketing</p>
+        </div>
+        <div class="email-template">
+          <div class="email-to">To: Antimony Studio (Klaviyo)</div>
+          <div class="email-subject">Femme Connection — Email/CRM Update</div>
+          <p style="font-size:13px;">Hi Team, Quick flag from the Data Hub — [AI insight on email performance]. Suggested flow adjustments: [recommendations]. Can we review in our next WIP? Cheers, Mel</p>
+        </div>
+        <div class="email-template">
+          <div class="email-to">To: Internal — Marketing Coordinators / Raja (Photography)</div>
+          <div class="email-subject">Femme Connection — Content & Asset Request</div>
+          <p style="font-size:13px;">Team, Based on current campaign performance, we need to prioritise the following: [AI-generated content/asset requirements]. Raja — photography brief attached for [campaign name]. Timeline: [dates]. Thanks, Mel</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Custom Dashboard Builder</h3>
+      <div class="card-pink">
+        <h4>AI-Generated Custom Dashboards</h4>
+        <p>A built-in feature allowing the Femme marketing team to create their own custom dashboard views using a prompt-based AI generator. User enters a natural language prompt (e.g., "Show me Paid Social ROAS by campaign for the last 30 days, compared to the same period last year, with a breakdown by ad format"). The AI generates a custom dashboard layout with the requested charts, tables, and KPIs. Saved dashboards appear in the user's dashboard library under the Marketing section.</p>
+        <p><strong>UI: </strong>Large prompt input field at top of the Custom Dashboard section. Below: gallery of previously generated custom dashboards as thumbnail cards. Each card: title, date created, "Open" and "Delete" CTAs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 06 — GTM DASHBOARD
+     ============================================================ -->
+<section class="section" id="gtm">
+  <div class="section-label">Section 06</div>
+  <h2 class="section-title">Go-To-Market Dashboard — Enhanced</h2>
+  <p class="section-desc">Embeds the full 2026 GTM plan (116 pages) as the strategic backbone. Adds geographic segmentation, execution tracking, timeline calendar, and AI-powered market expansion planning. Links back to Panoramata and Particl.</p>
+  <div class="divider"></div>
+
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="dash-card-number">GTM</div>
+        <div>
+          <div class="dash-card-name">Go-To-Market Dashboard</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.5);">GTM execution tracking · Geographic segmentation · AI market planning</div>
+        </div>
+      </div>
+      <span class="tag tag-new">ENHANCED</span>
+    </div>
+    <div class="dash-card-body">
+
+      <h4>Embedded GTM Plan Structure</h4>
+      <p>The AI natively understands the full Femme Connection GTM 2026 strategy, including all three pillars (Experience, Data Intelligence, Category Leadership), the implementation framework, marketing strategy, comms/content strategy, influencer strategy, retail/digital integration, and acquisition/retention tactics. This plan is the source of truth for all GTM dashboard modules.</p>
+
+      <div class="divider"></div>
+
+      <h4>Module Layout — Top to Bottom</h4>
+      <div class="grid-3">
+        <div class="module-chip"><strong>GTM Progress Tracker</strong>Visual progress bars for each strategic pillar and initiative. How far along is each workstream? Percentage complete, blockers flagged, next milestone. Think project management meets strategy execution.</div>
+        <div class="module-chip"><strong>90-Day Execution Calendar</strong>Quarterly timeline showing what's happening now, what's coming up, and what's overdue. Gantt-style or swimlane view. Filterable by pillar, channel, and owner. Shows blockers with terracotta badges.</div>
+        <div class="module-chip"><strong>Geographic Segmentation</strong>Australia map widget showing performance by state and city. Revenue, orders, AOV, new customer %, and growth rate per region. Toggle between AU states, NZ (planned), and international targets.</div>
+        <div class="module-chip"><strong>Market Expansion AI Planner</strong>AI chat interface: "I'd like to explore introducing a new campaign in the New Zealand market." AI responds with market sizing, competitive landscape, recommended channel mix, estimated CAC, and a draft GTM sequence.</div>
+        <div class="module-chip"><strong>Initiative Cards</strong>Each major GTM initiative as a card: Customer Journey Mapping, Loyalty Redesign, Drop Culture Activation, Phygital Pop-Ups, Tech Stack Integration, Femme Basics Launch, etc. Status: Not Started / In Progress / Complete / Blocked.</div>
+        <div class="module-chip"><strong>AI Dashboard Suggestions</strong>AI reads the GTM plan and auto-suggests new dashboard modules: "Based on the Loyalty Program Redesign initiative, suggest creating a Loyalty Tier Performance sub-dashboard tracking: tier migration rates, reward redemption, and tier-specific revenue."</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>GTM Plan → Suggested New Dashboards</h3>
+      <p>Based on analysis of the uploaded GTM 2026 document, the AI identifies these dashboard modules that should be created:</p>
+
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="card-buff">
+          <h4>1. Loyalty Tier Performance Module</h4>
+          <p>From GTM Pillar 1: Loyalty Program Redesign. Track tier migration, reward redemption rates, tier-specific AOV, and capsule preview engagement by tier.</p>
+        </div>
+        <div class="card-buff">
+          <h4>2. Drop Culture Velocity Tracker</h4>
+          <p>From GTM Pillar 3: Micro-Collections every 4–6 weeks. Track each drop's sell-through rate, social engagement, email click rate, and restock triggers.</p>
+        </div>
+        <div class="card-buff">
+          <h4>3. Customer Journey Friction Map</h4>
+          <p>From GTM Pillar 1: Customer Journey Mapping. Visual funnel showing drop-off points from discovery → browse → cart → purchase → repeat. Highlight friction zones with actionable fixes.</p>
+        </div>
+        <div class="card-buff">
+          <h4>4. Femme Basics Performance Hub</h4>
+          <p>From GTM Pillar 3: Launch Femme Basics. Dedicated tracking for the core essentials range: revenue, margin, return rate, customer satisfaction, and repeat purchase rate vs. seasonal items.</p>
+        </div>
+        <div class="card-buff">
+          <h4>5. Ambassador Content Pipeline</h4>
+          <p>From GTM Section 07: Brand Ambassador Strategy. Track content submission pipeline, usage across channels, whitelisting performance, and content-to-conversion attribution.</p>
+        </div>
+        <div class="card-buff">
+          <h4>6. Retention Lifecycle Health</h4>
+          <p>From GTM Section 09: Customer Retention Tactics. Track flow performance (Welcome, Browse Abandon, Post-Purchase, Winback, Loyalty), segment health, and the target of growing repeat customers from 9% to 29%.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 07 — LOYALTY & SENTIMENT
+     ============================================================ -->
+<section class="section" id="loyalty">
+  <div class="section-label">Section 07</div>
+  <h2 class="section-title">Loyalty & Sentiment Dashboard</h2>
+  <p class="section-desc">Enhanced loyalty dashboard with live Yotpo reviews feed, cross-channel sentiment measurement, and Typeform customer feedback integration.</p>
+  <div class="divider"></div>
+
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="dash-card-number">LS</div>
+        <div>
+          <div class="dash-card-name">Loyalty & Sentiment</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.5);">Yotpo reviews · Channel sentiment · Typeform feedback · Customer voice</div>
+        </div>
+      </div>
+      <span class="tag tag-new">ENHANCED</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-3">
+        <div class="module-chip"><strong>Live Reviews Feed</strong>Real-time scrolling feed pulling from Yotpo (↗ link). Shows: product name, star rating, review text, reviewer name, date, verified purchase badge. Filterable by product category and rating.</div>
+        <div class="module-chip"><strong>Sentiment by Channel</strong>Widget for each connected channel (Instagram, Facebook, Email, Yotpo, Google Reviews, TikTok) showing sentiment score (positive/neutral/negative %), trending direction, and sample verbatims. Each with a sentiment gauge visual.</div>
+        <div class="module-chip"><strong>Typeform Feedback Aggregator</strong>Pulls customer feedback form responses from Typeform. Shows: NPS score, top themes (fit, quality, shipping, styling), sentiment distribution, and a "latest responses" feed.</div>
+        <div class="module-chip"><strong>Loyalty Program Health</strong>Yotpo loyalty metrics: active members, tier distribution, points redeemed, reward redemption rate, tier-specific AOV. Aligns with GTM loyalty redesign targets.</div>
+        <div class="module-chip"><strong>Customer Voice Summary</strong>AI-generated weekly summary: "This week, customers praised the new knitwear collection (+42% positive mentions). Fit issues persist for pants (3 negative reviews citing sizing). Top request: more colour options in Femme Basics."</div>
+        <div class="module-chip"><strong>Review Response Queue</strong>Outstanding reviews that need responses. Priority-sorted by negative sentiment. AI suggests response drafts. "Respond" button opens Yotpo (↗ link).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 08 — CONTENT STUDIO
+     ============================================================ -->
+<section class="section" id="content">
+  <div class="section-label">Section 08</div>
+  <h2 class="section-title">Content Studio</h2>
+  <p class="section-desc">Full content management and creation hub with campaign email feed, organic social feed, AI prompt agent, and the multi-step reverse brief wizard flow.</p>
+  <div class="divider"></div>
+
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="dash-card-number">CS</div>
+        <div>
+          <div class="dash-card-name">Content Studio</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.5);">Campaign email feed · Organic social feed · AI content agent · Reverse brief wizard</div>
+        </div>
+      </div>
+      <span class="tag tag-new">NEW</span>
+    </div>
+    <div class="dash-card-body">
+
+      <h4>Module Layout — Top to Bottom</h4>
+      <div class="grid-3">
+        <div class="module-chip"><strong>Campaign Email Feed</strong>Visual feed of all email campaign designs mapped to their Klaviyo campaigns. Shows: email preview thumbnail, campaign name, send date, audience segment, status (Draft / Scheduled / Sent / Reporting). Click to view in Klaviyo (↗ link).</div>
+        <div class="module-chip"><strong>Organic Social Feed</strong>Aggregated feed for Instagram, Pinterest, and TikTok. Shows: post thumbnail, platform icon, engagement metrics (likes, comments, shares, saves), posting date. Content can be loaded up and scheduled from this view.</div>
+        <div class="module-chip"><strong>AI Content Agent</strong>Embedded AI prompt agent for content creation. User sets a premise (campaign context, brand voice, product focus) and uploads content assets. AI produces: caption copy, hashtags, posting schedule recommendation, and format specifications per platform.</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Reverse Brief Wizard — Multi-Step Flow</h3>
+      <p style="margin-bottom:20px;">A 6-step wizard that allows the marketing team to reverse-brief content needs into the AI agent, receive a structured brief, approve it, and have assets and campaign materials auto-generated. Example sequence uses <strong>Mother's Day 2026</strong>.</p>
+
+      <div class="wizard-step">
+        <div class="wizard-number">1</div>
+        <div class="wizard-content">
+          <h4>Input — Campaign Parameters</h4>
+          <p>Pop-up form with fields: Campaign Name, Campaign Period (date range), Campaign Objective (dropdown: Awareness / Conversion / Engagement / Retention), Target Audience, Hero Products (multi-select from Shopify), Budget Range, Channels Required (checkboxes: Instagram, TikTok, Pinterest, Email, Google Ads), Asset Types Needed (checkboxes: Photography, Video, Carousel, Stories, Email Template, Google Ad Creative), Key Message / Theme (text area), Brand Voice Notes.</p>
+          <p style="font-size:12px; color:var(--text-tertiary); margin-top:8px;">Example: "For Her, From Us" — Mother's Day. 21 Apr – 11 May. Conversion + Gifting. Hero products: Kalinda Abstract Dress, Luxe Linen Wrap Top. Budget $12K. All channels. Need Reels, carousels, email sequence, Google Shopping creative.</p>
+        </div>
+      </div>
+
+      <div class="wizard-step">
+        <div class="wizard-number">2</div>
+        <div class="wizard-content">
+          <h4>AI Brief Generation</h4>
+          <p>AI processes the inputs and generates a comprehensive content brief. Includes: campaign narrative, channel-by-channel content plan, copy direction per platform, visual mood references, posting schedule, email sequence outline, Google Ads copy variants, and KPI targets per channel. The brief is displayed in a reviewable card layout within the wizard.</p>
+        </div>
+      </div>
+
+      <div class="wizard-step">
+        <div class="wizard-number">3</div>
+        <div class="wizard-content">
+          <h4>Sign-Off</h4>
+          <p>Marketing manager (Mel) reviews the AI-generated brief. Options: Approve, Request Changes (with notes field — sends back to Step 2 for AI revision), or Reject. Approval triggers Step 4. The brief is locked and timestamped.</p>
+        </div>
+      </div>
+
+      <div class="wizard-step">
+        <div class="wizard-number">4</div>
+        <div class="wizard-content">
+          <h4>Asset Generation</h4>
+          <p>AI produces visual asset mock-ups using real product imagery pulled from femmeconnection.com.au. Generates:</p>
+          <p>→ 3x Instagram Reels concepts (title + hook + visual direction + caption)<br>
+          → 2x Instagram carousels (slide-by-slide copy + image placement)<br>
+          → 2x TikTok POV scripts (hook, body, CTA, audio suggestion)<br>
+          → 1x Pinterest gift guide board layout<br>
+          → 3x Email designs for Klaviyo (Gift Guide / Last Chance / Thank You) with subject lines, preview text, body copy, and CTA hierarchy<br>
+          → 4x Google Ad copy variants (headlines, descriptions, sitelinks)</p>
+          <p style="font-size:12px; color:var(--text-tertiary); margin-top:4px;">All copy, targeting, timing, and campaign goals shown together in one view.</p>
+        </div>
+      </div>
+
+      <div class="wizard-step">
+        <div class="wizard-number">5</div>
+        <div class="wizard-content">
+          <h4>Final Sign-Off</h4>
+          <p>Review all generated assets in a gallery view. Approve individual assets, request revisions on specific items, or approve all. Each asset has: Preview, Copy (copy-to-clipboard), Download, and Edit buttons. Notes field for each asset for production team handoff.</p>
+        </div>
+      </div>
+
+      <div class="wizard-step">
+        <div class="wizard-number">6</div>
+        <div class="wizard-content">
+          <h4>Deliver / Post</h4>
+          <p>Distribution panel. Options per channel:</p>
+          <p>→ Email assets: "Send to Antimony" (populates email with Klaviyo assets attached)<br>
+          → Meta assets: "Send to Attention Experts" (populates email with creative brief + assets)<br>
+          → Google assets: "Send to Salt & FuseLab" (populates email with ad copy + creative direction)<br>
+          → Internal: "Send to Raja" (photography brief with shot list)<br>
+          → Organic: "Schedule in Content Calendar" (adds to organic posting schedule)<br>
+          → Export All: Downloads complete campaign pack as ZIP</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 09 — REPORTS
+     ============================================================ -->
+<section class="section" id="reports">
+  <div class="section-label">Section 09</div>
+  <h2 class="section-title">Reports — Per-Channel Dashboards</h2>
+  <p class="section-desc">Separate reporting screen for every major channel, plus a GTM benchmarking report. Each report follows best practices for its respective platform and provides detailed performance analytics.</p>
+  <div class="divider"></div>
+
+  <div class="grid-2">
+    <div class="dash-card" style="margin-bottom:16px;">
+      <div class="dash-card-header" style="padding:16px 24px;">
+        <div class="dash-card-name" style="font-size:15px;">Google Report</div>
+        <span class="tag tag-pink">↗ Google Ads / Analytics</span>
+      </div>
+      <div class="dash-card-body" style="padding:20px 24px;">
+        <p style="font-size:13px;">Search, Shopping, PMax, Display. KPIs: ROAS, CPA, CVR, Impression Share, Quality Score, CTR. Breakdown by campaign type, ad group, keyword. Includes Search Console organic data overlay. Conversion path analysis.</p>
+      </div>
+    </div>
+
+    <div class="dash-card" style="margin-bottom:16px;">
+      <div class="dash-card-header" style="padding:16px 24px;">
+        <div class="dash-card-name" style="font-size:15px;">Klaviyo Report</div>
+        <span class="tag tag-pink">↗ Klaviyo</span>
+      </div>
+      <div class="dash-card-body" style="padding:20px 24px;">
+        <p style="font-size:13px;">Email + SMS performance. KPIs: Open Rate, Click Rate, Revenue per Recipient, Unsubscribe Rate, List Growth. Flow performance table (Welcome, Browse, Cart, Post-Purchase, Winback, Loyalty). Campaign-by-campaign breakdown. Deliverability health.</p>
+      </div>
+    </div>
+
+    <div class="dash-card" style="margin-bottom:16px;">
+      <div class="dash-card-header" style="padding:16px 24px;">
+        <div class="dash-card-name" style="font-size:15px;">Meta Report</div>
+        <span class="tag tag-pink">↗ Meta Business</span>
+      </div>
+      <div class="dash-card-body" style="padding:20px 24px;">
+        <p style="font-size:13px;">Paid Meta (Facebook + Instagram Ads). KPIs: ROAS, CPM, CPC, CTR, Frequency, Reach, Conversions. Breakdown by campaign objective, ad set, creative format. Creative performance leaderboard. Audience overlap analysis.</p>
+      </div>
+    </div>
+
+    <div class="dash-card" style="margin-bottom:16px;">
+      <div class="dash-card-header" style="padding:16px 24px;">
+        <div class="dash-card-name" style="font-size:15px;">Instagram & Facebook Report</div>
+        <span class="tag tag-pink">↗ Sprout Social</span>
+      </div>
+      <div class="dash-card-body" style="padding:20px 24px;">
+        <p style="font-size:13px;">Organic social performance. KPIs: Engagement Rate, Reach, Follower Growth, Post Performance by Format (Reel, Carousel, Static, Story). Content pillar analysis. Best posting times. UGC content performance. Hashtag tracking.</p>
+      </div>
+    </div>
+
+    <div class="dash-card" style="margin-bottom:16px;">
+      <div class="dash-card-header" style="padding:16px 24px;">
+        <div class="dash-card-name" style="font-size:15px;">Yotpo / Loyalty Report</div>
+        <span class="tag tag-pink">↗ Yotpo</span>
+      </div>
+      <div class="dash-card-body" style="padding:20px 24px;">
+        <p style="font-size:13px;">Review volume, average rating, review response rate. Loyalty: active members, tier distribution, points issued vs. redeemed, reward conversion rate. UGC gallery performance. Product-level review breakdown.</p>
+      </div>
+    </div>
+
+    <div class="dash-card" style="margin-bottom:16px;">
+      <div class="dash-card-header" style="padding:16px 24px;">
+        <div class="dash-card-name" style="font-size:15px;">Influencer Report</div>
+        <span class="tag tag-pink">↗ Internal Data</span>
+      </div>
+      <div class="dash-card-body" style="padding:20px 24px;">
+        <p style="font-size:13px;">Ambassador/influencer performance. KPIs: Content delivered vs. contracted, engagement rate, conversion attributed, discount code usage, ROI per influencer. Tier breakdown. Content usage across channels (repurposed as ads, email, PDP).</p>
+      </div>
+    </div>
+
+    <div class="dash-card" style="margin-bottom:16px;">
+      <div class="dash-card-header" style="padding:16px 24px;">
+        <div class="dash-card-name" style="font-size:15px;">GTM Benchmarking Report</div>
+        <span class="tag tag-pink">↗ Panoramata / Particl</span>
+      </div>
+      <div class="dash-card-body" style="padding:20px 24px;">
+        <p style="font-size:13px;">GTM execution benchmarks. KPIs: Pillar progress %, initiative completion rate, blocker count, time-to-completion vs. plan. Geographic performance by state/city. YoY comparison on strategic targets (repeat customer growth from 9% → 29%, AOV growth, return rate reduction).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 10 — BRANDING & PRESENTATION
+     ============================================================ -->
+<section class="section" id="branding">
+  <div class="section-label">Section 10</div>
+  <h2 class="section-title">Branding & Presentation Readiness</h2>
+  <p class="section-desc">Final presentation-ready requirements for the dashboard.</p>
+  <div class="divider"></div>
+
+  <div class="grid-2">
+    <div class="card-green">
+      <h4>Femme Connection Logo</h4>
+      <p>The Femme Connection logo must appear in the top-left of the navigation sidebar. Use the official logo mark from femmeconnection.com.au. Logo should be positioned above the nav items, with 24px padding. White or pink variant on the dark nav background.</p>
+    </div>
+    <div class="card-green">
+      <h4>Profile — Mel, Marketing Manager</h4>
+      <p>The user profile avatar in the bottom-left of the nav sidebar should show Mel's photo with her name "Mel" and role "Marketing Manager" displayed on hover/expanded state. Use a professional headshot style placeholder. This signals the dashboard is personalised and presentation-ready for client delivery.</p>
+    </div>
+    <div class="card-pink">
+      <h4>All Links Must Work</h4>
+      <p>Every external link icon (↗) should be visually clear and consistently styled. Platform name appears as a tooltip. Links: Klaviyo, Google Ads, Google Analytics, Meta Business Manager, Particl, Panoramata, Yotpo, Sprout Social, Shopify Admin, Typeform.</p>
+    </div>
+    <div class="card-pink">
+      <h4>Presentation Polish</h4>
+      <p>Dashboard must be presentation-ready: no placeholder "lorem ipsum" text anywhere. All metrics should use realistic Femme Connection data. All product names should be real (Kalinda Abstract Dress, Royce Embroidered Midi, etc.). All copy should be client-ready and strategic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 11 — FIGMA MAKE PROMPTS
+     ============================================================ -->
+<section class="section" id="prompts">
+  <div class="section-label">Section 11</div>
+  <h2 class="section-title">Figma Make Prompt Appendix</h2>
+  <p class="section-desc">Screen-by-screen Figma Make prompts for the new and enhanced dashboards. Paste these after the Master System Prompt from V1.</p>
+  <div class="divider"></div>
+
+  <!-- PROMPT: NAVIGATION -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — Navigation Sidebar (Updated)</div>
+<span class="highlight">SCREEN:</span> <span class="value">Global Navigation Sidebar — Updated Structure</span>
+<span class="highlight">SIZE:</span> <span class="value">80px collapsed / 240px expanded × full viewport height</span>
+
+<span class="highlight">STRUCTURE:</span>
+Top: Femme Connection logo (white variant on dark background, 24px padding all sides).
+Below logo: Navigation groups with section headers in DM Mono 10px uppercase pink (#ff99b9).
+
+<span class="highlight">NAV GROUPS:</span>
+Group 1 — "STRATEGY": Command Center (house icon), Go-To-Market (target icon), R&D (flask icon)
+Group 2 — "CHANNELS": E-commerce (cart icon), Marketing (megaphone icon), Email/CRM (mail icon), Google Ads (search icon)
+Group 3 — "CONTENT": Content Studio (pen icon), Influencer Hub (users icon), Campaigns (calendar icon)
+Group 4 — "INTELLIGENCE": Competitors (crosshair icon), Loyalty (heart icon)
+Group 5 — "REPORTING": Google Report, Klaviyo Report, Meta Report, Social Report, Yotpo Report, Influencer Report, GTM Report (each with document icon)
+
+Bottom: User profile section. Avatar circle (48px), name "Mel", role "Marketing Manager" in DM Sans 12px. Settings gear icon below.
+
+<span class="highlight">STATES:</span>
+- Collapsed: 80px, icon-only, tooltip on hover
+- Expanded: 240px, icon + label, group headers visible
+- Active item: pink (#ff99b9) left border 3px + icon fill pink + text white
+- Inactive: icon and text at 50% white opacity
+- Hover: 70% white opacity
+
+<span class="highlight">BACKGROUND:</span> #0f1a17 (deep forest green-black)
+<span class="highlight">DIVIDERS:</span> 1px rgba(255,255,255,0.08) between groups
+  </div>
+
+  <!-- PROMPT: COMPETITOR INTELLIGENCE -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — Competitor Intelligence Dashboard</div>
+<span class="highlight">SCREEN:</span> <span class="value">Competitor Intelligence — Sézane & Reformation Focus</span>
+<span class="highlight">SIZE:</span> <span class="value">1680 × 1050px (scrollable, full height ~2800px)</span>
+<span class="highlight">MOOD:</span> Light operational mode. Clean, data-dense, intelligence-led.
+
+<span class="highlight">HEADER:</span> "Competitor Intelligence" in Cormorant Garamond 28px. Breadcrumb: Intelligence > Competitors. Date range picker. Filter by: Tier (Direct / Aspirational / Emerging), Brand, Category.
+
+<span class="highlight">ROW 1 — COMPETITOR SPOTLIGHT (60/40 split):</span>
+Two large cards side by side: Sézane (left) and Reformation (right). Each card: brand logo at top, latest product drop count, average price point, price change indicator (↑/↓ %), top 3 products with thumbnails and estimated sales velocity. Bottom: "View in Particl ↗" link. Card style: white background, thin border, 12px radius.
+
+<span class="highlight">ROW 2 — PRICE BENCHMARK MATRIX:</span>
+Full-width data table. Columns: Category | Femme Avg Price | Direct Competitor Avg | Aspirational Avg | Price Index | Gap Indicator (green if competitive, terracotta if premium gap exists). Rows: Dresses, Knitwear, Tops, Pants, Basics, Accessories. DM Mono for data values.
+
+<span class="highlight">ROW 3 — HIGH PERFORMER TRACKER + CONTENT BENCHMARKING (50/50):</span>
+Left: Scrollable feed of competitor best-sellers. Each row: product thumbnail (40px), product name, brand tag, price, estimated weekly sales, category badge.
+Right: Content benchmarking card. Shows: email frequency comparison (bar chart, brands × emails per week), top content formats by engagement (horizontal bars), social posting cadence comparison.
+
+<span class="highlight">ROW 4 — PROMO CALENDAR HEATMAP (full width):</span>
+12-month heatmap grid. X-axis: months. Y-axis: competitor brands. Cell colour intensity = promo activity level. Tooltip on hover shows promo type and offer details.
+
+<span class="highlight">ROW 5 — AI COMPETITIVE INSIGHT PANEL:</span>
+Dark card (#0f1a17). "AI Competitive Insight" label in pink DM Mono. Italic summary text. Example: "This week, Reformation dropped 14 new linen styles averaging $245 AUD. Sézane launched a capsule collaboration with 6M Instagram reach. Direct competitor Blue Bungalow ran a 30% sitewide sale, their third in 8 weeks." Input field at bottom for custom queries.
+
+<span class="highlight">ALL CARDS:</span> Include ↗ external link icons to Particl and Panoramata where relevant.
+  </div>
+
+  <!-- PROMPT: R&D -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — R&D (Research & Development) Dashboard</div>
+<span class="highlight">SCREEN:</span> <span class="value">R&D — Research & Development</span>
+<span class="highlight">SIZE:</span> <span class="value">1680 × 1050px (scrollable, full height ~2600px)</span>
+<span class="highlight">MOOD:</span> Strategic, analytical. Light mode with accent cards.
+
+<span class="highlight">HEADER:</span> "Research & Development" in Cormorant Garamond 28px. Breadcrumb: Strategy > R&D. Date range picker. Season filter (SS26, AW26, Pre-Fall 26).
+
+<span class="highlight">ROW 1 — CATEGORY PERFORMANCE HEATMAP (full width):</span>
+Grid table. Rows: Dresses, Knitwear, Tops, Pants, Basics, Accessories. Columns: Revenue, Units Sold, Margin %, Return Rate, Restock Rate. Cell colour: green (strong) to terracotta (weak). Values in DM Mono. Header in DM Sans 12px uppercase.
+
+<span class="highlight">ROW 2 — COMPETITOR NEW PRODUCT FEED + GAP ANALYSIS (50/50):</span>
+Left: Scrollable feed of new competitor product launches. Each item: product image (48px), name, brand badge, price, launch date, estimated sales velocity indicator.
+Right: AI Gap Analysis card. Shows 3 identified product gaps: category, competitor presence count, Femme presence count, opportunity statement.
+
+<span class="highlight">ROW 3 — TREND SIGNAL FEED + SEASONAL CALENDAR (50/50):</span>
+Left: Rising trends with velocity indicators. Each trend: name (e.g., "Linen Wide-Leg Pants"), source signal (social/search/competitor), velocity score, days trending.
+Right: Quarterly planning calendar. Shows Femme's planned drops alongside competitor launch windows and key retail moments.
+
+<span class="highlight">ROW 4 — AI PRODUCT STRATEGIST (full width):</span>
+Dark panel. Large AI input field. Pre-filled example prompt: "Based on Q1 sales data and competitor activity, recommend the top 3 product categories for the Winter 2026 collection." AI response shown below in structured cards with category name, rationale, estimated market size, and recommended SKU count.
+  </div>
+
+  <!-- PROMPT: CAMPAIGN PLANNING -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — Campaign & Production Planning Dashboard</div>
+<span class="highlight">SCREEN:</span> <span class="value">Campaign & Production Planning</span>
+<span class="highlight">SIZE:</span> <span class="value">1680 × 1050px (scrollable, full height ~2400px)</span>
+
+<span class="highlight">HEADER:</span> "Campaign Planning" in Cormorant Garamond 28px. Breadcrumb: Content & Campaigns > Campaign Planning.
+
+<span class="highlight">ROW 1 — CAMPAIGN CALENDAR (full width):</span>
+Horizontal timeline / Gantt-style view. Each campaign as a coloured bar: Brief (buff) → Production (pink) → Live (green) → Reporting (grey). Show: "Mother's Day — For Her, From Us" as the active campaign spanning 21 Apr – 11 May. Plus 2-3 other campaigns in various stages.
+
+<span class="highlight">ROW 2 — ACTIVE CAMPAIGN BRIEFS (card grid, 3-column):</span>
+Each card: Campaign name, date range, channels (icon badges), status pill, team avatars, "View Brief" CTA. Feature card for Mother's Day with pink highlight border.
+
+<span class="highlight">ROW 3 — AI CAMPAIGN BUILDER + PRODUCTION TRACKER (50/50):</span>
+Left: AI brief generator with input fields (campaign objective, audience, timing, channels, budget) and "Generate Brief" button.
+Right: Kanban board with 4 columns: Brief Signed Off | Creative in Production | Assets Delivered | Campaign Live. Campaign cards in each column.
+
+<span class="highlight">ROW 4 — PERFORMANCE CALLBACK (full width):</span>
+Post-campaign performance strip. Shows completed campaigns with: ROAS, CVR, engagement, revenue achieved vs. target, and AI-generated learnings.
+  </div>
+
+  <!-- PROMPT: INFLUENCER HUB -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — Influencer Hub + Campaign Pack Builder</div>
+<span class="highlight">SCREEN:</span> <span class="value">Influencer Hub</span>
+<span class="highlight">SIZE:</span> <span class="value">1680 × 1050px (scrollable, full height ~2600px)</span>
+
+<span class="highlight">HEADER:</span> "Influencer Hub" in Cormorant Garamond 28px. Breadcrumb: Content & Campaigns > Influencer Hub.
+
+<span class="highlight">ROW 1 — INFLUENCER LEADERBOARD (full width):</span>
+Table: Influencer Name + Avatar | Tier Badge (T1/T2/T3) | Platform Icons | Followers | Engagement Rate | Conversions Attributed | Revenue Attributed | Content Delivered | Status (Active/Paused). Sort by any column. Top performer highlighted with pink left border.
+
+<span class="highlight">ROW 2 — CAMPAIGN PACK BUILDER (full width featured card):</span>
+Large pink-accent card with "Build Campaign Pack" heading. Grid of pack components: Campaign Overview, Discount Codes, Product Seeding List, Photography Brief, Caption Copy, Asset Library, Deliverables & Timeline, Legal & Disclosure. Each component shows status (Ready / Draft / Empty) and an "Edit" button. Bottom: "Preview Pack" button and "Send to Influencer" button (green CTA).
+
+<span class="highlight">ROW 3 — PACK PREVIEW + SEND (60/40):</span>
+Left: Preview panel showing the compiled pack as the influencer would receive it. Scrollable preview within a card frame.
+Right: Send panel. Email recipient field (searchable influencer list). Email preview. "Copy All to Clipboard" button. "Send Email" CTA. Confirmation modal before send.
+
+<span class="highlight">PACK UI DETAIL:</span>
+Each component section within the pack builder has: copy-and-paste icons on every text block, download buttons on assets, and AI-generate buttons that produce content from the campaign brief data. The Photography Brief section includes: shot list, mood references as image thumbnails, styling direction, format specs per platform.
+  </div>
+
+  <!-- PROMPT: MARKETING ENHANCED -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — Marketing Dashboard (Enhanced)</div>
+<span class="highlight">SCREEN:</span> <span class="value">Marketing Dashboard — Enhanced</span>
+<span class="highlight">SIZE:</span> <span class="value">1680 × 1050px (scrollable, full height ~3000px)</span>
+
+<span class="highlight">CHANNELS DISPLAYED:</span> Organic Social, Paid Social (Meta), Google Ads, Direct. NO email — it has its own dashboard.
+
+<span class="highlight">HEADER:</span> "Marketing" in Cormorant Garamond 28px. Channel filter tabs below header.
+
+<span class="highlight">ROW 1 — KPI ROW (6 cards):</span>
+Blended ROAS | Total Ad Spend | CPM (weighted) | CVR | New Customers (paid) | Organic Revenue %. Each card with sparkline and delta badge.
+
+<span class="highlight">ROW 2 — CHANNEL PERFORMANCE BREAKDOWN (full width):</span>
+4-column grid, one card per channel. Each card: channel icon + name, key metric (ROAS or Engagement Rate), trend line (7-day), top campaign/post, and a "View Report ↗" link to the detailed Reports screen.
+
+<span class="highlight">ROW 3 — AI RECOMMENDATIONS (full width, 2-column):</span>
+Left column: GREEN "Opportunity" cards. Each with: AI insight text, metric snapshot, and ACTION BUTTONS: [Adjust Budget] [Email Agency] [Create Campaign] [Dismiss].
+Right column: TERRACOTTA "Alert" cards. Same structure but for underperformance. Action buttons: [Email Agency] [View Details ↗] [Schedule Review] [Dismiss].
+Each email button opens a pre-populated email template overlay with: recipient (Salt & FuseLab, Attention Experts, Antimony, or Internal), subject line, body with AI insight embedded, and Send button.
+
+<span class="highlight">ROW 4 — CUSTOM DASHBOARD BUILDER (full width):</span>
+Large prompt input field with placeholder: "Describe the dashboard you want to see..." Below: grid of previously generated custom dashboards as thumbnail cards.
+  </div>
+
+  <!-- PROMPT: GTM -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — Go-To-Market Dashboard (Enhanced)</div>
+<span class="highlight">SCREEN:</span> <span class="value">Go-To-Market Dashboard</span>
+<span class="highlight">SIZE:</span> <span class="value">1680 × 1050px (scrollable, full height ~3200px)</span>
+
+<span class="highlight">HEADER:</span> "Go-To-Market" in Cormorant Garamond 28px. Breadcrumb: Strategy > GTM.
+
+<span class="highlight">ROW 1 — GTM PROGRESS TRACKER (full width, 3-column):</span>
+Three large cards for each pillar: Experience | Data Intelligence | Category Leadership. Each shows: progress bar (% complete), active initiatives count, blockers count (terracotta badge), next milestone with date. Card backgrounds: forest green, pink-accent, buff respectively.
+
+<span class="highlight">ROW 2 — 90-DAY EXECUTION CALENDAR (full width):</span>
+Gantt/swimlane timeline. Current quarter view. Rows: each initiative. Columns: weeks. Bars show planned duration. Colour: green (on track), pink (in progress), terracotta (blocked/overdue), grey (not started). Today marker line. Scroll to see upcoming quarter preview.
+
+<span class="highlight">ROW 3 — GEOGRAPHIC SEGMENTATION + INITIATIVE CARDS (50/50):</span>
+Left: Australia map with state-level colour coding. Click state to see: revenue, orders, AOV, new customer %, growth rate. NZ shown as a separate section with "Planned" badge. Country toggle: AU | NZ | International.
+Right: Scrollable grid of initiative cards. Each: initiative name, pillar tag, status pill (Not Started / In Progress / Complete / Blocked), owner, due date, % progress mini-bar.
+
+<span class="highlight">ROW 4 — AI MARKET EXPANSION PLANNER (full width):</span>
+Dark panel. Chat-style AI interface. Pre-filled example: User: "I'd like to explore introducing a new campaign in the New Zealand market." AI response: structured market analysis card with: NZ market size for mid-market womenswear, key competitors in NZ, recommended channel mix, estimated CAC range, suggested entry strategy, draft 90-day launch sequence.
+
+<span class="highlight">ROW 5 — AI-SUGGESTED DASHBOARDS (full width):</span>
+Card grid showing AI-suggested new dashboard modules based on GTM plan analysis. Each card: suggested dashboard name, source initiative, key metrics it would track, "Create Dashboard" CTA. Show 4-6 suggestions.
+
+<span class="highlight">LINKS:</span> ↗ to Panoramata, ↗ to Particl throughout.
+  </div>
+
+  <!-- PROMPT: CONTENT STUDIO -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — Content Studio + Reverse Brief Wizard</div>
+<span class="highlight">SCREEN:</span> <span class="value">Content Studio</span>
+<span class="highlight">SIZE:</span> <span class="value">1680 × 1050px (scrollable, full height ~2800px)</span>
+
+<span class="highlight">HEADER:</span> "Content Studio" in Cormorant Garamond 28px. Breadcrumb: Content & Campaigns > Content Studio.
+
+<span class="highlight">ROW 1 — CAMPAIGN EMAIL FEED + ORGANIC SOCIAL FEED (50/50):</span>
+Left: Vertical scroll of email campaign thumbnails. Each: email preview image, campaign name, Klaviyo campaign tag, send date, audience size, status pill. "View in Klaviyo ↗" link per item.
+Right: Organic content grid. Thumbnail grid (3-column) of Instagram, Pinterest, TikTok posts. Each: thumbnail, platform icon overlay, engagement count, date. Toggle filter: All | Instagram | Pinterest | TikTok.
+
+<span class="highlight">ROW 2 — AI CONTENT AGENT (full width):</span>
+Large card with: Premise input (campaign context text area), Content upload zone (drag-and-drop for images/assets), Platform selection (checkboxes: IG, TikTok, Pinterest), "Generate Content" button. Output area below showing: generated captions, hashtag sets, posting schedule recommendation, and format specifications per platform.
+
+<span class="highlight">ROW 3 — REVERSE BRIEF WIZARD CTA (full width):</span>
+Large featured card: "Create a Content Campaign" heading. "Start Reverse Brief" button (pink CTA, large). Brief description: "Use our 6-step wizard to brief content into AI, review and approve, then generate campaign assets and distribute to your team and partners." Shows the 6 steps as a horizontal progress indicator: Input → AI Brief → Sign Off → Asset Gen → Final Sign Off → Deliver.
+
+<span class="highlight">WIZARD OVERLAY (triggered by "Start Reverse Brief"):</span>
+Full-screen overlay / modal. Shows the active step with the step progress bar at top. Each step as described in the brief. Mother's Day "For Her, From Us" campaign pre-populated as example data. All fields filled with real Femme product names and realistic campaign parameters.
+
+<span class="highlight">STEP 4 ASSET GENERATION DETAIL:</span>
+Gallery view of generated assets. Cards for: 3x IG Reels (title + hook + visual direction + caption), 2x IG Carousels (slide-by-slide), 2x TikTok scripts, 1x Pinterest board, 3x Klaviyo email designs, 4x Google Ad copy variants. Each card: preview area, copy-to-clipboard button, download button, edit button, approve checkbox.
+
+<span class="highlight">STEP 6 DELIVERY DETAIL:</span>
+Distribution panel. Per-channel rows with: Channel name | Agency/Contact | "Send Email" button | Email preview. Rows for: Antimony (Klaviyo), Attention Experts (Meta), Salt & FuseLab (Google), Raja (Photography), Internal Content Calendar, Export All as ZIP.
+  </div>
+
+  <!-- PROMPT: LOYALTY -->
+  <div class="prompt-block">
+    <div class="prompt-block-label">Prompt — Loyalty & Sentiment Dashboard</div>
+<span class="highlight">SCREEN:</span> <span class="value">Loyalty & Sentiment</span>
+<span class="highlight">SIZE:</span> <span class="value">1680 × 1050px (scrollable, full height ~2400px)</span>
+
+<span class="highlight">HEADER:</span> "Loyalty & Sentiment" in Cormorant Garamond 28px. Breadcrumb: Intelligence > Loyalty. "View in Yotpo ↗" link in header.
+
+<span class="highlight">ROW 1 — KPI ROW (5 cards):</span>
+Active Loyalty Members | Avg Rating (Yotpo) | NPS Score (Typeform) | Review Volume (30d) | Sentiment Score (composite). Each with sparkline and delta.
+
+<span class="highlight">ROW 2 — LIVE REVIEWS FEED + SENTIMENT BY CHANNEL (60/40):</span>
+Left: Real-time scrolling feed of Yotpo reviews. Each: product name, star rating (visual), review text (truncated, expandable), reviewer name, date, verified badge. Filter by: rating, product category. "Respond ↗" link per review.
+Right: Sentiment gauge widgets stacked vertically. One per channel: Instagram, Facebook, Email, Yotpo, Google Reviews, TikTok. Each: donut chart (positive/neutral/negative %), trend arrow, sample verbatim quote.
+
+<span class="highlight">ROW 3 — TYPEFORM FEEDBACK + LOYALTY HEALTH (50/50):</span>
+Left: Typeform aggregator. NPS distribution bar. Top themes word cloud or tag list: Fit, Quality, Shipping, Styling, Price, Loyalty Program. Latest responses feed (scrollable).
+Right: Loyalty tier distribution (stacked bar or donut). Tier cards: Bronze / Silver / Gold / VIP. Each shows: member count, AOV, redemption rate, % of revenue contribution.
+
+<span class="highlight">ROW 4 — AI CUSTOMER VOICE SUMMARY (full width):</span>
+Dark panel. Weekly AI summary of customer sentiment. Pre-filled: "This week, customers praised the new knitwear collection (+42% positive mentions). Fit issues persist for pants (3 negative reviews citing inconsistent sizing). Top request: more colour options in Femme Basics. Loyalty program sentiment improved 8% after the new tier benefits communication."
+  </div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">Femme Connection × Antimony Studio</div>
+  <div>Data Intelligence Hub — V2 Build Brief</div>
+  <div>April 2026 · Desktop-first · 1680 × 1050px · Figma Make Ready</div>
+</footer>
+
+<script>
+const navLinks = document.querySelectorAll('.nav-bar a');
+const sections = document.querySelectorAll('.section');
+function updateActive() {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActive, { passive: true });
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Femme Connection — Figma Make Prompts v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #ff99b9;
+  --pink-light: #ffe4ee;
+  --green: #1b443a;
+  --green-dark: #0f1a17;
+  --green-mid: #2d6b5e;
+  --terra: #e2745d;
+  --buff: #e6d1c4;
+  --surface: #f3efe9;
+  --border: #ddd5cc;
+  --text-primary: #141414;
+  --text-secondary: #5a5047;
+  --text-tertiary: #8a7b6e;
+  font-size: 15px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: #faf8f5;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ─── HEADER ─── */
+.page-header {
+  background: var(--green);
+  padding: 3rem 4rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: var(--pink);
+  opacity: 0.12;
+}
+.header-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 0.75rem;
+}
+.header-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+.header-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+.header-meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+.header-meta span { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+/* ─── NAV ─── */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--green);
+  display: flex;
+  gap: 0;
+  padding: 0 4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav-bar a {
+  display: block;
+  padding: 0.85rem 1.2rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+}
+.nav-bar a:hover, .nav-bar a.active {
+  color: var(--pink);
+  border-bottom-color: var(--pink);
+}
+
+/* ─── MAIN ─── */
+.main { padding: 3rem 4rem; max-width: 1200px; margin: 0 auto; }
+
+/* ─── SECTION ─── */
+.section { margin-bottom: 4rem; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+.section-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin-bottom: 1.5rem;
+}
+.divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+/* ─── TAGS ─── */
+.tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.tag-new { background: var(--pink-light); color: #b5426a; }
+.tag-update { background: #e4ede9; color: var(--green); }
+.tag-critical { background: #f5e2dc; color: #993a27; }
+.tag-ux { background: #e6f1fb; color: #185fa5; }
+.tag-screen { background: #f0ece6; color: var(--text-secondary); }
+
+/* ─── PROMPT BLOCKS ─── */
+.prompt-block {
+  background: var(--green-dark);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.prompt-block-label {
+  background: rgba(255,255,255,0.06);
+  padding: 0.7rem 1.25rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pink);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.prompt-text {
+  padding: 1.25rem 1.5rem;
+  font-size: 13px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.75;
+  white-space: pre-wrap;
+  font-family: 'DM Mono', monospace;
+}
+.prompt-text .highlight { color: var(--pink); font-weight: 500; }
+.prompt-text .value { color: #7ddbb8; }
+.prompt-text .comment { color: rgba(255,255,255,0.3); }
+.prompt-text .section-marker { color: #ffc97d; }
+.prompt-text .url { color: #79b8ff; text-decoration: underline; }
+
+/* ─── CARDS ─── */
+.card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.card-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+.card-green { background: var(--green); color: #fff; border: none; border-radius: 12px; padding: 1.25rem 1.5rem; }
+.card-pink { background: var(--pink-light); border: 1px solid #f5c0d1; border-radius: 12px; padding: 1.25rem 1.5rem; }
+.card-buff { background: var(--buff); border: 1px solid #d5bfb0; border-radius: 12px; padding: 1.25rem 1.5rem; }
+.card-title { font-weight: 600; font-size: 13px; margin-bottom: 0.6rem; }
+.card ul { padding-left: 1rem; font-size: 13px; color: var(--text-secondary); }
+.card ul li { margin-bottom: 0.25rem; }
+.card-green .card-title { color: var(--pink); }
+.card-green ul { color: rgba(255,255,255,0.7); }
+.card-pink .card-title { color: #b5426a; }
+.card-buff .card-title { color: var(--text-secondary); }
+
+code {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  background: rgba(0,0,0,0.06);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.card-green code { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+
+/* ─── FEATURE HIGHLIGHT ─── */
+.feature-strip {
+  background: var(--green);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+.feature-icon {
+  width: 48px; height: 48px;
+  background: rgba(255,153,185,0.2);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.feature-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.feature-desc { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+/* ─── CAMPAIGN BRIEF ─── */
+.brief-mockup {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.brief-header {
+  background: var(--green);
+  padding: 1.5rem 2rem;
+}
+.brief-header-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); margin-bottom: 4px; }
+.brief-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 500; color: #fff; }
+.brief-header-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.brief-body { padding: 1.5rem 2rem; }
+.brief-section { margin-bottom: 1.25rem; }
+.brief-section-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 6px; }
+.brief-section-content { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.brief-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.brief-tag { font-size: 11px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; color: var(--text-secondary); font-family: 'DM Mono', monospace; }
+.brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.brief-kpi { background: var(--surface); border-radius: 8px; padding: 0.75rem 1rem; }
+.brief-kpi-label { font-size: 11px; color: var(--text-tertiary); margin-bottom: 2px; }
+.brief-kpi-value { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--text-primary); }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--green);
+  color: rgba(255,255,255,0.4);
+  padding: 2rem 4rem;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-label">Antimony Studio — Figma Make Prompts</div>
+  <h1 class="header-title">Femme Connection<br>Intelligence Hub — v2</h1>
+  <p class="header-sub">Updated prompt set · April 2026 · Desktop-first 1680 × 1050px</p>
+  <div class="header-meta">
+    <div>Version <span>2.0 — Iteration round</span></div>
+    <div>Additions <span>5 new modules + campaign brief screen</span></div>
+    <div>Target <span>Thursday delivery to Mel + Raj</span></div>
+  </div>
+</header>
+
+<nav class="nav-bar" id="top-nav">
+  <a href="#master-update">00 — Master Update</a>
+  <a href="#ai-assistant">01 — AI Chat Widget</a>
+  <a href="#strategy-action">02 — 3-Part Action Strip</a>
+  <a href="#imagery">03 — Imagery Spec</a>
+  <a href="#screen-prompts">04 — Screen Prompts</a>
+  <a href="#campaign-brief">05 — Campaign Brief Page</a>
+</nav>
+
+<main class="main">
+
+<!-- ══════════════════════════════════════════════
+     SECTION 00 — MASTER PROMPT ADDITIONS
+     ══════════════════════════════════════════════ -->
+<section class="section" id="master-update">
+  <div class="section-label">Section 00</div>
+  <h2 class="section-title">Master Prompt — Additions</h2>
+  <p class="section-desc">Append the following blocks to the master system prompt already in Figma Make. These define four global design patterns that apply across every screen in the hub.</p>
+  <hr class="divider">
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">00-A — Global: Floating AI Chat Widget <span class="tag tag-new">New</span></div>
+    <div class="prompt-text"><span class="comment">// ═══════════════════════════════════════
+// GLOBAL ADDITION: FLOATING AI CHAT WIDGET
+// ═══════════════════════════════════════</span>
+
+<span class="highlight">FLOATING AI CHAT ASSISTANT — GLOBAL COMPONENT (All screens):</span>
+A persistent, collapsible AI chat widget lives in the <span class="value">bottom-left corner</span> of every dashboard screen, sitting above the left navigation sidebar.
+
+<span class="highlight">COLLAPSED STATE (default):</span>
+- A floating pill button, 52px tall × 160px wide
+- Background: <span class="value">#1b443a</span> (brand green)
+- Left: small waveform icon (3 animated bars in pink #ff99b9)
+- Text: "AI Assistant" in DM Sans 13px, white
+- Right: small expand icon (chevron up)
+- Position: fixed bottom-left, 16px from sidebar right edge, 24px from screen bottom
+- Subtle pink left border glow on hover
+
+<span class="highlight">EXPANDED STATE (on click):</span>
+- Panel expands upward to 340px tall × 320px wide
+- Background: <span class="value">#1b443a</span> — dark forest green, exactly as in design reference
+- Top-right: X close button — dark circular pill, 32px, dark charcoal fill
+- Header: "AI Assistant" in DM Sans 16px, white, top-left
+- Center: Animated audio waveform visualization — white vertical bars of varying heights (26 bars) — static for Figma, animated in prototype mode. Waveform area: 220px wide × 80px tall, centered
+- Bottom: Query input field — rounded pill, 36px tall, white stroke outline on dark bg, placeholder text in muted white: "Ask anything about your data..."
+- Right of input: circular search button, white bg, dark icon
+- Below input: one pre-populated example AI insight card — dark nested card (#0f1a17), pink label "Latest insight", 2-line text summary in 12px white/70
+
+<span class="highlight">FEMME CONNECTION LOGO (Sidebar top):</span>
+- The FEMME CONNECTION wordmark sits at the very top of the left sidebar
+- Typeset in Cormorant Garamond, uppercase, white, 13px, tracked
+- Below the wordmark: thin pink horizontal rule (1px, #ff99b9, 60% opacity)
+- Logo container: 80px wide (full sidebar width), 64px tall, centered
+- This is consistent across ALL screens — do not remove or reposition
+
+<span class="highlight">USER PROFILE (Global header, far right):</span>
+- Circular avatar image, 36px diameter, 2px pink ring border (#ff99b9)
+- Source image: placeholder for Femme Connection team user photo
+- Positioned: top-right of the global header bar, 24px from right edge
+- Adjacent to: notification bell icon (24px), dark/light toggle
+- On hover: name tooltip appears below avatar
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">00-B — Global: 3-Part Strategic Action Strip <span class="tag tag-new">New</span></div>
+    <div class="prompt-text"><span class="comment">// ═══════════════════════════════════════
+// GLOBAL ADDITION: 3-PART STRATEGIC ACTION STRIP
+// ═══════════════════════════════════════</span>
+
+<span class="highlight">3-PART STRATEGIC ACTION STRIP — Every dashboard, below the KPI row:</span>
+A full-width, 3-column panel that appears immediately below the headline KPI row on every dashboard screen. This is the intelligence layer — it translates data into decisions.
+
+<span class="highlight">LAYOUT:</span>
+Full content width. 3 equal columns, 16px gap. Height: 110px. 12px border-radius.
+
+<span class="highlight">COLUMN 1 — SILVER BULLET:</span>
+Background: <span class="value">#1b443a</span> (brand green)
+Top-left label: "Silver Bullet" in DM Mono 10px, all-caps, pink #ff99b9
+Icon: single bullet/target icon in pink, 16px, top-right of label row
+Main text: ONE bold strategic action in Cormorant Garamond 18px, italic, white
+Supporting line: "Estimated impact" in DM Sans 12px, rgba(255,255,255,0.5)
+Bottom: impact value (e.g. "+$84k revenue potential") in DM Mono 13px, pink
+Left border accent: 3px solid #ff99b9
+
+Explanation: The single most powerful lever available to the business right now — high effort but transformational return. One action, clearly stated, with an estimated revenue or retention impact.
+
+<span class="value">Example copy (Strategy Dashboard):</span>
+"Reactivate 2,847 lapsed customers via targeted win-back campaign"
+Estimated impact: +$84,210 at 20% reactivation rate
+
+<span class="highlight">COLUMN 2 — LOW-HANGING FRUIT:</span>
+Background: <span class="value">#fff</span> (white card) with 1px border #ddd5cc
+Top-left label: "Low-Hanging Fruit" in DM Mono 10px, all-caps, green #1b443a
+Icon: fruit/leaf icon in green, 16px, top-right of label row
+Main text: Quick win action in DM Sans 14px, semibold, dark
+Supporting line: effort level chip — "Easy · 2 days" — small pill, green fill, 11px
+Bottom: channel tag chip (e.g. "Klaviyo · Email") + impact estimate in terra #e2745d
+Left border accent: 3px solid #1b443a
+
+Explanation: A quick, low-effort action that can be taken immediately with a clear, measurable short-term return. Actionable today by one team member.
+
+<span class="value">Example copy (Strategy Dashboard):</span>
+"A/B test subject lines on Win-back flow — current OR is 28% vs 38% benchmark"
+Effort: Easy · 2 days · Expected lift: +12% open rate
+
+<span class="highlight">COLUMN 3 — LONG-TERM FRAMEWORK TASKS:</span>
+Background: <span class="value">#f3efe9</span> (surface/buff)
+Top-left label: "On-Target Framework" in DM Mono 10px, all-caps, #5a5047
+Icon: roadmap/calendar icon, 16px
+Content: A numbered vertical list of 3 ongoing strategic tasks aligned to the KPI tree
+Each item: number in pink, task title in DM Sans 13px semibold, status badge (Planned / In Progress / On Track) in small pill
+These represent the 90-day strategic initiatives already in the GTM plan
+
+Explanation: The 3 most important medium-to-long-term initiatives that should be in motion in the background — not urgent but critical to the 90-day growth plan.
+
+<span class="value">Example copy (Strategy Dashboard):</span>
+1. Launch YPO loyalty program relaunch — In Progress
+2. Klaviyo flow segmentation rebuild — Planned
+3. Meta creative refresh — Q2 campaign — On Track
+
+<span class="highlight">NOTES FOR FIGMA MAKE:</span>
+- Build this as a reusable component: FC/Strategy/ActionStrip--3Part
+- All three columns have identical height and border-radius
+- The strip sits between the KPI row and the first chart/data row on every screen
+- Each screen has its own copy — see screen-specific prompts below for exact text per dashboard
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">00-C — Global: Femme Connection Imagery Spec <span class="tag tag-update">New</span></div>
+    <div class="prompt-text"><span class="comment">// ═══════════════════════════════════════
+// GLOBAL IMAGERY SPEC: FEMMECONNECTION.COM.AU
+// ═══════════════════════════════════════</span>
+
+<span class="highlight">IMAGERY SOURCE:</span> All product photography to be sourced from <span class="url">https://www.femmeconnection.com.au</span>
+In Figma: use "Fill Image" on product card placeholders — source from the Femme Connection website collection pages listed below.
+
+<span class="highlight">COLLECTION IMAGE SOURCES (use these URLs for Figma image fills):</span>
+New Arrivals: <span class="url">femmeconnection.com.au/collections/new-in</span>
+Occasionwear: <span class="url">femmeconnection.com.au/collections/dress-it-up</span>
+Boho Babes: <span class="url">femmeconnection.com.au/collections/boho-babes</span>
+Floral: <span class="url">femmeconnection.com.au/collections/feeling-floral</span>
+Luxe Linen: <span class="url">femmeconnection.com.au/collections/luxe-linen</span>
+Workwear: <span class="url">femmeconnection.com.au/collections/workwear</span>
+
+<span class="highlight">PRODUCT IMAGE PLACEMENT RULES:</span>
+
+On-model portrait shots (woman in garment, clean background):
+- Use in: Top Products card list (36×48px thumbnails, object-fit: cover)
+- Use in: Product performance table rows (32×32px, rounded-4)
+- Use in: Campaign Brief hero image (full-bleed, 280px tall, overlay gradient)
+- Use in: Content idea cards (campaign image thumbnail)
+- Use in: E-commerce product grid tiles (120×160px, 8px radius)
+
+Collection hero shots (styled editorial, group shots):
+- Use in: Strategy Dashboard qualitative insights card (behind overlay)
+- Use in: GTM Campaign Brief page — hero banner
+- Use in: Marketing Dashboard — organic top posts preview
+
+<span class="highlight">IMAGE TREATMENT IN DARK CARDS:</span>
+When placing product images inside dark (#0f1a17 or #1b443a) cards:
+- Add subtle rounded container: 8px radius
+- Slight green overlay at 15% opacity to tie image to brand palette
+- No harsh cropping — always portrait orientation for clothing shots
+
+<span class="highlight">PRODUCT NAMES TO USE (sourced from Femme website for realism):</span>
+Use these actual Femme Connection product names in the dashboard:
+- Kalinda Abstract Dress
+- Royce Embroidered Midi
+- Marrakesh Floral Maxi
+- Ronika Floral Dress
+- Luxe Linen Wrap Top
+- Boho Tier Maxi
+- Occasion Sequin Dress
+- Italian Print Blouse
+- Wildside Animal Print Skirt
+- Check Mate Blazer Set
+
+<span class="highlight">IMAGE DENSITY RULE:</span>
+At least 3 product images with real Femme imagery must appear visible on the Strategy Dashboard, E-commerce Dashboard, and GTM Campaign Brief page.
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">00-D — Global: Info Panel + Drill-Down Drawer <span class="tag tag-ux">UX</span></div>
+    <div class="prompt-text"><span class="comment">// ═══════════════════════════════════════
+// GLOBAL UX PATTERN: INFO PANEL + DRILL-DOWN
+// ═══════════════════════════════════════</span>
+
+<span class="highlight">INFO PANEL — ⓘ Icon on every card header:</span>
+Every data card in the hub has a small circular ⓘ icon (16px, muted green fill, white i) in its top-right corner, adjacent to the card title.
+On click (prototype mode): opens a compact tooltip drawer that slides down from the icon.
+Tooltip content structure:
+- "What this is" — 1 sentence definition of the metric
+- "Why it matters" — 1 sentence on strategic relevance for Femme Connection
+- "Recommended action" — 1 clear imperative sentence
+
+Design: white card, 12px radius, 240px wide, shadow, DM Sans 12px, dismiss on outside click.
+Build as reusable Figma component: FC/UI/InfoTooltip
+
+<span class="highlight">DRILL-DOWN OPTIMISATION BRIEF — Right-side slide-out drawer:</span>
+Triggered by: clicking any priority action card, Silver Bullet card, or Low-Hanging Fruit card.
+Panel: slides in from the right edge. Width: 380px. Height: full screen. Background: #faf8f5.
+Header: dashboard title + "Optimisation Brief" label in pink mono.
+
+Panel content structure:
+SECTION 1 — Observation: what the data is showing right now
+SECTION 2 — Root Cause: why this is happening (AI-generated hypothesis)
+SECTION 3 — Recommended Action: specific, step-by-step instruction
+SECTION 4 — Effort Level: Easy / Medium / High chip + estimated time
+SECTION 5 — Expected Impact: quantified revenue or metric estimate
+SECTION 6 — Next Step CTA: action button in green — e.g. "Build Segment in Klaviyo"
+
+Build as Figma component: FC/UI/OptimisationBrief--Drawer
+In prototype: trigger from Silver Bullet and Low-Hanging Fruit cards on every screen.
+</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 01 — AI CHAT WIDGET DETAIL
+     ══════════════════════════════════════════════ -->
+<section class="section" id="ai-assistant">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">AI Chat Widget — Component Detail</h2>
+  <p class="section-desc">Full specification for the floating bottom-left AI assistant, as shown in the uploaded design screenshots. This is the persistent intelligence interface across every hub screen.</p>
+  <hr class="divider">
+
+  <div class="card-grid-2">
+    <div class="card-green">
+      <div class="card-title">Collapsed State Spec</div>
+      <ul>
+        <li>Pill shape: 52px H × 160px W</li>
+        <li>Background: #1b443a (brand green)</li>
+        <li>3 animated waveform bars, pink #ff99b9</li>
+        <li>"AI Assistant" label — DM Sans 13px, white</li>
+        <li>Chevron ↑ expand icon, right-aligned</li>
+        <li>Position: bottom-left, above sidebar bottom</li>
+        <li>Pink left-border glow on hover</li>
+        <li>Drop shadow: 0 4px 20px rgba(0,0,0,0.3)</li>
+      </ul>
+    </div>
+    <div class="card-green">
+      <div class="card-title">Expanded State Spec</div>
+      <ul>
+        <li>Panel: 340px H × 320px W</li>
+        <li>Background: #1b443a — matches screenshot exactly</li>
+        <li>X button: dark circular, top-right, 32px</li>
+        <li>Waveform: 26 white bars, varying heights (80px zone)</li>
+        <li>Input: rounded pill, white stroke on dark bg</li>
+        <li>Placeholder: "Ask anything about your data..."</li>
+        <li>Search button: circular, white bg, dark icon</li>
+        <li>Nested insight card: #0f1a17, pink label, 12px text</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Per-Screen AI Insight Copy — paste into each screen</div>
+    <div class="prompt-text"><span class="highlight">STRATEGY DASHBOARD — AI Insight card nested inside widget:</span>
+Label: "Latest Insight"
+Text: <span class="value">"Email revenue is your highest-ROI channel this month (+32%). Win-back segment has grown 340 customers. Recommend: double-points loyalty event tied to new arrivals drop."</span>
+
+<span class="highlight">E-COMMERCE DASHBOARD:</span>
+Label: "Stock Alert"
+Text: <span class="value">"Kalinda Abstract Dress has 8 units remaining — trending +340% this week. Reorder trigger is 10 units. Recommend restocking within 48 hours to avoid stockout."</span>
+
+<span class="highlight">EMAIL / CRM DASHBOARD:</span>
+Label: "Flow Alert"
+Text: <span class="value">"Instant audience overlap detected: 847 customers entered both the Femme welcome flow and an external flow within 60 minutes. Recommend: exclude Klaviyo active profiles from instant triggers."</span>
+
+<span class="highlight">MARKETING DASHBOARD:</span>
+Label: "Creative Fatigue"
+Text: <span class="value">"Meta creative set FC-09 has reached frequency 4.2 — above the 3.5 optimal threshold. Engagement dropped 18% in 7 days. Refresh with new UGC before weekend spend increase."</span>
+
+<span class="highlight">COMPETITOR INTELLIGENCE:</span>
+Label: "Market Movement"
+Text: <span class="value">"3 competitors ran end-of-season promotions at 30–40% off this week. Promo intensity is up 2.1 points. Femme pricing remains 8% above market average — hold position and lead with quality messaging."</span>
+
+<span class="highlight">GTM STRATEGY DASHBOARD:</span>
+Label: "Campaign Opportunity"
+Text: <span class="value">"You have 4,200 loyal customers with no purchase in 45 days. A targeted 'New Arrivals' preview campaign for loyalty members could drive $32k incremental revenue before month end."</span>
+</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 02 — 3-PART ACTION STRIP PER SCREEN
+     ══════════════════════════════════════════════ -->
+<section class="section" id="strategy-action">
+  <div class="section-label">Section 02</div>
+  <h2 class="section-title">3-Part Strategic Action Strip — Per Screen Copy</h2>
+  <p class="section-desc">Exact content for each dashboard's Silver Bullet / Low-Hanging Fruit / Long-Term Framework Tasks strip. Paste the relevant block into each screen-specific Figma Make prompt.</p>
+  <hr class="divider">
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Strategy Dashboard — 3-Part Action Strip</div>
+    <div class="prompt-text"><span class="section-marker">// STRATEGY DASHBOARD — ACTION STRIP COPY</span>
+
+<span class="highlight">SILVER BULLET (Column 1 — dark green):</span>
+Label: SILVER BULLET
+Action: <span class="value">"Launch loyalty win-back campaign to 2,847 lapsed customers"</span>
+Impact line: Estimated: +$84,210 at 20% reactivation rate
+Channel: Klaviyo · Email + SMS
+
+<span class="highlight">LOW-HANGING FRUIT (Column 2 — white):</span>
+Label: LOW-HANGING FRUIT
+Action: <span class="value">"A/B test subject line on Win-back flow — current OR 28% vs 38% benchmark"</span>
+Effort chip: Easy · 2 days
+Impact: +12% open rate · +$6,400 projected revenue lift
+Channel chip: Klaviyo · Email
+
+<span class="highlight">LONG-TERM FRAMEWORK TASKS (Column 3 — buff surface):</span>
+Label: ON-TARGET FRAMEWORK
+1. YPO loyalty program relaunch — <span class="value">In Progress</span>
+2. Klaviyo segmentation rebuild — <span class="value">Planned</span>
+3. Meta Q2 creative refresh — <span class="value">On Track</span>
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">E-Commerce Dashboard — 3-Part Action Strip</div>
+    <div class="prompt-text"><span class="section-marker">// E-COMMERCE DASHBOARD — ACTION STRIP COPY</span>
+
+<span class="highlight">SILVER BULLET:</span>
+Action: <span class="value">"Expand top-performing Kalinda Abstract Dress into 3 colourways — demand signals at 340% week-on-week"</span>
+Impact: +$28,000 projected additional GMV per colourway launch
+
+<span class="highlight">LOW-HANGING FRUIT:</span>
+Action: <span class="value">"Reduce checkout step count from 4 to 2 — current checkout abandonment is 74%"</span>
+Effort: Medium · 1 week dev
+Impact: +8% CVR uplift · +$18,000 monthly revenue potential
+
+<span class="highlight">FRAMEWORK TASKS:</span>
+1. Shopify account page redesign (YPO) — <span class="value">In Progress</span>
+2. Product bundling strategy — dresses + accessories — <span class="value">Planned</span>
+3. Returns reduction: sizing guide update — <span class="value">On Track</span>
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Email / CRM Dashboard — 3-Part Action Strip</div>
+    <div class="prompt-text"><span class="section-marker">// EMAIL CRM DASHBOARD — ACTION STRIP COPY</span>
+
+<span class="highlight">SILVER BULLET:</span>
+Action: <span class="value">"Rebuild post-purchase flow with 4-email sequence targeting repeat purchase at day 14, 30, 60"</span>
+Impact: +$54,000 estimated lifecycle revenue per quarter
+
+<span class="highlight">LOW-HANGING FRUIT:</span>
+Action: <span class="value">"Fix instant audience flow overlap — 847 customers receiving dual welcome sequences within 60 minutes"</span>
+Effort: Easy · same day
+Impact: Reduce unsubscribe risk for 847 contacts · protect deliverability score
+
+<span class="highlight">FRAMEWORK TASKS:</span>
+1. Loyalty tier email journey build — <span class="value">Planned</span>
+2. VIP segment (top 15%) exclusive preview series — <span class="value">In Progress</span>
+3. Birthday flow + offer personalisation — <span class="value">On Track</span>
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Marketing Dashboard — 3-Part Action Strip</div>
+    <div class="prompt-text"><span class="section-marker">// MARKETING DASHBOARD — ACTION STRIP COPY</span>
+
+<span class="highlight">SILVER BULLET:</span>
+Action: <span class="value">"Launch nROAS-optimised Meta campaign targeting new customers only — current blended ROAS masks acquisition inefficiency"</span>
+Impact: Reduce blended CAC by est. 18% · Improve new customer ROAS from 2.1 to 3.2×
+
+<span class="highlight">LOW-HANGING FRUIT:</span>
+Action: <span class="value">"Pause Meta creative FC-09 — frequency 4.2 exceeds threshold · rotate in 3 new UGC assets immediately"</span>
+Effort: Easy · today
+Impact: Recover 18% ER drop · save est. $1,200/week in wasted spend
+
+<span class="highlight">FRAMEWORK TASKS:</span>
+1. Q2 Meta campaign architecture — full brief — <span class="value">In Progress</span>
+2. TikTok content calendar — 8-week plan — <span class="value">Planned</span>
+3. Influencer seeding program — 12 creators — <span class="value">On Track</span>
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Competitor Intelligence — 3-Part Action Strip</div>
+    <div class="prompt-text"><span class="section-marker">// COMPETITOR INTELLIGENCE — ACTION STRIP COPY</span>
+
+<span class="highlight">SILVER BULLET:</span>
+Action: <span class="value">"Enter the Luxe Linen category with a dedicated editorial campaign — 3 competitors have zero presence, demand trending +62% YoY"</span>
+Impact: Est. +$120,000 GMV in first 90 days with targeted launch
+
+<span class="highlight">LOW-HANGING FRUIT:</span>
+Action: <span class="value">"Hold price position — do not match competitor promo discounts this week · lead with quality editorial content instead"</span>
+Effort: Easy · no cost
+Impact: Protect margin by 8% vs promo-led competitors
+
+<span class="highlight">FRAMEWORK TASKS:</span>
+1. Quarterly competitor pricing review — <span class="value">On Track</span>
+2. Share of voice monitoring — Sprout Social setup — <span class="value">Planned</span>
+3. Category whitespace analysis — Q3 buying — <span class="value">In Progress</span>
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">GTM Strategy Dashboard — 3-Part Action Strip</div>
+    <div class="prompt-text"><span class="section-marker">// GTM STRATEGY — ACTION STRIP COPY</span>
+
+<span class="highlight">SILVER BULLET:</span>
+Action: <span class="value">"Build referral program leveraging 4.6★ Yotpo advocates — untapped word-of-mouth equity is the brand's single largest underutilised growth lever"</span>
+Impact: Est. +300 new customers/month · CAC reduced by 40% vs paid acquisition
+
+<span class="highlight">LOW-HANGING FRUIT:</span>
+Action: <span class="value">"Send loyalty member early-access email for next new arrivals drop — 4,200 VIP customers not yet targeted this month"</span>
+Effort: Easy · 1 day
+Impact: +$32,000 projected incremental revenue
+
+<span class="highlight">FRAMEWORK TASKS:</span>
+1. 90-day integrated campaign calendar — <span class="value">In Progress</span>
+2. Brand ambassador program launch — Q2 — <span class="value">Planned</span>
+3. Meta + Email co-ordinated go-to-market — <span class="value">On Track</span>
+</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 03 — IMAGERY PLACEMENT GUIDE
+     ══════════════════════════════════════════════ -->
+<section class="section" id="imagery">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">Imagery Placement — Per Dashboard</h2>
+  <p class="section-desc">Exactly where and how to place Femme Connection product photography sourced from femmeconnection.com.au in each screen of the hub.</p>
+  <hr class="divider">
+
+  <div class="card-grid-3">
+    <div class="card">
+      <div class="card-title" style="color: var(--green)">Strategy Dashboard</div>
+      <ul>
+        <li>Top Products list: 4 portrait thumbnails (40×52px, rounded-6) — use Kalinda Abstract, Royce Embroidered, Marrakesh Floral, Ronika Floral</li>
+        <li>Qualitative Insights card: product collage background (subtle, 20% opacity behind chart)</li>
+        <li>AI Sales Summary nested card: 1 small product image (32×40px)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--green)">E-Commerce Dashboard</div>
+      <ul>
+        <li>Product performance grid: 6 tiles with product images (120×160px, object-fit cover, 8px radius)</li>
+        <li>Top selling row: 5 product thumbnails with pink revenue badges</li>
+        <li>Most returned items: 3 small product images next to return bars</li>
+        <li>Website section: hero banner — editorial shot of model in key product (280px tall)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--green)">Marketing Dashboard</div>
+      <ul>
+        <li>Organic top posts: 3 Instagram post thumbnails — use Femme lifestyle imagery</li>
+        <li>Creative leaderboard: 3 ad creative thumbnails with ROAS badges</li>
+        <li>TikTok posts preview: 2 vertical video thumbnail placeholders with Femme products</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--green)">GTM Campaign Brief Page</div>
+      <ul>
+        <li>Hero banner: full-bleed editorial shot (280px tall, dark overlay gradient, text over top)</li>
+        <li>Art direction references: 3 small image swatches (80×80px) showing visual tone</li>
+        <li>Content idea card (linked to brief): product hero + campaign headline overlay</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--green)">Email/CRM Dashboard</div>
+      <ul>
+        <li>Win-back opportunity panel: small lifestyle image (woman in floral dress) as background wash</li>
+        <li>Campaign performance table: campaign thumbnail column (28×36px per row)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--green)">Competitor Intelligence</div>
+      <ul>
+        <li>No direct product imagery — use brand logo placeholders</li>
+        <li>Trend themes cards: 1 small Femme editorial image as "our brand" reference thumbnail</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 04 — SCREEN-SPECIFIC PROMPT UPDATES
+     ══════════════════════════════════════════════ -->
+<section class="section" id="screen-prompts">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">Screen-by-Screen Prompt Updates</h2>
+  <p class="section-desc">Updated additions for each existing screen prompt. Append to the end of each screen's existing Figma Make prompt block.</p>
+  <hr class="divider">
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">UPDATE: Screen 1 — Strategy Dashboard (Command Center)</div>
+    <div class="prompt-text"><span class="comment">// APPEND TO EXISTING STRATEGY DASHBOARD PROMPT</span>
+
+<span class="highlight">NEW ADDITIONS TO THIS SCREEN:</span>
+
+<span class="section-marker">1. FLOATING AI WIDGET:</span>
+Apply the global AI Chat Widget component (see 00-A) to this screen.
+Collapsed state visible at bottom-left.
+Expanded state shows pre-filled insight card:
+<span class="value">"Email revenue up 32% — Win-back segment: 2,847 lapsed. Recommend: double-points loyalty event tied to new arrivals."</span>
+
+<span class="section-marker">2. 3-PART ACTION STRIP:</span>
+Insert immediately after the KPI row and before the Revenue vs Order chart row.
+Use the Strategy Dashboard copy from Section 02 of this document.
+
+<span class="section-marker">3. PRODUCT IMAGERY:</span>
+Top Products card (right column): populate with 4 Femme product images.
+Names: Kalinda Abstract Dress / Royce Embroidered Midi / Marrakesh Floral Maxi / Ronika Floral Dress
+Each item: 40×52px portrait thumbnail (rounded-6) + product name + green badge showing % sales rank
+
+<span class="section-marker">4. FEMME LOGO + USER AVATAR:</span>
+Sidebar top: FEMME CONNECTION wordmark (Cormorant Garamond, white, uppercase, 13px)
+Header far-right: circular user avatar (36px, pink ring border) + notification bell + mode toggle
+
+<span class="section-marker">5. DATE RANGE INTERACTIVITY:</span>
+Header date picker: active, triggers data changes on all KPI cards
+Presets: Today / 7D / 30D / 90D / MTD / YTD + Compare toggle
+All KPI values, sparklines, and chart data should visually respond to date selection
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">UPDATE: Screen 2 — E-Commerce Dashboard</div>
+    <div class="prompt-text"><span class="comment">// APPEND TO EXISTING E-COMMERCE DASHBOARD PROMPT</span>
+
+<span class="highlight">NEW ADDITIONS TO THIS SCREEN:</span>
+
+<span class="section-marker">1. FLOATING AI WIDGET:</span>
+Apply global AI widget. Expanded insight:
+<span class="value">"Kalinda Abstract Dress trending +340% — 8 units remaining. Checkout abandonment at 74% — removing 2 checkout steps could recover $18k/month."</span>
+
+<span class="section-marker">2. 3-PART ACTION STRIP:</span>
+Use E-Commerce copy from Section 02.
+
+<span class="section-marker">3. WEBSITE SECTION — NEW ROW (add after existing rows):</span>
+Label: "Website Performance" · Sub-tabs: Pages / Checkout / Account / Device
+
+Content: 3 column layout (33/33/33):
+LEFT — Top Landing Pages: ranked list (5 items). Each: page name, sessions count, CVR %, trend sparkline.
+Pages: Homepage (3,240 sessions · 3.2% CVR) / New Arrivals (2,180 · 4.1%) / Dresses (1,740 · 3.8%) / Sale (1,420 · 2.1%) / Account Page (890 · 1.2%)
+
+CENTER — Checkout Funnel: horizontal step funnel showing drop-off at each stage.
+Steps: Viewed Product → Added to Cart → Reached Checkout → Payment → Completed
+Drop rates: 68% → 52% → 34% → 26% — highlight the 34% checkout abandonment in terracotta
+
+RIGHT — Device Split: donut chart. Mobile 68% / Desktop 24% / Tablet 8%.
+Below: small flag card — "Mobile CVR 1.4% vs Desktop 2.8% — mobile experience is conversion gap" in terracotta alert
+
+<span class="section-marker">4. PRODUCT IMAGERY:</span>
+Populate product grid and top products list with Femme Connection product images.
+Use portrait photos from femmeconnection.com.au/collections/new-in
+
+<span class="section-marker">5. DATE RANGE INTERACTIVITY:</span>
+All KPI cards and charts respond to date picker changes. Propagate from Strategy Dashboard pattern.
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">UPDATE: Screen 4 — Email / CRM Dashboard</div>
+    <div class="prompt-text"><span class="comment">// APPEND TO EXISTING EMAIL/CRM DASHBOARD PROMPT</span>
+
+<span class="highlight">NEW ADDITIONS TO THIS SCREEN:</span>
+
+<span class="section-marker">1. FLOATING AI WIDGET:</span>
+Expanded insight: <span class="value">"Flow overlap detected: 847 customers in dual welcome sequences. Win-back segment +340 customers this month. Best send time: Tuesday 10am AEST."</span>
+
+<span class="section-marker">2. KLAVIYO FLOW CONFLICT ALERT BANNER:</span>
+Insert as a full-width banner at the very top of the main content area, below the global header.
+Style: terracotta (#e2745d) background, white text, 44px tall, rounded-8.
+Left icon: warning triangle (white, 16px)
+Text: <span class="value">"Flow overlap detected — 847 customers are entering two active welcome sequences simultaneously. Recommended action: exclude active Klaviyo profiles from instant audience triggers."</span>
+Right: "View Analysis" button (white outlined pill, 12px) + dismiss × icon
+
+<span class="section-marker">3. LOYALTY SECTION — NEW MODULE (add as new row after Segment Health Matrix):</span>
+Section header: "Loyalty Intelligence" with Yotpo logo badge top-right
+
+Layout: 3 columns (33/33/33):
+LEFT — Tier Breakdown: horizontal stacked bar showing Bronze / Silver / Gold customer counts.
+Bronze: 8,240 customers (green light tint)
+Silver: 2,180 customers (brand green)
+Gold: 847 customers (pink #ff99b9)
+Below: "Tier Revenue Contribution" — Gold drives 34% of revenue from 8% of customers
+
+CENTER — Loyalty KPIs: 4 stat tiles in 2×2 grid (compact, 16px padding each):
+Points Issued: 284,000 pts
+Points Redeemed: 34,080 pts (12% redemption — below 18% benchmark — flag in terracotta)
+Loyalty Revenue: $48,200 (28% of total revenue)
+At-Risk Members: 340 (close to tier drop — alert in terracotta)
+
+RIGHT — Redemption Opportunity: large featured card.
+"340 members are within 7 days of tier downgrade"
+"$28,400 in unredeemed points expiring this month"
+CTA button: "Send Retention Email" in green pill
+
+<span class="section-marker">4. 3-PART ACTION STRIP:</span>
+Use Email/CRM copy from Section 02.
+
+<span class="section-marker">5. DATE RANGE INTERACTIVITY:</span>
+Propagate date picker to all email metrics, flow performance, and loyalty stats.
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">UPDATE: Screen 3 — Marketing Dashboard</div>
+    <div class="prompt-text"><span class="comment">// APPEND TO EXISTING MARKETING DASHBOARD PROMPT</span>
+
+<span class="highlight">NEW ADDITIONS TO THIS SCREEN:</span>
+
+<span class="section-marker">1. FLOATING AI WIDGET:</span>
+Expanded insight: <span class="value">"FC-09 creative frequency 4.2 — pause immediately. Instagram ER trending down 12% month-on-month. Top performing organic format: Reels at 6.8% ER."</span>
+
+<span class="section-marker">2. 3-PART ACTION STRIP:</span>
+Use Marketing Dashboard copy from Section 02.
+
+<span class="section-marker">3. ORGANIC TOP POSTS — add Femme product imagery:</span>
+In the organic top posts panel (3 posts shown):
+Post 1: Marrakesh Floral Maxi lifestyle shot — ER: 8.4% · Reach: 12,400 · Saves: 840
+Post 2: Luxe Linen Wrap Top editorial — ER: 6.2% · Reach: 8,200 · Saves: 420
+Post 3: Boho Babes collection flat lay — ER: 5.8% · Reach: 7,100 · Saves: 280
+Each post: platform badge (Instagram / TikTok) + metric row
+
+<span class="section-marker">4. CONTENT IDEA CARD — linked to Campaign Brief (see Section 05):</span>
+Add a "Content Ideas" card below the organic posts panel.
+Style: white card, buff (#e6d1c4) left border accent (3px)
+Header: "Content Opportunities" + "AI Generated" pill badge in pink
+3 content idea chips:
+  Idea 1: "Luxe Linen Summer Edit — Reels series" → <span class="value">[CLICKABLE — links to Campaign Brief page]</span>
+  Idea 2: "Behind the Scenes: New Arrivals Unboxing" → prototype link
+  Idea 3: "Style Challenge: 3 ways to wear the Kalinda Dress" → prototype link
+Each chip: idea title (DM Sans 13px, semibold) + channel badge + estimated reach + "View Brief →" arrow
+
+The first idea "Luxe Linen Summer Edit" must have a live prototype connection to the Campaign Brief screen (Screen 7).
+</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 05 — CAMPAIGN BRIEF PAGE (New Screen)
+     ══════════════════════════════════════════════ -->
+<section class="section" id="campaign-brief">
+  <div class="section-label">Section 05</div>
+  <h2 class="section-title">Screen 7 — Campaign Brief Page</h2>
+  <p class="section-desc">A new dedicated screen: a full, structured campaign brief generated from the GTM dashboard. Linked from the "Luxe Linen Summer Edit" content idea card on the Marketing Dashboard. This is presented to the client for review.</p>
+  <hr class="divider">
+
+  <!-- MOCKUP PREVIEW OF BRIEF PAGE -->
+  <div class="brief-mockup">
+    <div class="brief-header">
+      <div class="brief-header-label">Campaign Brief · Femme Connection × Antimony Studio</div>
+      <div class="brief-header-title">Luxe Linen Summer Edit</div>
+      <div class="brief-header-sub">Generated from hub data · April 2026 · Status: Draft — Awaiting Client Review</div>
+    </div>
+    <div class="brief-body">
+      <div class="brief-grid">
+        <div>
+          <div class="brief-section">
+            <div class="brief-section-title">Objective</div>
+            <div class="brief-section-content">Drive new customer acquisition and editorial brand awareness through a dedicated Luxe Linen seasonal campaign, targeting the growing demand signal for elevated summer separates.</div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-title">Target Audience</div>
+            <div class="brief-section-content">Women 28–45, professional lifestyle, AU east coast, aspirational fashion budget $50–120/item. Affinity: resort wear, travel, European aesthetic, linen fabrics.</div>
+            <div class="brief-tags">
+              <span class="brief-tag">Instagram</span>
+              <span class="brief-tag">TikTok</span>
+              <span class="brief-tag">Klaviyo VIP Segment</span>
+              <span class="brief-tag">Meta Lookalike</span>
+            </div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-title">Art Direction</div>
+            <div class="brief-section-content">Golden hour coastal. Natural textures — linen, sand, stone. Warm editorial palette: terracotta, buff, warm white. Models: natural, relaxed poses. Location references: Byron Bay, coastal cliffs, outdoor markets.</div>
+          </div>
+        </div>
+        <div>
+          <div class="brief-section">
+            <div class="brief-section-title">Campaign KPIs</div>
+            <div class="brief-grid" style="gap:8px; margin-top:8px;">
+              <div class="brief-kpi"><div class="brief-kpi-label">Revenue target</div><div class="brief-kpi-value">$48,000</div></div>
+              <div class="brief-kpi"><div class="brief-kpi-label">New customers</div><div class="brief-kpi-value">320</div></div>
+              <div class="brief-kpi"><div class="brief-kpi-label">ROAS target</div><div class="brief-kpi-value">3.2×</div></div>
+              <div class="brief-kpi"><div class="brief-kpi-label">Campaign period</div><div class="brief-kpi-value">6 weeks</div></div>
+            </div>
+          </div>
+          <div class="brief-section" style="margin-top:1rem;">
+            <div class="brief-section-title">Tagline Options</div>
+            <div class="brief-section-content">
+              1. "Effortless. Linen. Summer."<br>
+              2. "Made for the moments that matter."<br>
+              3. "Wear the season."
+            </div>
+          </div>
+          <div class="brief-section" style="margin-top:1rem;">
+            <div class="brief-section-title">Channel Plan</div>
+            <div class="brief-section-content">
+              Week 1–2: Teaser Reels (organic) + VIP email preview<br>
+              Week 3–4: Meta paid + TikTok creator seeding<br>
+              Week 5–6: Retargeting + loyalty double-points event
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Screen 7 — Campaign Brief Page — Full Figma Make Prompt</div>
+    <div class="prompt-text"><span class="comment">// ═══════════════════════════════════════════════════════════
+// SCREEN 7 — CAMPAIGN BRIEF PAGE
+// New screen · 1680 × 1050px · Light editorial mode
+// Triggered from: Marketing Dashboard → Content Ideas → "Luxe Linen Summer Edit →"
+// ═══════════════════════════════════════════════════════════</span>
+
+<span class="highlight">SCREEN:</span> Campaign Brief — Luxe Linen Summer Edit
+<span class="highlight">SIZE:</span> 1680 × 1050px (scrollable, full height ~2200px)
+<span class="highlight">MODE:</span> Light editorial. Not a dashboard — this is a structured strategic document.
+<span class="highlight">FEEL:</span> Premium editorial brief. Like a high-end agency proposal page. Clean, airy, confident.
+
+<span class="highlight">GLOBAL HEADER (same as all screens):</span>
+Left: FEMME CONNECTION wordmark in sidebar (80px nav collapsed)
+Breadcrumb: Marketing → Content Ideas → Campaign Brief
+Title: "Campaign Brief" in Cormorant Garamond 28px
+Right: User avatar (36px, pink ring) · Status pill: "Draft · Awaiting Review" in terracotta pill
+Action buttons: "Export PDF" (outlined pill, 14px) · "Share with Client" (green solid pill) · "Approve Brief ✓" (pink pill)
+
+<span class="highlight">HERO SECTION (full width, 280px tall):</span>
+Full-bleed image: Femme Connection editorial shot — woman in linen dress, golden hour/coastal setting
+Source: femmeconnection.com.au/collections/luxe-linen
+Dark gradient overlay (bottom third) — left-aligned text over image:
+- "Luxe Linen Summer Edit" in Cormorant Garamond 38px, white, italic
+- "Campaign Brief · 6 weeks · April–June 2026" in DM Mono 12px, rgba(255,255,255,0.6)
+- Three status chips: "Objective ✓" · "Audience ✓" · "Channels ✓" — green pills
+
+<span class="highlight">BRIEF METADATA STRIP (below hero, full width, light surface bg):</span>
+4 equal tiles: Campaign Owner · Start Date · Status · Budget Allocation
+Each tile: label (DM Mono 11px, muted) + value (DM Sans 14px, semibold)
+Values: Antimony Studio · 1 May 2026 · Draft · $12,000 media budget
+
+<span class="highlight">MAIN BODY — 3 COLUMN LAYOUT:</span>
+
+<span class="value">LEFT COLUMN (40%):</span>
+
+SECTION 1 — Strategic Objective (card):
+Title: "Campaign Objective" with bullseye icon
+Text: Drive new customer acquisition and editorial awareness through the Luxe Linen summer collection, targeting the growing demand signal for elevated warm-weather separates.
+Source data pill: "Based on: +62% demand trend · competitor gap analysis"
+
+SECTION 2 — Target Audience (card):
+Primary: Women 28–45, professional lifestyle, east coast AU
+Affinity tags (pill row): Resort Wear · Linen · Travel · European Aesthetic · Premium Casual
+Estimated addressable: 84,000 in Meta audience / 12,400 on Klaviyo list
+Audience portrait: 3-line persona summary
+
+SECTION 3 — Art Direction (card, buff background):
+Mood: Golden hour coastal. Natural light, outdoor editorial.
+Location: Byron Bay / coastal / outdoor markets reference
+Palette swatches: Buff (#e6d1c4) · Terracotta (#e2745d) · Warm white · Soft green
+Typography in campaign: Cormorant serif display + clean sans body
+3 reference image swatches (80×80px, rounded-8) sourced from Femme linen collection
+
+<span class="value">CENTER COLUMN (35%):</span>
+
+SECTION 4 — Campaign KPIs (card, dark green):
+Title: "Success Metrics" in pink
+4 large KPI tiles in 2×2 grid:
+Revenue Target: $48,000 (Cormorant Garamond 28px, white)
+New Customers: 320
+ROAS Target: 3.2×
+Campaign Period: 6 weeks
+
+SECTION 5 — Tagline Options (card, white):
+Title: "Copy Direction" with pen icon
+3 numbered tagline options:
+1. "Effortless. Linen. Summer." — [most recommended — green star badge]
+2. "Made for the moments that matter."
+3. "Wear the season."
+Below: CTA copy options for each channel (Email subject · Meta headline · TikTok caption)
+
+SECTION 6 — Offer Strategy (card):
+Offer type: No discount — lead with editorial quality
+Incentive: Free express shipping on linen orders $120+
+Loyalty tie-in: Double points during campaign week 3
+
+<span class="value">RIGHT COLUMN (25%):</span>
+
+SECTION 7 — 6-Week Channel Plan (dark green card, full column height):
+Title: "Channel Activation" in pink mono
+Timeline: vertical week-by-week list
+Week 1–2: Organic teaser Reels (Instagram + TikTok)
+  · "Behind the shoot" content · Story countdown
+Week 2: VIP loyalty email preview — subject: "First look: Luxe Linen is here"
+Week 3–4: Meta paid launch — carousel + Reel ads · TikTok creator seeding (3 creators)
+Week 4: Retargeting audience — website visitors + cart abandoners
+Week 5–6: Double-points loyalty event + win-back email wave
+Each week: channel badge (Instagram / Meta / TikTok / Klaviyo) + format label
+
+<span class="highlight">PRODUCTION NEEDS SECTION (full width, 3 columns):</span>
+
+PHOTOGRAPHY: 8 on-model shots in linen pieces · 4 flat lay product shots · 2 location hero shots
+VIDEO: 2× 30-second Reels (teaser + campaign hero) · 5× 15-second TikTok cuts · 3× Story assets
+COPY: 6 email templates · 8 ad headlines · 4 caption sets per platform
+
+<span class="highlight">APPROVAL + COMMENTS SECTION (full width):</span>
+Timeline approval status: Creative → Copy → Client Review → Go Live
+Current status: "Client Review" highlighted (step 3 of 4)
+Comment thread panel (right side, 240px): Figma-style comment placeholders for Mel + Raj to leave feedback
+Button: "Approve Campaign →" (green, full-width CTA at bottom of page)
+
+<span class="highlight">FLOATING AI WIDGET:</span>
+Apply global AI widget. Expanded insight:
+<span class="value">"This campaign targets a category with zero active competitors. Demand for linen is up 62% YoY. Recommend launching the VIP preview email in week 1 — your Gold loyalty tier (847 members) represents $48k in potential first-week revenue alone."</span>
+
+<span class="highlight">NAVIGATION:</span>
+Add "Campaign Brief" as a sub-item under the Marketing nav item in the left sidebar.
+This screen is accessible via: Marketing → Campaign Brief (prototype link from content idea card).
+</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card-grid-2">
+    <div class="card-green">
+      <div class="card-title">Campaign Brief — Prototype Link</div>
+      <ul>
+        <li>Trigger: Marketing Dashboard → "Luxe Linen Summer Edit →" card</li>
+        <li>Transition: slide-in from right (300ms ease)</li>
+        <li>Back button: top-left breadcrumb returns to Marketing Dashboard</li>
+        <li>Second entry point: GTM Strategy → Campaign Brief Builder CTA</li>
+        <li>Mark brief status as "Draft" by default</li>
+        <li>"Approve Campaign" button transitions status to "Approved"</li>
+      </ul>
+    </div>
+    <div class="card-pink">
+      <div class="card-title">For the Thursday Client Delivery</div>
+      <ul>
+        <li>Pre-fill all copy with real Femme-relevant content (no lorem ipsum)</li>
+        <li>Use actual Femme product names in all product lists</li>
+        <li>Populate AI insight cards with plausible, realistic data</li>
+        <li>The Campaign Brief screen should feel like a real brief Mel and Raj could act on immediately</li>
+        <li>Make the "Approve Campaign" button the visual focal point of the brief page</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">Femme Connection × Antimony Studio</div>
+  <div>Data Intelligence Hub · Figma Make Prompts v2 · April 2026</div>
+  <div>Desktop-first · 1680 × 1050px · Thursday Delivery</div>
+</footer>
+
+<script>
+const navLinks = document.querySelectorAll('.nav-bar a');
+const sections = document.querySelectorAll('.section');
+function updateActive() {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActive, { passive: true });
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

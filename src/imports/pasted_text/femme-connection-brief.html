@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Femme Connection — Figma Make Build Brief v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink:#ff99b9; --pink-light:#ffe4ee; --pink-dark:#d4638a;
+  --green:#1b443a; --green-mid:#2d6b5e; --green-light:#e4ede9;
+  --terra:#e2745d; --terra-light:#f5e2dc;
+  --buff:#e6d1c4; --black:#0f0f0f; --off-white:#faf8f5;
+  --surface:#f3efe9; --border:#ddd5cc;
+  --text-primary:#141414; --text-secondary:#5a5047; --text-tertiary:#8a7b6e;
+  --radius-sm:6px; --radius-md:10px; --radius-lg:16px; --radius-xl:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text-primary);line-height:1.65;font-size:14px;}
+
+/* HEADER */
+.hdr{background:var(--green);padding:2.5rem 3.5rem 2rem;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;top:-60px;right:-50px;width:260px;height:260px;border-radius:50%;background:var(--pink);opacity:0.1;}
+.hdr-eye{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--pink);margin-bottom:.6rem;}
+.hdr-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.5rem;font-weight:500;color:#fff;line-height:1.1;margin-bottom:.35rem;}
+.hdr-sub{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.2rem;font-style:italic;color:var(--buff);margin-bottom:1.25rem;}
+.hdr-meta{display:flex;gap:1.75rem;font-size:12px;color:rgba(255,255,255,.45);}
+.hdr-meta span{color:rgba(255,255,255,.75);}
+
+/* NAV */
+.nav{background:var(--black);padding:0 3.5rem;display:flex;position:sticky;top:0;z-index:100;overflow-x:auto;}
+.nav a{color:rgba(255,255,255,.4);text-decoration:none;font-size:11.5px;font-weight:500;letter-spacing:.04em;padding:.8rem 1.1rem;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;}
+.nav a:hover{color:rgba(255,255,255,.8);}
+.nav a.active{color:var(--pink);border-bottom-color:var(--pink);}
+
+/* LAYOUT */
+.main{max-width:1300px;margin:0 auto;padding:2.5rem 3.5rem 5rem;}
+.sec{margin-bottom:4rem;}
+.sec-label{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:.35rem;}
+.sec-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:2rem;font-weight:500;color:var(--green);margin-bottom:.35rem;line-height:1.15;}
+.sec-desc{font-size:14px;color:var(--text-secondary);max-width:700px;margin-bottom:2rem;line-height:1.7;}
+.divider{height:1px;background:var(--border);margin-bottom:2rem;}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;}
+.card-green{background:var(--green);border-radius:var(--radius-lg);padding:1.25rem;color:#fff;}
+.card-pink{background:var(--pink-light);border:1px solid var(--pink);border-radius:var(--radius-lg);padding:1.25rem;}
+.card-terra{background:var(--terra-light);border:1px solid var(--terra);border-radius:var(--radius-lg);padding:1.25rem;}
+.card-buff{background:var(--buff);border-radius:var(--radius-lg);padding:1.25rem;}
+.card-dark{background:#141414;border-radius:var(--radius-lg);padding:1.25rem;color:#fff;}
+.ct{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;font-weight:600;color:var(--green);margin-bottom:.5rem;line-height:1.2;}
+.card-green .ct{color:var(--pink);}
+.card-pink .ct{color:var(--pink-dark);}
+.card-terra .ct,.card-dark .ct{color:#fff;}
+
+p{margin-bottom:.7rem;color:var(--text-secondary);line-height:1.7;}
+p:last-child{margin-bottom:0;}
+h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;font-weight:600;color:var(--text-primary);margin-bottom:.4rem;}
+h4{font-size:10.5px;font-weight:600;letter-spacing:.1em;color:var(--text-tertiary);margin-bottom:.4rem;text-transform:uppercase;}
+ul,ol{padding-left:1.2rem;color:var(--text-secondary);}
+li{margin-bottom:.3rem;font-size:13.5px;line-height:1.55;}
+li strong{color:var(--text-primary);font-weight:500;}
+code{font-family:'DM Mono',monospace;font-size:11.5px;background:var(--surface);padding:1px 5px;border-radius:3px;color:var(--green);}
+
+/* TAGS */
+.tag{display:inline-block;font-size:9.5px;font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:100px;margin-bottom:.5rem;}
+.tpink{background:var(--pink-light);color:var(--pink-dark);}
+.tgreen{background:var(--green-light);color:var(--green);}
+.tterra{background:var(--terra-light);color:#8a3a22;}
+.tbuff{background:var(--buff);color:var(--text-secondary);}
+.tblack{background:var(--black);color:#fff;}
+
+/* SCREEN BLOCKS */
+.screen{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:1.25rem;}
+.screen-hdr{background:var(--surface);padding:.85rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.screen-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;font-weight:500;color:var(--green);width:34px;flex-shrink:0;}
+.screen-name{font-weight:600;font-size:13.5px;color:var(--text-primary);}
+.screen-sub{font-size:11px;color:var(--text-tertiary);margin-top:1px;}
+.screen-body{padding:1.25rem;}
+
+/* DATA PILLS */
+.pill-row{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0;}
+.pill{background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:2px 9px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-secondary);}
+.pill.live{background:#e8f6ed;border-color:#7ecba1;color:#1a6b3a;}
+.pill.alert{background:var(--pink-light);border-color:var(--pink);color:var(--pink-dark);}
+.pill.warn{background:var(--terra-light);border-color:var(--terra);color:#8a3a22;}
+.pill.new{background:var(--green-light);border-color:var(--green-mid);color:var(--green);}
+
+/* ALERT STRIP */
+.alert{background:var(--terra-light);border:1px solid var(--terra);border-radius:var(--radius-md);padding:.85rem 1rem;display:flex;gap:.65rem;align-items:flex-start;margin-bottom:.85rem;}
+.alert-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
+.alert-body{font-size:13px;color:var(--text-primary);line-height:1.6;}
+.alert-body strong{color:#8a3a22;}
+.alert.green{background:var(--green-light);border-color:var(--green-mid);}
+.alert.green .alert-body strong{color:var(--green);}
+
+/* PROMPT BLOCK */
+.prompt{background:#141414;border-radius:var(--radius-lg);padding:1.5rem;margin-top:1rem;}
+.prompt-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-bottom:.75rem;}
+.prompt-text{font-family:'DM Mono',monospace;font-size:11.5px;color:rgba(255,255,255,.8);line-height:1.75;white-space:pre-wrap;}
+
+/* COMPONENT CHIP */
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:.75rem;}
+.comp-chip{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.6rem .75rem;font-size:12px;color:var(--text-secondary);}
+.comp-chip strong{display:block;font-size:11.5px;color:var(--text-primary);margin-bottom:2px;}
+.comp-chip.new{background:var(--pink-light);border-color:var(--pink);}
+.comp-chip.new strong{color:var(--pink-dark);}
+
+/* DS TABLE */
+.ds-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:.75rem;}
+.ds-table th{background:var(--green);color:rgba(255,255,255,.7);font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:.6rem .9rem;text-align:left;}
+.ds-table td{padding:.6rem .9rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.ds-table tr:last-child td{border-bottom:none;}
+.ds-table tr:hover td{background:var(--surface);}
+
+/* FOOTER */
+.ftr{background:var(--green);color:rgba(255,255,255,.45);padding:1.5rem 3.5rem;font-size:11.5px;display:flex;justify-content:space-between;align-items:center;}
+.ftr-brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;color:rgba(255,255,255,.8);}
+
+@media(max-width:860px){
+  .hdr,.main,.ftr{padding-left:1.25rem;padding-right:1.25rem;}
+  .g2,.g3{grid-template-columns:1fr;}
+  .comp-grid{grid-template-columns:1fr 1fr;}
+  .hdr-title{font-size:1.8rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-eye">Antimony Studio · Confidential</div>
+  <h1 class="hdr-title">Femme Connection<br>Data Intelligence Hub</h1>
+  <p class="hdr-sub">Figma Make Build Brief — Version 2</p>
+  <div class="hdr-meta">
+    <div>Client <span>Femme Connection</span></div>
+    <div>Screen count <span>7 MVP Screens</span></div>
+    <div>Canvas <span>1680 × 1050px Desktop-first</span></div>
+    <div>Build <span>Figma Make · Tool Stack Integration Update</span></div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#system" class="active">Design System</a>
+  <a href="#screens">Screens 01–07</a>
+  <a href="#new-modules">New Modules</a>
+  <a href="#components">Components</a>
+  <a href="#data">Live Data</a>
+  <a href="#ai">AI Panel</a>
+  <a href="#alerts">Alerts</a>
+  <a href="#prompt">Master Prompt</a>
+</nav>
+
+<main class="main">
+
+<!-- ═══════════════════════════
+     DESIGN SYSTEM
+═══════════════════════════ -->
+<section class="sec" id="system">
+  <div class="sec-label">Design System</div>
+  <h2 class="sec-title">Brand &amp; Visual System</h2>
+  <p class="sec-desc">All screens must strictly follow this system. No deviations. Every component, colour, and typographic choice defined here.</p>
+  <div class="divider"></div>
+
+  <div class="g3" style="margin-bottom:1.5rem;">
+    <div class="card-green">
+      <div class="ct">Typography</div>
+      <ul style="color:rgba(255,255,255,.75);">
+        <li><strong style="color:var(--pink);">Cormorant Garamond</strong> — All headings, dashboard titles, KPI values, screen names</li>
+        <li><strong style="color:var(--pink);">DM Sans</strong> — All body copy, labels, descriptions, table content</li>
+        <li><strong style="color:var(--pink);">DM Mono</strong> — All metric labels, data tags, section labels, code values, status pills</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Colour Palette</div>
+      <ul>
+        <li><strong>#1b443a</strong> — Forest Green · Primary brand, nav, headers</li>
+        <li><strong>#ff99b9</strong> — Pink · Accents, active states, AI highlights</li>
+        <li><strong>#e2745d</strong> — Terracotta · Alerts, warnings, secondary accents</li>
+        <li><strong>#e6d1c4</strong> — Buff · Backgrounds, subtle cards, borders</li>
+        <li><strong>#000000 / #ffffff</strong> — Black / White · Nav, type, surfaces</li>
+      </ul>
+    </div>
+    <div class="card-buff">
+      <div class="ct">Spacing &amp; Radius</div>
+      <ul>
+        <li>Canvas: <strong>1680 × 1050px</strong> — fixed desktop</li>
+        <li>Nav sidebar: <strong>80px wide</strong> · fixed left</li>
+        <li>Grid: <strong>12-column</strong> at 1680px, 24px gutter</li>
+        <li>Card radius: <strong>16px</strong> standard, 10px compact</li>
+        <li>Card padding: <strong>24px</strong> standard, 20px compact</li>
+        <li>Gap between cards: <strong>16px</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:1.5rem;">
+    <div class="card">
+      <div class="ct">Global Layout — Every Screen</div>
+      <ul>
+        <li><strong>Left nav (80px):</strong> FC logo top · icon nav with labels · user avatar bottom · collapse state available</li>
+        <li><strong>Top header bar:</strong> Dashboard title + breadcrumb · Date range picker (Last 7D / 30D / 90D / Custom / vs Prior Period) · Export · Settings icon</li>
+        <li><strong>Sub-nav tabs:</strong> Overview · By Channel · By Product · Diagnostics · AI Insights (where relevant)</li>
+        <li><strong>KPI row:</strong> 5–6 cards spanning full width · each with value, label, delta %, sparkline, period</li>
+        <li><strong>Strategic action strip:</strong> Silver Bullet · Low-Hanging Fruit · Long-Term Task — 3-card horizontal strip below KPI row on every screen</li>
+        <li><strong>Right column (30%):</strong> AI insight panel on all screens</li>
+        <li><strong>Floating AI chat:</strong> Bottom-left corner · global across all screens</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Global Components — Every Screen</div>
+      <ul>
+        <li><strong>Femme Connection logo:</strong> Top-left of nav sidebar — always visible</li>
+        <li><strong>User profile avatar:</strong> Bottom of nav sidebar</li>
+        <li><strong>⓪ Info/context panel:</strong> On every card — click to reveal data source, methodology, and AI context</li>
+        <li><strong>Date range picker:</strong> Global — propagates across all modules when changed</li>
+        <li><strong>Alert banners:</strong> Top of relevant screens — Red (critical), Amber (opportunity), Green (positive signal)</li>
+        <li><strong>AI insight cards:</strong> Pre-filled with realistic strategic copy — no placeholder text</li>
+        <li><strong>Drill-down drawer:</strong> Triggered from priority action cards — slides in from right</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-dark">
+    <div class="ct">Real Content Rules — Non-Negotiable</div>
+    <p style="color:rgba(255,255,255,.7);">No placeholder text anywhere. All product names, metric values, competitor names, and copy must be real. Use these product names: <code style="background:rgba(255,255,255,.1);color:var(--pink);">Daisy Floral Maxi Dress · Evelina Sequin Maxi Dress · Jania Solid Jogger Pants · Morocco Floral Maxi Dress · Ronika Floral Print Dress · Kalinda Abstract Dress · Luxe Linen Wrap Top · Marrakesh Floral Maxi · Royce Embroidered Midi · Agatha Floral Shirt Dress</code>. Use these competitor names: <code style="background:rgba(255,255,255,.1);color:var(--pink);">Reformation · Sézane · Zimmermann · Country Road · Glassons · Portmans · Cotton On AU</code>. Use real metric values from the live data section of this brief.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     SCREENS
+═══════════════════════════ -->
+<section class="sec" id="screens">
+  <div class="sec-label">Screens 01–07</div>
+  <h2 class="sec-title">Screen-by-Screen Build Specifications</h2>
+  <p class="sec-desc">Complete module layout and content instructions for all 7 MVP screens. New additions from the Particl, Panoramata, and Nosto tool audit are marked <span class="tag tgreen">NEW</span>. Existing modules being updated are marked <span class="tag tpink">UPDATED</span>.</p>
+  <div class="divider"></div>
+
+  <!-- SCREEN 01 -->
+  <div class="screen">
+    <div class="screen-hdr">
+      <div style="display:flex;align-items:center;gap:.85rem;">
+        <div class="screen-num">01</div>
+        <div>
+          <div class="screen-name">Strategy Dashboard — Command Centre</div>
+          <div class="screen-sub">Daily homepage · Executive overview · Cross-channel health · AI action priority</div>
+        </div>
+      </div>
+      <span class="tag tpink">MVP · Updated</span>
+    </div>
+    <div class="screen-body">
+      <div class="g2">
+        <div>
+          <h4>KPI Row (6 Cards)</h4>
+          <ul>
+            <li>Total Revenue · AOV · CVR · Blended ROAS · New Customers · Email Revenue Share</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">Layout Zones</h4>
+          <ul>
+            <li><strong>Zone A (full width):</strong> Alert banner strip — 3 live alerts from Panoramata + Nosto</li>
+            <li><strong>Zone B (60%):</strong> Revenue trend area chart · Channel health grid (6 channels with status)</li>
+            <li><strong>Zone B (40%):</strong> AI summary panel · Top 3 strategic actions ranked by impact</li>
+            <li><strong>Zone C (full width):</strong> Strategic action strip — Silver Bullet / Low Hanging Fruit / Long-Term Task</li>
+            <li><strong>Zone D (60%):</strong> Campaign performance table · Best sold items bar chart</li>
+            <li><strong>Zone D (40%):</strong> Channel ROAS leaderboard card <span class="tag tgreen">NEW</span></li>
+          </ul>
+          <h4 style="margin-top:.85rem;">New Additions <span class="tag tgreen">NEW</span></h4>
+          <ul>
+            <li><strong>Nosto Performance Strip:</strong> Sessions 116,429 (↓16.1%) · CVR 1.24% (↑11.6%) · AOV A$89.58 · Cart Abandon 89.57%</li>
+            <li><strong>Channel ROAS Leaderboard card:</strong> Email &amp; SMS 6.69× · Google Ads 4.24× · SMS 3.82× · SEO 2.46×</li>
+            <li><strong>Promotional Campaign strip:</strong> Afterpay Day A$25,425 / 276 orders · Click Frenzy A$6,351 / 65 orders</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Alert Banners (top of screen)</h4>
+          <div class="alert">
+            <div class="alert-icon">🚨</div>
+            <div class="alert-body"><strong>Email Volume Critical:</strong> 4 emails sent vs competitor average of 24. Email generates 6.69× ROAS. Sending more is the single highest-return action available.</div>
+          </div>
+          <div class="alert">
+            <div class="alert-icon">⚠</div>
+            <div class="alert-body"><strong>Cart Abandonment A$1.23M:</strong> 89.57% cart abandon rate. 12,379 abandoned carts this month. Industry benchmark 70%. Recovery flow not active.</div>
+          </div>
+          <div class="alert green">
+            <div class="alert-icon">✓</div>
+            <div class="alert-body"><strong style="color:var(--green);">Maxi Dresses — Buy Signal:</strong> Top clicked and top purchased category. Low markdown pressure. Increase range depth next season.</div>
+          </div>
+          <h4 style="margin-top:.85rem;">AI Summary Pre-Fill</h4>
+          <p style="font-size:13px;font-style:italic;color:var(--text-secondary);">"Email is your highest-returning channel at 6.69× ROAS, yet FC sends 4 emails/month vs a competitor average of 24. Increasing to 3× weekly could generate an estimated A$40–60K additional monthly revenue at current ROAS with zero additional media spend. Your 89.57% cart abandonment rate is costing A$1.23M in potential monthly revenue. These two issues are your Silver Bullet and Low Hanging Fruit for Q2 2026."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 02 -->
+  <div class="screen">
+    <div class="screen-hdr">
+      <div style="display:flex;align-items:center;gap:.85rem;">
+        <div class="screen-num">02</div>
+        <div>
+          <div class="screen-name">E-commerce Dashboard</div>
+          <div class="screen-sub">Shopify · GA4 · Nosto — Revenue, conversion, catalogue intelligence, on-site performance</div>
+        </div>
+      </div>
+      <span class="tag tpink">MVP · Updated</span>
+    </div>
+    <div class="screen-body">
+      <div class="g2">
+        <div>
+          <h4>KPI Row (6 Cards)</h4>
+          <ul>
+            <li>Total Revenue · Orders · CVR · AOV · Repeat Purchase Rate · Cart Abandon Rate</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">Existing Modules (retain)</h4>
+          <ul>
+            <li>Revenue trend line chart · Checkout funnel · Product revenue table · Customer breakdown</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">New Additions <span class="tag tgreen">NEW</span></h4>
+          <ul>
+            <li><strong>Catalogue Intelligence Block (3 columns below KPI row):</strong>
+              <ul>
+                <li>Column 1 — Product Health donut: In-stock promotable 1,368 · Out-of-stock 48 (orange) · Discontinued 204 · Invisible 14,573</li>
+                <li>Column 2 — Category Performance bars: Women's Dresses A$6,018 · All A$6,391 · New In A$5,206 · Sale A$2,684 · Caroline Morgan A$2,002</li>
+                <li>Column 3 — Search Intelligence: 44,430 total searches · 21.31% CTR · Top query: "women's dresses" · Zero-result alert</li>
+              </ul>
+            </li>
+            <li><strong>Recommendation Revenue Strip:</strong> Total A$8,975 · Customers Also Bought A$4,359 · Recently Viewed A$3,499 · Browsing History A$823 · Category Page Recs: "DISABLED — A$0" in orange alert chip with estimated opportunity A$1,200–2,400/month</li>
+            <li><strong>Top Clicked vs Top Purchased Panel:</strong> Daisy Floral Maxi Dress 512 clicks · Agatha Floral Maxi Dress 488 clicks | Evelina Sequin Maxi Dress A$870 · Niave Floral Knit Pullover A$839 · Jania Floral Jogger Pants A$734</li>
+            <li><strong>UGC + Reviews mini-panel:</strong> Yotpo 4.68★ / 4,341 reviews / 0.02% CVR · "Activate shoppable UGC" CTA chip</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Nosto Segment Snapshot <span class="tag tgreen">NEW</span></h4>
+          <ul>
+            <li><strong>Full-Priced Shoppers:</strong> 91.08% of customers · A$379,900 sales · 0.96% CVR · A$92.59 AOV</li>
+            <li><strong>Discount Shoppers:</strong> 10.32% · A$38,806 sales · 0.99% CVR · A$80.85 AOV</li>
+            <li><strong>Klaviyo Active (30D):</strong> 5.36% · A$35,056 · 5.00% CVR — 4× site average</li>
+          </ul>
+          <div class="alert green" style="margin-top:.85rem;">
+            <div class="alert-icon">✓</div>
+            <div class="alert-body"><strong style="color:var(--green);">Opportunity:</strong> Klaviyo-Active customers convert at 5.00% vs site average 1.24%. Every lapsed Klaviyo customer represents 4× conversion potential if re-engaged.</div>
+          </div>
+          <h4 style="margin-top:.85rem;">Behavioural Lifecycle Metrics <span class="tag tgreen">NEW</span></h4>
+          <ul>
+            <li>Avg first order delay: <strong>15.7 days</strong> — welcome flow must activate within this window</li>
+            <li>Avg retention delay: <strong>42.6 days</strong> — re-engagement trigger point</li>
+            <li>Overall retention rate: <strong>42.37%</strong></li>
+            <li>Avg orders per customer: <strong>1.2</strong> — LTV growth opportunity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 03 -->
+  <div class="screen">
+    <div class="screen-hdr">
+      <div style="display:flex;align-items:center;gap:.85rem;">
+        <div class="screen-num">03</div>
+        <div>
+          <div class="screen-name">Marketing Dashboard</div>
+          <div class="screen-sub">Meta · TikTok · Sprout · Panoramata competitor benchmarks · Ad intelligence · USP positioning</div>
+        </div>
+      </div>
+      <span class="tag tpink">MVP · Updated</span>
+    </div>
+    <div class="screen-body">
+      <div class="g2">
+        <div>
+          <h4>Alert Banners (top of screen — 3 visible)</h4>
+          <div class="alert">
+            <div class="alert-icon">🚨</div>
+            <div class="alert-body"><strong>Email rated Poor (Panoramata):</strong> 4 emails/month vs avg 24. Quality score 43%. Spam score 1.05 — highest of 12 AU tracked brands.</div>
+          </div>
+          <div class="alert">
+            <div class="alert-icon">⚠</div>
+            <div class="alert-body"><strong>Ad Presence Alert:</strong> 0 ads published in 30 days (−53.62%). Competitors ran average 42.94 ads/week. FC invisible in paid social.</div>
+          </div>
+          <h4 style="margin-top:.85rem;">Existing Modules (retain)</h4>
+          <ul>
+            <li>Channel comparison (Meta vs TikTok vs Organic) · Creative leaderboard · Spend vs Revenue · Campaign table · Organic performance</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">New Additions <span class="tag tgreen">NEW</span></h4>
+          <ul>
+            <li><strong>Competitive Benchmarks Panel (2 zones):</strong>
+              <ul>
+                <li>Left — Email Benchmark Table: FC (4 emails, 43% score, 1.05 spam) vs Portmans (98, 39.53%), Cotton On (66, 48.5%), Uniqlo (30, 56.23%), Country Road (33, 51.15%), Zara (10, 50.4%)</li>
+                <li>Right — Ad Intelligence: FC 0 published vs avg 42.94/week · Meta 77% / Display 23% split · FC trend line: flat at zero</li>
+              </ul>
+            </li>
+            <li><strong>USP Positioning Treemap card:</strong> Zimmermann — High Fashion 23.81% · Country Road — High Quality 11.04% · Glassons — Best Selling 4.52% · FC — White Space highlighted with label "Aspirational Positioning Opportunity"</li>
+            <li><strong>Competitor Content Feed:</strong> Horizontal scroll of competitor email and ad thumbnails (Zimmermann, Glassons, Country Road, Portmans) — filter by brand and channel</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Promotional Pressure Chart <span class="tag tgreen">NEW</span></h4>
+          <p style="font-size:13px;">Stacked bar chart — discount type and volume by brand. Portmans and Cotton On dominate. FC sits at near-zero promotional email volume. Label FC bar clearly. Show market average line.</p>
+          <h4 style="margin-top:.85rem;">Social Benchmarks <span class="tag tgreen">NEW</span></h4>
+          <ul>
+            <li>Followers per week per brand — line chart (FC vs Zimmermann, Glassons, Country Road)</li>
+            <li>Social posts per week per brand — line chart</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">Email Volume Gap Alert Card</h4>
+          <div class="card-pink" style="margin-top:.5rem;">
+            <div class="ct">Revenue Opportunity — Email Volume</div>
+            <p style="font-size:13px;">At current 6.69× email ROAS, increasing from 4 to 12 emails/month represents an estimated <strong>A$40–60K additional monthly revenue</strong> with zero additional media spend. FC sends fewer emails than any competitor in the tracked set.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 04 -->
+  <div class="screen">
+    <div class="screen-hdr">
+      <div style="display:flex;align-items:center;gap:.85rem;">
+        <div class="screen-num">04</div>
+        <div>
+          <div class="screen-name">Email / CRM Dashboard</div>
+          <div class="screen-sub">Klaviyo · Shopify · Nosto lifecycle · Panoramata benchmarks · Segment intelligence</div>
+        </div>
+      </div>
+      <span class="tag tpink">MVP · Updated</span>
+    </div>
+    <div class="screen-body">
+      <div class="g2">
+        <div>
+          <h4>Existing Modules (retain)</h4>
+          <ul>
+            <li>Email revenue KPIs · Flow performance table · Campaign performance · List growth chart · Segment health matrix · Win-back opportunity panel · Revenue timeline · Churn risk panel · Klaviyo flow conflict alert banner</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">New Additions <span class="tag tgreen">NEW</span></h4>
+          <ul>
+            <li><strong>Competitor Email Benchmark Strip:</strong> FC frequency, quality score, spam score vs top 5 AU senders — from Panoramata. Red/amber/green RAG status per metric.</li>
+            <li><strong>Email Category Mix Chart:</strong> FC promotional 43.75% / launch / relational / product / event split vs competitor averages — Panoramata classification data</li>
+            <li><strong>Klaviyo Segment Revenue Table:</strong> Active on-site A$35,056 (5.00% CVR) · Added to Cart Not Purchased A$19,793 (5.15% CVR) · SMS Purchased A$7,339 (5.86% CVR) · Engaged 90 Days A$34,715 · FC SMS List 2025 A$41,053</li>
+            <li><strong>Lifecycle Timing Bar:</strong> First order delay 15.7 days · Retention delay 42.6 days · visual timeline showing critical activation windows</li>
+          </ul>
+        </div>
+        <div>
+          <h4>AI Lifecycle Insight Pre-Fill</h4>
+          <p style="font-size:13px;font-style:italic;color:var(--text-secondary);">"Customers take 15.7 days on average to place their first order after signing up — your welcome flow must deliver its most compelling offer by Day 14. Your Klaviyo-Active segment converts at 5.00% — nearly 4× the site average. Currently sending 4 emails/month is not enough to hold attention in this critical 15-day window. Priority: build a 3-touch welcome sequence deploying on Day 1, Day 7, and Day 13."</p>
+          <h4 style="margin-top:.85rem;">Spam Score Alert</h4>
+          <div class="alert">
+            <div class="alert-icon">🚨</div>
+            <div class="alert-body"><strong>Spam Score 1.05:</strong> FC has the highest spam score of all 12 Panoramata-tracked AU brands. Average is 0.67. This is a deliverability risk — review email technical setup and content immediately.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 05 -->
+  <div class="screen">
+    <div class="screen-hdr">
+      <div style="display:flex;align-items:center;gap:.85rem;">
+        <div class="screen-num">05</div>
+        <div>
+          <div class="screen-name">Competitor Intelligence Dashboard</div>
+          <div class="screen-sub">Particl · Panoramata — Two-zone layout: Product Intelligence + Marketing Intelligence</div>
+        </div>
+      </div>
+      <span class="tag tpink">MVP · Major Expansion</span>
+    </div>
+    <div class="screen-body">
+      <div class="g2">
+        <div>
+          <h4>Dashboard Structure — Two-Zone Tab System</h4>
+          <p style="font-size:13px;">Sub-nav tabs: <strong>"Product Intelligence (Particl)"</strong> and <strong>"Marketing Intelligence (Panoramata)"</strong>. Each tab has its own fully-formed module layout. Cards in the Particl tab use a subtle dark navy accent (#0f1f2e). Cards in the Panoramata tab use a subtle deep purple accent (#1a1040). These are tone-markers, not dominant colours — apply as left-border accent on cards or as tab indicator.</p>
+          <h4 style="margin-top:.85rem;">Particl Tab — Product Intelligence</h4>
+          <ul>
+            <li><strong>Brand Leaderboard:</strong> Reformation $34M / 7% disc / 99th pctile · Sézane $32.5M / 0% disc / 98th pctile · [FC — tracked]</li>
+            <li><strong>Price Distribution Chart:</strong> % products and % revenue by price bucket — Reformation peaks $176–208 / Sézane peaks $60–83</li>
+            <li><strong>Sell-Through Benchmark Chart:</strong> Full-price rate vs markdown rate vs clearance — FC vs Reformation vs Sézane by category</li>
+            <li><strong>Promotional Events Feed:</strong> Scrollable timeline of FC + competitor promo events. Event name, date, associated products, revenue on day. Use real events: "New Arrivals on Homepage" Mar 28 (Agatha Floral Shirt Dress, Marrakesh Floral Print Maxi — ranks 9 &amp; 7 on day), "20% Off Spring Sale" Mar 20 (revenue fell below daily average — flag as insight)</li>
+            <li><strong>Marketing Asset Library Panel:</strong> Competitor creative thumbnails (Reformation: 2.5M followers, 355 avg likes · Sézane: 5.3M followers, 2,935 avg likes) — by channel</li>
+            <li><strong>"One Season Ahead" Card:</strong> Sézane current top sellers → FC range planning signal. "Sézane's Max Shirt: 6,479 units / 0% discount. Linen shirts performing at full price. Signal: increase FC linen tops range depth."</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Panoramata Tab — Marketing Intelligence</h4>
+          <ul>
+            <li><strong>Email Benchmark Table:</strong> All 12 AU brands — FC (16 emails, 36.06%, 1.05 spam), Portmans (98, 39.53%), Sussan (31, 52.48%, 93.55% promo), Cotton On (66, 48.5%), Country Road (33, 51.15%), Uniqlo (30, 56.23%)</li>
+            <li><strong>Promotional Pressure Chart:</strong> Discount volume by brand. FC at near-zero. Portmans dominates.</li>
+            <li><strong>Email Category Mix by Brand:</strong> Launch / promotional / relational / product / event split — stacked bar for all 12 brands</li>
+            <li><strong>USP Positioning Treemap:</strong> Zimmermann High Fashion 23.81% · Country Road High Quality 11.04% · Glassons Best Selling 4.52% · "FC White Space" callout highlighted</li>
+            <li><strong>Competitor Content Feed:</strong> Email + ad thumbnails from Panoramata. Filter by brand, channel, keyword. Zimmermann, Glassons, Country Road, Portmans visible.</li>
+            <li><strong>Social Benchmarks:</strong> Followers and posts per week — multi-brand line chart</li>
+          </ul>
+          <div class="alert green" style="margin-top:.85rem;">
+            <div class="alert-icon">✓</div>
+            <div class="alert-body"><strong style="color:var(--green);">Spring Sale Insight (Particl):</strong> FC's 20% Off Spring Sale on Mar 20 saw revenue fall below the preceding daily average. Discounting did not lift sales — it may have pulled purchases forward from surrounding days. Review discount strategy for Dresses and Tops.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 06 -->
+  <div class="screen">
+    <div class="screen-hdr">
+      <div style="display:flex;align-items:center;gap:.85rem;">
+        <div class="screen-num">06</div>
+        <div>
+          <div class="screen-name">GTM &amp; Campaign Strategy Dashboard</div>
+          <div class="screen-sub">AI briefs · 90-day planning · Low Hanging Fruit · Silver Bullet · Campaign Brief builder</div>
+        </div>
+      </div>
+      <span class="tag tbuff">MVP · Light Update</span>
+    </div>
+    <div class="screen-body">
+      <div class="g2">
+        <div>
+          <h4>Existing Modules (retain)</h4>
+          <ul>
+            <li>Silver Bullet card · Low Hanging Fruit cards · 90-day plans per channel · Campaign Brief builder · Art Direction · Copy Brief · Offer Matrix · Channel Strategy · Launch Checklist</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">New Additions <span class="tag tgreen">NEW</span></h4>
+          <ul>
+            <li><strong>Channel ROAS Leaderboard card:</strong> Email &amp; SMS 6.69× (568.87% ROI) · Google Ads 4.24× (324.22%) · SMS Tall Bob 3.82× (282.24%) · SEO 2.46× (145.54%). Silver Bullet = Email. Low Hanging Fruit = Cart Recovery.</li>
+            <li><strong>Promotional Campaign Attribution:</strong> Afterpay Day (25% off) → A$25,425 / 276 orders. Click Frenzy (20% off Holiday) → A$6,351 / 65 orders. Next campaign planning baseline.</li>
+            <li><strong>Competitor Promo Calendar strip:</strong> When competitors run promotions by week. Whitespace periods highlighted. "FC Opportunity" markers on uncontested dates.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Updated Silver Bullet Pre-Fill</h4>
+          <div class="card-green" style="margin-top:.5rem;">
+            <div class="ct">Silver Bullet — Email Volume</div>
+            <p style="color:rgba(255,255,255,.75);font-size:13px;">Email &amp; SMS generates FC's highest channel ROAS at 6.69×. Current volume of 4 emails/month sits 83% below the Australian competitor average of 24. Increasing to 3 emails per week with a structured content calendar (launch / promotional / relational split) represents an estimated A$40–60K monthly revenue uplift with zero additional media spend.</p>
+          </div>
+          <h4 style="margin-top:.85rem;">Updated Low Hanging Fruit Pre-Fill</h4>
+          <div class="card-pink" style="margin-top:.5rem;">
+            <div class="ct">Low Hanging Fruit — Cart Recovery</div>
+            <p style="font-size:13px;">89.57% cart abandonment. 12,379 abandoned carts/month. A$1,233,105 in cart value. A 5% recovery rate at A$89.23 avg cart value = A$55,000/month. Activate Nosto-triggered Klaviyo flow at 1 hour, 12 hours, and 24 hours post-abandon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 07 -->
+  <div class="screen">
+    <div class="screen-hdr">
+      <div style="display:flex;align-items:center;gap:.85rem;">
+        <div class="screen-num">07</div>
+        <div>
+          <div class="screen-name">Product &amp; SKU Intelligence Dashboard</div>
+          <div class="screen-sub">Particl · Nosto · Yotpo — SKU lifecycle, sell-through, category performance, range planning</div>
+        </div>
+      </div>
+      <span class="tag tgreen">NEW SCREEN</span>
+    </div>
+    <div class="screen-body">
+      <div class="g2">
+        <div>
+          <h4>KPI Row (6 Cards)</h4>
+          <ul>
+            <li>Sell-Through Rate · Full-Price Sell Rate · Days to First Markdown · Avg Discount Depth % · New Arrival Revenue (30D) · Out-of-Stock Count (48 — amber)</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">Layout — Left Column (60%)</h4>
+          <ul>
+            <li><strong>SKU Leaderboard Table:</strong> Rank · Thumbnail · Product Name · Category · Price · Discount % · Volume · Sell-Through sparkline · First Seen. Use real Particl data:
+              <ul>
+                <li>Rank 1: Jania Solid Jogger Pants · Bottoms · $59.99</li>
+                <li>Rank 2: Solid Harem Pants · Bottoms · $24.99</li>
+                <li>Rank 4: Morocco Floral Maxi Dress · Dresses · $89.99</li>
+                <li>Rank 5: Daisy Floral Maxi Dress · Dresses · $79.99</li>
+                <li>Rank highlighted: Evelina Sequin Maxi Dress (top Nosto purchased)</li>
+              </ul>
+            </li>
+          </ul>
+          <h4 style="margin-top:.85rem;">Layout — Right Column (40%)</h4>
+          <ul>
+            <li><strong>Category Performance Bars:</strong> Category name · Views (Nosto) · Revenue (Nosto) · Particl sell-through % overlaid. Women's Dresses (46,476 views, A$6,018, 40% disc rate) · New In (26,057 views, A$5,206) · Caroline Morgan Clothing (15,157 views, A$2,002) · Women's Sale (12,482 views, 38.82% CTR)</li>
+          </ul>
+          <h4 style="margin-top:.85rem;">Bottom Zone</h4>
+          <ul>
+            <li><strong>Range Planning Signal Card (AI):</strong> AI-generated buying brief. "Casual Dresses: 57% discount rate — highest in catalogue, +24% growth in markdowns. Signal: reduce range depth next season and exit current slow-moving SKUs at clearance." + "Cardigans: 5.0★ avg rating, 24% discount rate — lowest in catalogue. Signal: strongest full-price category. Increase depth."</li>
+            <li><strong>Catalogue Health Donut:</strong> 1,368 promotable · 48 out-of-stock (orange segment, reorder flag) · 204 discontinued · 14,573 invisible</li>
+            <li><strong>Yotpo Review Strip:</strong> 4.68★ average · 4,341 published · 89,505 requests sent · 0.02% CVR · "Activate shoppable reviews" CTA</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Category Intelligence — Design Notes</h4>
+          <div class="card-terra" style="margin-top:.5rem;">
+            <div class="ct">Casual Dresses — Margin Risk Flag</div>
+            <p style="color:rgba(255,255,255,.85);font-size:13px;">89 SKUs · 57% discount rate (highest in catalogue) · +24% growth in avg discount vs prior. Particl events data shows the 20% Spring Sale reduced daily revenue — not increased it. Discounting this category further will not recover sales. Flag this card in amber/red in the UI.</p>
+          </div>
+          <div class="card-green" style="margin-top:.75rem;">
+            <div class="ct">Cardigans — Range Strength Signal</div>
+            <p style="color:rgba(255,255,255,.75);font-size:13px;">21 SKUs · 5.0★ average rating (Particl) · 24% discount rate — lowest of any category. Best-rated category in the entire FC catalogue. Low markdown pressure + exceptional customer satisfaction. Increase range depth for next season. Flag this card in green.</p>
+          </div>
+          <div class="card-pink" style="margin-top:.75rem;">
+            <div class="ct">Maxi Dresses — Revenue Signal</div>
+            <p style="font-size:13px;">84 SKUs · 40% discount rate. Top clicked (Daisy Floral 512 clicks) and top purchased (Evelina Sequin A$870) both live here. Multiple appearances in Particl events feed. <strong>Florals outperform solids</strong> — inform range direction. Sell-through strong on non-discounted SKUs — reduce blanket markdown approach.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════
+     NEW MODULES SUMMARY
+═══════════════════════════ -->
+<section class="sec" id="new-modules">
+  <div class="sec-label">New Modules</div>
+  <h2 class="sec-title">Complete New Module List</h2>
+  <p class="sec-desc">All new modules added in this build iteration. Each has confirmed live data from Particl, Panoramata, or Nosto.</p>
+  <div class="divider"></div>
+
+  <div class="comp-grid" style="grid-template-columns:repeat(3,1fr);gap:.75rem;">
+    <div class="comp-chip new"><strong>Nosto Site Metrics Strip</strong>Sessions 116K · CVR 1.24% · AOV A$89.58 · Abandon 89.57% — Strategy + E-commerce</div>
+    <div class="comp-chip new"><strong>Channel ROAS Leaderboard</strong>Email 6.69× · Google 4.24× · SMS 3.82× · SEO 2.46× — Strategy + GTM</div>
+    <div class="comp-chip new"><strong>Catalogue Health Donut</strong>1,368 promotable / 48 OOS / 204 disc / 14,573 invisible — E-commerce + Product &amp; SKU</div>
+    <div class="comp-chip new"><strong>Category Performance Bars</strong>Women's Dresses A$6,018 · New In A$5,206 · Sale — with Nosto + Particl overlay — E-commerce + Product &amp; SKU</div>
+    <div class="comp-chip new"><strong>Recommendation Revenue Panel</strong>A$8,975 total · 9 campaigns · Category recs DISABLED — amber flag — E-commerce</div>
+    <div class="comp-chip new"><strong>Search Intelligence Panel</strong>44,430 searches / 21.31% CTR / top queries / zero-result alert — E-commerce</div>
+    <div class="comp-chip new"><strong>Segment Revenue Matrix</strong>Full-Priced 91.08% / Discount 10.32% / Klaviyo Active 5.00% CVR — E-commerce + Email/CRM</div>
+    <div class="comp-chip new"><strong>Lifecycle Timing Bar</strong>First order delay 15.7d · Retention delay 42.6d — E-commerce + Email/CRM</div>
+    <div class="comp-chip new"><strong>Email Benchmark Scorecard</strong>FC 4 emails / 43% score / 1.05 spam vs 12 AU brands — Marketing + Email/CRM</div>
+    <div class="comp-chip new"><strong>Promotional Pressure Chart</strong>Discount volume by brand — FC vs Portmans, Cotton On, Zimmermann — Marketing + Competitor</div>
+    <div class="comp-chip new"><strong>USP Positioning Treemap</strong>Zimmermann 23.81% High Fashion · Country Road 11% High Quality — Marketing + Competitor</div>
+    <div class="comp-chip new"><strong>Competitor Content Feed</strong>Email + ad creative thumbnails (Zimmermann, Glassons, Portmans) — filterable — Marketing + Competitor</div>
+    <div class="comp-chip new"><strong>Particl Brand Leaderboard</strong>Reformation $34M 7% disc · Sézane $32.5M 0% disc — Competitor</div>
+    <div class="comp-chip new"><strong>Promotional Events Feed</strong>FC + competitor promo events with product revenue impact — Competitor + GTM</div>
+    <div class="comp-chip new"><strong>Marketing Asset Library</strong>Reformation + Sézane creative by channel — Competitor</div>
+    <div class="comp-chip new"><strong>One Season Ahead Card</strong>International brand sell-through → FC range planning signal — Competitor + Product &amp; SKU</div>
+    <div class="comp-chip new"><strong>SKU Leaderboard Table</strong>Real Particl data: Jania Solid Jogger #1, Morocco Floral, Daisy Floral — Product &amp; SKU</div>
+    <div class="comp-chip new"><strong>Range Planning Signal Card</strong>AI-synthesised buying brief from category sell-through data — Product &amp; SKU</div>
+    <div class="comp-chip new"><strong>Email Category Mix Chart</strong>FC promotional 43.75% / launch / relational / product split — Email/CRM + Marketing</div>
+    <div class="comp-chip new"><strong>Klaviyo Segment Revenue Table</strong>Active on-site A$35K · Added to Cart A$19.7K · SMS Purchased A$7.3K — Email/CRM</div>
+    <div class="comp-chip new"><strong>UGC Feed + Reviews Panel</strong>@femmeconnection UGC thumbnails · Yotpo 4.68★ — E-commerce + Marketing</div>
+    <div class="comp-chip new"><strong>Promo Campaign Attribution</strong>Afterpay Day A$25,425 · Click Frenzy A$6,351 — GTM + Strategy</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     COMPONENTS
+═══════════════════════════ -->
+<section class="sec" id="components">
+  <div class="sec-label">Components</div>
+  <h2 class="sec-title">Component Library — New Additions</h2>
+  <p class="sec-desc">New components to add to the Figma component library alongside existing atoms, molecules, and organisms.</p>
+  <div class="divider"></div>
+
+  <table class="ds-table">
+    <thead>
+      <tr><th>Component Name</th><th>Variants</th><th>Key Props</th><th>Used In</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Email Benchmark Row</strong></td><td>FC / Competitor / Average</td><td>brand, emails sent, quality score, spam score, status (RAG)</td><td>Marketing · Email/CRM · Competitor</td></tr>
+      <tr><td><strong>USP Treemap Tile</strong></td><td>Primary / Secondary / Tertiary</td><td>brand name, USP label, frequency %, tile size proportional to %</td><td>Competitor · Marketing</td></tr>
+      <tr><td><strong>Competitor Content Card</strong></td><td>Email / Ad / Social / Landing</td><td>thumbnail, brand, channel icon, date, campaign type label</td><td>Competitor · Marketing</td></tr>
+      <tr><td><strong>Events Feed Row</strong></td><td>FC Event / Competitor Event</td><td>event name, date, type badge, associated product chips, revenue delta, product thumbnails</td><td>Competitor · Product &amp; SKU · GTM</td></tr>
+      <tr><td><strong>Particl Brand Card</strong></td><td>Compact / Expanded</td><td>brand name, revenue, % discounted, Particl rank, percentile bar, top product thumbnails</td><td>Competitor · Product &amp; SKU</td></tr>
+      <tr><td><strong>SKU Row</strong></td><td>Leaderboard / Compact</td><td>rank, thumbnail, product name, category, price, discount %, sell-through sparkline, first seen, status badge</td><td>Product &amp; SKU</td></tr>
+      <tr><td><strong>Category Bar + Overlay</strong></td><td>Standard / Dual-metric</td><td>category label, Nosto revenue bar, Particl sell-through % overlaid as dot/line, delta vs prior</td><td>Product &amp; SKU · E-commerce</td></tr>
+      <tr><td><strong>Lifecycle Timing Bar</strong></td><td>Horizontal timeline</td><td>first order delay (15.7d), retention delay (42.6d), trigger window markers, annotation labels</td><td>Email/CRM · E-commerce</td></tr>
+      <tr><td><strong>Segment Revenue Row</strong></td><td>Compact table row</td><td>segment name, type badge (Nosto/Klaviyo/Custom), size %, sessions, revenue, CVR, AOV</td><td>E-commerce · Email/CRM</td></tr>
+      <tr><td><strong>Recommendation Campaign Row</strong></td><td>Active / Disabled / Opportunity</td><td>campaign name, placement, CTR, CVR, revenue, status badge (green = active, orange = disabled)</td><td>E-commerce</td></tr>
+      <tr><td><strong>Range Planning Signal Card</strong></td><td>Increase / Maintain / Reduce / Exit</td><td>category, signal label + colour, sell-through %, discount depth, AI rationale text, competitor context</td><td>Product &amp; SKU</td></tr>
+      <tr><td><strong>Promo Event Attribution Card</strong></td><td>Standard</td><td>event name, date, discount type, revenue, orders, avg basket, vs daily avg delta</td><td>GTM · Strategy · Competitor</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════
+     LIVE DATA REFERENCE
+═══════════════════════════ -->
+<section class="sec" id="data">
+  <div class="sec-label">Live Data</div>
+  <h2 class="sec-title">Real Data Reference — Pre-Fill Values</h2>
+  <p class="sec-desc">Use these exact values when pre-filling dashboard cards. All figures are sourced from live tool screenshots. No estimation — real numbers only.</p>
+  <div class="divider"></div>
+
+  <div class="g2" style="margin-bottom:1.5rem;">
+    <div>
+      <h3 style="margin-bottom:.75rem;">Nosto — Site Metrics (Last 30 Days)</h3>
+      <div class="pill-row">
+        <span class="pill live">Sessions: 116,429 (↓16.10%)</span>
+        <span class="pill live">CVR: 1.24% (↑11.59%)</span>
+        <span class="pill live">Total Sales: A$129,079 (↓9.69%)</span>
+        <span class="pill live">AOV: A$89.58 (↓3.55%)</span>
+        <span class="pill live">Orders: 1,441 (↓6.37%)</span>
+        <span class="pill live">Rev/Session: A$1.11 (↑7.63%)</span>
+        <span class="pill live">Carts: 13,820 (↓19.83%)</span>
+        <span class="pill live">Abandoned carts: 12,379 (↓21.15%)</span>
+        <span class="pill alert">Abandon rate: 89.57%</span>
+        <span class="pill live">Cart value: A$1,233,105</span>
+        <span class="pill live">Product views: 191,246 (↓20.54%)</span>
+        <span class="pill live">Total searches: 44,430 (↓9.18%)</span>
+        <span class="pill alert">Search CTR: 21.31% (↓3.17%)</span>
+        <span class="pill live">Avg session: 00:05:38</span>
+        <span class="pill live">Email identified: 6.46%</span>
+        <span class="pill live">Sales via Nosto: A$8,975.97</span>
+      </div>
+
+      <h3 style="margin-bottom:.75rem; margin-top:1.25rem;">Nosto — Segment Explorer</h3>
+      <div class="pill-row">
+        <span class="pill live">Full-Priced Shoppers: 91.08% / A$379,900 / 0.96% CVR</span>
+        <span class="pill live">Discount Shoppers: 10.32% / A$38,806 / 0.99% CVR</span>
+        <span class="pill live">Klaviyo Active 30D: 5.36% / A$35,056 / 5.00% CVR</span>
+        <span class="pill live">Klaviyo Added to Cart: 2.77% / A$19,793 / 5.15% CVR</span>
+        <span class="pill live">SMS Subscribers (Purchased): 0.94% / A$7,339 / 5.86% CVR</span>
+        <span class="pill live">Klaviyo Engaged 90D: 5.13% / A$34,715 / 5.22% CVR</span>
+        <span class="pill live">First order delay: 15.7 days</span>
+        <span class="pill live">Retention delay: 42.6 days</span>
+        <span class="pill live">Retention rate: 42.37%</span>
+        <span class="pill live">Avg orders/customer: 1.2</span>
+        <span class="pill live">Avg sales/customer: A$108.59</span>
+      </div>
+
+      <h3 style="margin-bottom:.75rem; margin-top:1.25rem;">Nosto — Category Analytics</h3>
+      <div class="pill-row">
+        <span class="pill live">Women's Dresses: 46,476 views / 23.12% CTR / 66 orders / A$6,018</span>
+        <span class="pill live">All: 31,111 views / 23.91% CTR / 89 orders / A$6,391</span>
+        <span class="pill live">New In: 26,057 views / 22.16% CTR / 58 orders / A$5,206</span>
+        <span class="pill live">Women's Sale: 12,482 views / 38.82% CTR (highest)</span>
+        <span class="pill live">Top clicked: Daisy Floral Maxi Dress (512 clicks)</span>
+        <span class="pill live">Top clicked 2: Agatha Floral Maxi Dress (488 clicks)</span>
+        <span class="pill live">Top purchased: Evelina Sequin Maxi Dress (A$870)</span>
+        <span class="pill live">Top purchased 2: Niave Floral Knit Pullover (A$839)</span>
+        <span class="pill live">Top purchased 3: Jania Floral Jogger Pants (A$734)</span>
+      </div>
+
+      <h3 style="margin-bottom:.75rem; margin-top:1.25rem;">Nosto — Recommendation Campaigns</h3>
+      <div class="pill-row">
+        <span class="pill live">Total: A$8,975 (9 of 12 campaigns active)</span>
+        <span class="pill live">Customers Also Bought: 3.36% CTR / 1.49% CVR / A$4,359</span>
+        <span class="pill live">Recently Viewed: 1.28% CTR / 2.80% CVR / A$3,499</span>
+        <span class="pill live">Browsing History (front page): 2.05% CTR / 3.79% CVR / A$823</span>
+        <span class="pill alert">Category Page Recs: DISABLED — A$0</span>
+        <span class="pill alert">Recommended For You (category): DISABLED — A$0</span>
+        <span class="pill live">Customers Also Bought (cart): 0.15% CTR / 6.50% CVR / A$292</span>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:.75rem;">Particl — FC Product Data</h3>
+      <div class="pill-row">
+        <span class="pill live">Total FC SKUs tracked: 1,189</span>
+        <span class="pill live">Rank #1: Jania Solid Jogger Pants ($59.99)</span>
+        <span class="pill live">Rank #2: Solid Harem Pants ($24.99)</span>
+        <span class="pill live">Rank #3: Giana Double Layered Linen Top ($79.99)</span>
+        <span class="pill live">Rank #4: Morocco Floral Maxi Dress ($89.99)</span>
+        <span class="pill live">Rank #5: Morocco Floral Maxi Dress ($79.99)</span>
+        <span class="pill warn">Casual Dresses: 57% discount rate (highest, +24% trend)</span>
+        <span class="pill live">Blouses: 210 SKUs / 39% discount rate</span>
+        <span class="pill live">Maxi Dresses: 84 SKUs / 40% discount rate / $71 avg full price</span>
+        <span class="pill live">Midi Dresses: 94 SKUs / 43% discount rate</span>
+        <span class="pill live">Cardigans: 21 SKUs / 5.0★ avg / 24% discount (lowest)</span>
+        <span class="pill live">Joggers: 23 SKUs / 17% discount / $63 avg full price</span>
+      </div>
+
+      <h3 style="margin-bottom:.75rem; margin-top:1.25rem;">Particl — Competitor Data</h3>
+      <div class="pill-row">
+        <span class="pill live">Reformation: $34M revenue (4w) / 7% disc / 99th pctile / 2,948 SKUs</span>
+        <span class="pill live">Reformation: Peak price $176–208 / Top: Anaiis Silk Dress $634K</span>
+        <span class="pill live">Sézane: $32.5M revenue / 0% disc / 98th pctile / Tops 672 SKUs</span>
+        <span class="pill live">Sézane: Peak price $60–83 / Top: Will Jacket $1.2M / Max Shirt $827K</span>
+      </div>
+
+      <h3 style="margin-bottom:.75rem; margin-top:1.25rem;">Panoramata — FC Benchmark Data</h3>
+      <div class="pill-row">
+        <span class="pill alert">FC emails sent (30D): 4 (avg: 24)</span>
+        <span class="pill alert">FC email score: 43.0% (rated Poor)</span>
+        <span class="pill alert">FC spam score: 1.05 (highest of 12 brands, avg 0.67)</span>
+        <span class="pill alert">FC ads published: 0 (−53.62% vs prior, rated Poor)</span>
+        <span class="pill alert">FC landings detected: 0 (−100%, rated Fair)</span>
+        <span class="pill live">FC promotions rate: 43.75%</span>
+        <span class="pill live">Portmans: 98 emails / 39.53% score / 94.9% promo rate</span>
+        <span class="pill live">Cotton On AU: 66 emails / 48.5% score / 69.7% promo rate</span>
+        <span class="pill live">Uniqlo AU: 30 emails / 56.23% score (highest of set)</span>
+        <span class="pill live">Sussan: 31 emails / 52.48% score / 93.55% promo rate</span>
+        <span class="pill live">Zimmermann USP: High Fashion 23.81%</span>
+        <span class="pill live">Country Road USP: High Quality 11.04%</span>
+        <span class="pill live">Glassons USP: Best Selling 4.52%</span>
+      </div>
+
+      <h3 style="margin-bottom:.75rem; margin-top:1.25rem;">Internal Report &amp; Yotpo</h3>
+      <div class="pill-row">
+        <span class="pill live">Total Sales: $136,767 (↑14% vs PY)</span>
+        <span class="pill live">Orders: 1,556 (↑14% vs PY)</span>
+        <span class="pill live">Sessions: 169,050 (↑80% vs PY)</span>
+        <span class="pill warn">CVR: 0.9% (↓37% vs PY)</span>
+        <span class="pill live">AOV: $84.03</span>
+        <span class="pill live">Email &amp; SMS ROAS: 6.69× (568.87% ROI)</span>
+        <span class="pill live">Google Ads ROAS: 4.24× (324.22%)</span>
+        <span class="pill live">SMS Tall Bob ROAS: 3.82×</span>
+        <span class="pill live">SEO ROAS: 2.46×</span>
+        <span class="pill live">Afterpay Day: A$25,425 / 276 orders</span>
+        <span class="pill live">Click Frenzy: A$6,351 / 65 orders</span>
+        <span class="pill live">Yotpo rating: 4.68★ (4,341 published)</span>
+        <span class="pill live">Yotpo requests: 89,505 sent</span>
+        <span class="pill warn">Yotpo review CVR: 0.02%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     AI PANEL
+═══════════════════════════ -->
+<section class="sec" id="ai">
+  <div class="sec-label">AI Panel</div>
+  <h2 class="sec-title">AI Assistant — Pre-Filled Query Examples</h2>
+  <p class="sec-desc">The floating AI chat panel and embedded AI insight cards should pre-fill with these realistic queries and responses. Each query has a source badge showing which tool provides the underlying data.</p>
+  <div class="divider"></div>
+
+  <div class="g3">
+    <div class="card-dark">
+      <div class="ct">Query 1 — Product (Particl)</div>
+      <p style="color:rgba(255,255,255,.6);font-size:12.5px;font-style:italic;">"What's our best-performing dress category and how does sell-through compare to Reformation?"</p>
+      <p style="color:rgba(255,255,255,.8);font-size:13px;margin-top:.5rem;">"Maxi Dresses lead FC's dress categories with the lowest markdown pressure in the group. Reformation's top seller — the Anaiis Silk Dress at $634K — demonstrates that premium dress styles hold full price. FC's Evelina Sequin Maxi (top purchased, A$870) and Daisy Floral Maxi (512 clicks) are performing without heavy discounting. Reduce blanket markdown on Maxi Dresses — these convert at full price. Exit Casual Dresses — 57% discount rate is unsustainable."</p>
+      <div class="pill-row"><span class="pill" style="background:rgba(10,30,50,.5);border-color:rgba(100,160,210,.3);color:rgba(150,200,255,.8);">Particl · Live SKU data</span></div>
+    </div>
+    <div class="card-dark">
+      <div class="ct">Query 2 — Marketing (Panoramata)</div>
+      <p style="color:rgba(255,255,255,.6);font-size:12.5px;font-style:italic;">"Which competitor is most active in email right now and what should FC do differently?"</p>
+      <p style="color:rgba(255,255,255,.8);font-size:13px;margin-top:.5rem;">"Portmans sent 98 emails in the last 30 days — 24× more than FC. Sussan runs a 93.55% promotional email rate. FC sends 4 emails at a 43.75% promotional rate — rated Poor by Panoramata. But FC's email generates 6.69× ROAS — the highest of any channel. The strategy is not to copy Portmans' volume or Sussan's discount-heavy content. It is to increase frequency with a 30/40/30 split: 30% launch content, 40% editorial/relational, 30% promotional — targeting 3 emails per week minimum."</p>
+      <div class="pill-row"><span class="pill" style="background:rgba(25,15,60,.5);border-color:rgba(130,100,200,.3);color:rgba(180,160,255,.8);">Panoramata · Benchmark data</span></div>
+    </div>
+    <div class="card-dark">
+      <div class="ct">Query 3 — On-Site (Nosto)</div>
+      <p style="color:rgba(255,255,255,.6);font-size:12.5px;font-style:italic;">"What's the biggest on-site revenue opportunity we're not capturing right now?"</p>
+      <p style="color:rgba(255,255,255,.8);font-size:13px;margin-top:.5rem;">"Three immediate opportunities: (1) Category page recommendation campaigns are disabled — A$0 revenue from 2 active placement slots. Re-enabling Most Popular Products in Category and Recommended For You on category pages is a 15-minute Nosto task estimated to unlock A$1,200–2,400/month. (2) 89.57% cart abandonment — A$1.23M in cart value unconverted monthly. A Nosto-triggered Klaviyo sequence at 1hr/12hr/24hr could recover 5–8% of this. (3) 44,430 searches at 21.31% CTR — refine search merchandising rules to close the 79% of searches that don't click through."</p>
+      <div class="pill-row"><span class="pill" style="background:rgba(45,10,45,.5);border-color:rgba(180,80,160,.3);color:rgba(220,150,210,.8);">Nosto · Behavioural + recommendations data</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     ALERTS
+═══════════════════════════ -->
+<section class="sec" id="alerts">
+  <div class="sec-label">Alert System</div>
+  <h2 class="sec-title">Global Alert Banners — Copy &amp; Placement</h2>
+  <p class="sec-desc">Three alert types. Use consistently across relevant screens. All dismissible with a ✕. Each has an ⓘ for expanded context. The copy below is final — use verbatim.</p>
+  <div class="divider"></div>
+
+  <div class="g3">
+    <div>
+      <h3 style="margin-bottom:.75rem;">🚨 Red — Critical</h3>
+      <div class="alert" style="margin-bottom:.75rem;">
+        <div class="alert-icon">🚨</div>
+        <div class="alert-body"><strong>Email Volume Critical (Panoramata):</strong> FC sent 4 emails in 30 days vs competitor average of 24. Email score: 43% (Poor). Spam score: 1.05 — highest of 12 AU tracked brands. Email generates 6.69× ROAS. <em>Screens: Strategy · Marketing · Email/CRM</em></div>
+      </div>
+      <div class="alert">
+        <div class="alert-icon">🚨</div>
+        <div class="alert-body"><strong>Ad Presence Alert (Panoramata):</strong> 0 ads published in last 30 days. Down 53.62% vs prior period. Competitors averaged 42.94 ads/week. FC is invisible in paid social. <em>Screens: Marketing · Strategy</em></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:.75rem;">⚠ Amber — Opportunity</h3>
+      <div class="alert" style="margin-bottom:.75rem;">
+        <div class="alert-icon">⚠</div>
+        <div class="alert-body"><strong>Recommendations Disabled (Nosto):</strong> Category page recommendation campaigns are off — A$0 from 2 available placements. Estimated opportunity: A$1,200–2,400/month. Re-enable in Nosto. <em>Screens: E-commerce</em></div>
+      </div>
+      <div class="alert">
+        <div class="alert-icon">⚠</div>
+        <div class="alert-body"><strong>Cart Abandonment A$1.23M (Nosto):</strong> 89.57% abandon rate — 19.57 points above industry benchmark. 12,379 abandoned carts/month. Activate Nosto-triggered recovery flow. <em>Screens: E-commerce · Strategy</em></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:.75rem;">✓ Green — Signal</h3>
+      <div class="alert green" style="margin-bottom:.75rem;">
+        <div class="alert-icon">✓</div>
+        <div class="alert-body"><strong style="color:var(--green);">Maxi Dresses — Buy Signal (Particl + Nosto):</strong> Top clicked (512), top purchased (A$870), performing without heavy discounting. Increase range depth. <em>Screens: Product &amp; SKU · E-commerce</em></div>
+      </div>
+      <div class="alert green">
+        <div class="alert-icon">✓</div>
+        <div class="alert-body"><strong style="color:var(--green);">Cardigans — Range Strength (Particl):</strong> 5.0★ average rating. Lowest discount rate in catalogue at 24%. Highest customer satisfaction. Increase buying depth next season. <em>Screens: Product &amp; SKU</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     MASTER PROMPT
+═══════════════════════════ -->
+<section class="sec" id="prompt">
+  <div class="sec-label">Master Prompt</div>
+  <h2 class="sec-title">Figma Make Master System Prompt — v2</h2>
+  <p class="sec-desc">Paste this prompt into Figma Make as the system/master prompt for this build iteration. Per-screen appends follow below.</p>
+  <div class="divider"></div>
+
+  <div class="prompt">
+    <div class="prompt-label">Master System Prompt — Femme Connection Data Intelligence Hub v2</div>
+    <div class="prompt-text">You are building the Femme Connection Data Intelligence Hub — a premium, executive-grade analytics platform for an Australian women's fashion retail brand. This is a desktop-first product at 1680 × 1050px.
+
+DESIGN SYSTEM:
+- Typography: Cormorant Garamond (headings, KPI values, titles) · DM Sans (body, labels) · DM Mono (tags, metrics, code values)
+- Colours: Forest Green #1b443a (primary) · Pink #ff99b9 (accents, active states) · Terracotta #e2745d (alerts, secondary) · Buff #e6d1c4 (backgrounds) · Black #000000 · White #ffffff
+- Layout: 80px fixed left nav · 12-column grid · 16px card radius standard · 24px card padding · 16px gap
+- Every screen has: global nav (FC logo top, user avatar bottom) · sticky header with date range picker · KPI row (5–6 cards) · 3-part strategic action strip (Silver Bullet / Low Hanging Fruit / Long-Term Task) · embedded AI insight panel · floating AI chat (bottom-left) · ⓘ info panel on every card
+
+CONTENT RULES:
+- No placeholder text anywhere. Use real product names: Daisy Floral Maxi Dress · Evelina Sequin Maxi Dress · Jania Solid Jogger Pants · Morocco Floral Maxi Dress · Ronika Floral Print Dress · Kalinda Abstract Dress · Agatha Floral Shirt Dress · Luxe Linen Wrap Top
+- Use real competitor names: Reformation · Sézane · Zimmermann · Country Road · Glassons · Portmans · Cotton On AU
+- Use real data values from this brief. Key metrics: CVR 1.24% · Sessions 116,429 · AOV A$89.58 · Cart Abandon 89.57% · Email ROAS 6.69× · Nosto Rec Revenue A$8,975
+
+DATA SOURCES CONNECTED:
+Particl (competitor &amp; SKU intelligence) · Panoramata (marketing benchmarks) · Nosto (on-site personalisation &amp; analytics) · Klaviyo (CRM/email) · Shopify (commerce) · GA4 (analytics) · Yotpo (reviews) · Meta Ads · TikTok · Google Ads
+
+GLOBAL ALERT SYSTEM:
+- Red alert: Email Volume Critical — 4 emails vs avg 24. Spam score 1.05. Rated Poor by Panoramata.
+- Amber alert: Category page recommendations DISABLED — A$0 from 2 active Nosto placements.
+- Green alert: Maxi Dresses — top clicked and top purchased. No heavy discounting needed. Buy signal.
+
+BRAND PERSONALITY:
+Premium, editorial, fashion-forward. Elegant restraint. Not generic SaaS. The visual language of a Vogue fashion brand applied to a data product. Clean modular cards. Strong typographic hierarchy. Refined iconography. Elevated chart styles. Warm palette. Every screen should feel like it belongs in a premium fashion house's war room, not a generic BI tool.</div>
+  </div>
+
+  <h3 style="margin:1.5rem 0 .75rem;">Per-Screen Append Prompts</h3>
+  <div class="g2">
+    <div class="prompt" style="margin-top:0;">
+      <div class="prompt-label">Screen 05 Append — Competitor Intelligence</div>
+      <div class="prompt-text">Build the Competitor Intelligence Dashboard as a two-zone layout with a sub-nav tab system:
+
+TAB 1 — PRODUCT INTELLIGENCE (Particl):
+- Brand Leaderboard: Reformation $34M revenue / 7% discounted / 99th percentile · Sézane $32.5M / 0% discounted / 98th percentile · FC [tracked]
+- Sell-Through Benchmark Chart by category — FC vs Reformation vs Sézane. Full-price rate vs markdown rate split.
+- Promotional Events Feed: scrollable timeline. Events: "New Arrivals on Homepage" Mar 28 (Agatha Floral Shirt Dress ranks 9, Marrakesh Floral Print Maxi ranks 7) · "20% Off Spring Sale" Mar 20 (revenue fell below daily average — flag as red insight) · "New Arrivals" Mar 18 (Ronika Floral Print Dress top sales rank)
+- Marketing Asset Library: Reformation 2.5M followers, 355 avg likes · Sézane 5.3M followers, 2,935 avg likes — creative thumbnails per channel
+- One Season Ahead Card: Sézane Max Shirt 6,479 units at 0% discount → "Signal: increase FC linen tops range depth"
+
+TAB 2 — MARKETING INTELLIGENCE (Panoramata):
+- Email Benchmark Table: FC (4 emails, 43% score, 1.05 spam) vs Portmans (98, 39.53%) vs Cotton On (66, 48.5%) vs Uniqlo (30, 56.23%) vs Country Road (33, 51.15%) — all 12 brands
+- Promotional Pressure Chart: stacked bars by brand — discount type and volume. FC at near-zero.
+- USP Treemap: Zimmermann High Fashion 23.81% · Country Road High Quality 11.04% · Glassons Best Selling 4.52% · "FC White Space — Aspirational Positioning Opportunity" highlighted
+- Competitor Content Feed: email + ad thumbnails (Zimmermann, Glassons, Country Road, Portmans) — filterable
+- Social Benchmarks: followers and posts per week per brand — multi-line chart</div>
+    </div>
+    <div class="prompt" style="margin-top:0;">
+      <div class="prompt-label">Screen 07 Append — Product &amp; SKU Intelligence (NEW)</div>
+      <div class="prompt-text">Build the Product &amp; SKU Intelligence Dashboard as a new screen.
+
+KPI ROW (6 cards):
+Sell-Through Rate · Full-Price Sell Rate · Days to First Markdown · Avg Discount Depth % · New Arrival Revenue 30D · Out-of-Stock Count: 48 (amber)
+
+LAYOUT:
+Left column (60%): SKU Leaderboard Table
+- Rank | Thumbnail | Product Name | Category | Price | Discount % | Volume | Sell-Through sparkline | First Seen
+- Row 1: Jania Solid Jogger Pants · Bottoms · $59.99
+- Row 2: Solid Harem Pants · Bottoms · $24.99
+- Row 3: Morocco Floral Maxi Dress · Dresses · $89.99
+- Row 4: Daisy Floral Maxi Dress · Dresses · $79.99
+- Row 5: Evelina Sequin Maxi Dress · Dresses (top Nosto purchased)
+- Row 6: Agatha Floral Shirt Dress · Dresses (Particl events performer)
+
+Right column (40%): Category Performance Bars
+- Women's Dresses: 46,476 views · A$6,018 revenue · 40% discount rate
+- All: 31,111 views · A$6,391
+- New In: 26,057 views · A$5,206
+- Women's Sale: 12,482 views · 38.82% CTR (highest)
+Overlay Particl sell-through % as a dot/line on each bar.
+
+BOTTOM ZONE:
+- Range Planning Signal card (AI): Casual Dresses — 57% discount rate, +24% trend, exit signal (red). Cardigans — 5.0★ rating, 24% disc rate, increase depth (green). Maxi Dresses — top clicked + purchased, reduce markdown (amber positive).
+- Catalogue Health Donut: 1,368 promotable · 48 OOS orange · 204 discontinued · 14,573 invisible
+- Yotpo Reviews Strip: 4.68★ · 4,341 published · 0.02% CVR · "Activate shoppable reviews" CTA</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Femme Connection × Antimony Studio</div>
+  <div>Figma Make Build Brief v2 · 7 MVP Screens · Tool Stack Integration · April 2026</div>
+  <div>Particl · Panoramata · Nosto · Yotpo</div>
+</footer>
+
+<script>
+const links = document.querySelectorAll('.nav a');
+const secs = document.querySelectorAll('.sec');
+function upd() {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 110) cur = s.id; });
+  links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}
+window.addEventListener('scroll', upd, { passive: true });
+links.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

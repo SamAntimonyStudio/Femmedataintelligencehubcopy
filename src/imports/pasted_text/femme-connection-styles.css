@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Femme Connection — Data Intelligence Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #ff99b9;
+  --pink-light: #ffe4ee;
+  --pink-dark: #d4638a;
+  --green: #1b443a;
+  --green-mid: #2d6b5e;
+  --green-light: #e4ede9;
+  --terra: #e2745d;
+  --terra-light: #f5e2dc;
+  --buff: #e6d1c4;
+  --buff-dark: #c5a898;
+  --black: #0f0f0f;
+  --off-white: #faf8f5;
+  --surface: #f3efe9;
+  --border: #ddd5cc;
+  --border-strong: #c5b8ad;
+  --text-primary: #141414;
+  --text-secondary: #5a5047;
+  --text-tertiary: #8a7b6e;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  font-size: 15px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--off-white);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+.page-header {
+  background: var(--green);
+  padding: 3rem 4rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: var(--pink);
+  opacity: 0.12;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 40%;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: var(--terra);
+  opacity: 0.15;
+}
+.header-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 0.75rem;
+}
+.header-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.header-subtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--buff);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+.header-meta {
+  display: flex;
+  gap: 2rem;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+}
+.header-meta span { color: rgba(255,255,255,0.7); }
+.nav-bar {
+  background: var(--black);
+  padding: 0 4rem;
+  display: flex;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  overflow-x: auto;
+}
+.nav-bar a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 1rem 1.25rem;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.nav-bar a:hover { color: rgba(255,255,255,0.9); }
+.nav-bar a.active { color: var(--pink); border-bottom-color: var(--pink); }
+.main { max-width: 1400px; margin: 0 auto; padding: 3rem 4rem 6rem; }
+.section { margin-bottom: 5rem; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--green);
+  margin-bottom: 0.4rem;
+  line-height: 1.15;
+}
+.section-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 2.5rem;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; }
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.card-sm {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+.card-green {
+  background: var(--green);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  color: #fff;
+}
+.card-pink {
+  background: var(--pink-light);
+  border: 1px solid var(--pink);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.card-terra {
+  background: var(--terra-light);
+  border: 1px solid var(--terra);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.card-buff {
+  background: var(--buff);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.card-surface {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.card-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  color: var(--green);
+  line-height: 1.2;
+}
+.card-green .card-title { color: var(--pink); }
+.card-pink .card-title { color: var(--pink-dark); }
+.card-terra .card-title { color: #8a3a22; }
+.tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 0.75rem;
+}
+.tag-pink { background: var(--pink-light); color: var(--pink-dark); }
+.tag-green { background: var(--green-light); color: var(--green); }
+.tag-terra { background: var(--terra-light); color: #8a3a22; }
+.tag-buff { background: var(--buff); color: var(--text-secondary); }
+.tag-black { background: var(--black); color: #fff; }
+p { margin-bottom: 0.8rem; color: var(--text-secondary); line-height: 1.7; }
+p:last-child { margin-bottom: 0; }
+h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+h4 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+ul, ol { padding-left: 1.25rem; color: var(--text-secondary); }
+li { margin-bottom: 0.35rem; font-size: 14px; line-height: 1.6; }
+li strong { color: var(--text-primary); font-weight: 500; }
+code {
+  font-family: 'DM Mono', monospace;
+  font-size: 12.5px;
+  background: var(--surface);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--green);
+}
+.metric-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.metric-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1rem;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.metric-chip strong { color: var(--text-primary); display: block; font-size: 12px; font-weight: 500; }
+.kpi-tree {
+  background: var(--green);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.kpi-tree-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--pink);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+.kpi-tier {
+  margin-bottom: 1.5rem;
+}
+.kpi-tier-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 0.6rem;
+}
+.kpi-nodes {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.kpi-node {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1rem;
+  font-size: 13px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+.kpi-node.primary {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--green);
+  font-weight: 600;
+}
+.kpi-node.secondary {
+  background: rgba(230,209,196,0.15);
+  border-color: var(--buff);
+  color: var(--buff);
+}
+.sitemap {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+.sitemap-nav {
+  background: var(--green);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.25rem;
+  position: sticky;
+  top: 80px;
+}
+.sitemap-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+}
+.sitemap-nav-item.active {
+  background: var(--pink);
+  color: var(--green);
+  font-weight: 600;
+}
+.sitemap-nav-item .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.dash-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.dash-card-header {
+  background: var(--surface);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dash-card-number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--green);
+  width: 42px;
+  flex-shrink: 0;
+}
+.dash-card-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.dash-card-body { padding: 1.5rem; }
+.module-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-top: 1rem; }
+.module-chip {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.8rem;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.module-chip strong { display: block; font-size: 11px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+.sources-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+.source-badge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--green-light);
+  color: var(--green);
+}
+.ai-block {
+  background: linear-gradient(135deg, var(--green) 0%, #2d6b5e 100%);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+.ai-block-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: 'DM Mono', monospace;
+  color: var(--pink);
+  margin-bottom: 0.4rem;
+}
+.ai-block-text { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.5; font-style: italic; }
+.prompt-block {
+  background: var(--black);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.prompt-block-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 1rem;
+}
+.prompt-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+.prompt-text .highlight { color: var(--pink); }
+.prompt-text .comment { color: rgba(255,255,255,0.35); }
+.prompt-text .value { color: var(--terra); }
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.comp-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--border);
+}
+.comp-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+.comp-table td:first-child { font-weight: 500; color: var(--text-primary); }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table tr:hover td { background: var(--surface); }
+.token-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+.token-swatch {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 13px;
+}
+.swatch {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.08);
+  flex-shrink: 0;
+}
+.token-name { font-size: 12px; color: var(--text-secondary); }
+.token-hex { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-tertiary); }
+.wf-diagram {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.wf-row {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  margin-bottom: 0.75rem;
+}
+.wf-label {
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-tertiary);
+  width: 100px;
+  flex-shrink: 0;
+  padding-top: 0.75rem;
+}
+.wf-zones {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.wf-zone {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.9rem;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  flex: 1;
+  min-width: 120px;
+}
+.wf-zone.primary { border-color: var(--green); background: var(--green-light); color: var(--green); font-weight: 500; }
+.wf-zone.accent { border-color: var(--pink); background: var(--pink-light); color: var(--pink-dark); }
+.wf-zone.tertiary { border-color: var(--terra); background: var(--terra-light); color: #8a3a22; }
+.chart-guide { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.chart-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.chart-icon {
+  width: 36px; height: 36px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+.chart-info h5 { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+.chart-info p { font-size: 12px; margin: 0; }
+.checklist { list-style: none; padding: 0; }
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+.checklist li:last-child { border-bottom: none; }
+.check-box {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.check-box.done { background: var(--green); border-color: var(--green); }
+.check-box.done::after {
+  content: '✓';
+  color: #fff;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.priority-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-left: auto;
+}
+.priority-mvp { background: var(--pink-light); color: var(--pink-dark); }
+.priority-p2 { background: var(--green-light); color: var(--green); }
+.info-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { width: 180px; flex-shrink: 0; font-size: 12px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; padding-top: 2px; }
+.info-value { flex: 1; font-size: 14px; color: var(--text-secondary); }
+.big-number { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 3.5rem; font-weight: 500; color: var(--green); line-height: 1; }
+.footer {
+  background: var(--green);
+  color: rgba(255,255,255,0.5);
+  padding: 2rem 4rem;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+}
+@media (max-width: 900px) {
+  .page-header, .main, .footer { padding-left: 2rem; padding-right: 2rem; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .sitemap { grid-template-columns: 1fr; }
+  .module-grid { grid-template-columns: 1fr 1fr; }
+  .header-title { font-size: 2.2rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-label">Antimony Studio — Confidential Design Brief</div>
+  <h1 class="header-title">Femme Connection<br>Data Intelligence Hub</h1>
+  <p class="header-subtitle">Product Architecture · Figma Make Prompt · Component System</p>
+  <div class="header-meta">
+    <div>Client <span>Femme Connection</span></div>
+    <div>Phase <span>MVP · 2026</span></div>
+    <div>Screen Size <span>1680 × 1050 desktop-first</span></div>
+    <div>Prepared by <span>Antimony Studio</span></div>
+  </div>
+</header>
+
+<nav class="nav-bar">
+  <a href="#architecture" class="active">01 — Architecture</a>
+  <a href="#kpi-tree">02 — KPI Tree</a>
+  <a href="#dashboards">03 — Dashboards</a>
+  <a href="#wireframes">04 — Wireframes</a>
+  <a href="#figma-prompt">05 — Figma Make Prompt</a>
+  <a href="#design-system">06 — Design System</a>
+  <a href="#components">07 — Components</a>
+  <a href="#checklist">08 — Checklist</a>
+</nav>
+
+<main class="main">
+
+<!-- ============================================================
+     SECTION 01 — PRODUCT ARCHITECTURE
+     ============================================================ -->
+<section class="section" id="architecture">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">Product Architecture</h2>
+  <p class="section-desc">The Femme Connection Data Intelligence Hub is a centralized growth operating system — not a reporting tool. It unifies commercial, marketing, lifecycle, and competitive intelligence into one shared measurement framework, laddering all signals up to revenue, margin, LTV, CAC, retention, and organic mix.</p>
+  <div class="divider"></div>
+
+  <div class="grid-2" style="margin-bottom: 2rem;">
+    <div class="card-green">
+      <div class="card-title">Product Purpose</div>
+      <p style="color:rgba(255,255,255,0.75); font-size:14px;">Replace fragmented reporting across Shopify, Klaviyo, Meta, Google, TikTok, and Yotpo with a single intelligence layer. Surface patterns, prioritize decisions, and translate data into strategic action — for every team, from founder to channel lead.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Core Value Proposition</div>
+      <p>One source of truth for all growth decisions. Real-time channel visibility, AI-prioritized actions, attribution modelling, competitor benchmarking, and modular executive reporting — elegantly unified in a system designed for a premium fashion retail brand.</p>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom: 2rem;">
+    <div class="card-sm">
+      <span class="tag tag-pink">Users</span>
+      <h3>Leadership Layer</h3>
+      <ul>
+        <li>Founder / CEO</li>
+        <li>CMO / Marketing Lead</li>
+        <li>E-commerce Manager</li>
+      </ul>
+    </div>
+    <div class="card-sm">
+      <span class="tag tag-green">Users</span>
+      <h3>Channel Teams</h3>
+      <ul>
+        <li>Performance Marketing</li>
+        <li>CRM / Email Team</li>
+        <li>Content / SEO Team</li>
+      </ul>
+    </div>
+    <div class="card-sm">
+      <span class="tag tag-buff">Users</span>
+      <h3>Strategy & Planning</h3>
+      <ul>
+        <li>Merchandising / Buying</li>
+        <li>Strategy / Agency Team</li>
+        <li>GTM Campaign Leads</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:1rem;">Product Principles</h3>
+  <div class="grid-2" style="margin-bottom:2rem;">
+    <div class="info-row">
+      <div class="info-label">Centralized</div>
+      <div class="info-value">One ecosystem, not disconnected reports. Every channel feeds the same measurement framework.</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Strategic</div>
+      <div class="info-value">Every screen supports decisions, not just displays metrics. Data has narrative, context, and recommended next action.</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Actionable</div>
+      <div class="info-value">AI-generated insights, anomaly alerts, and priority tasks surface on every dashboard.</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Executive-Friendly</div>
+      <div class="info-value">Easy to scan and interpret at the top; drill-down available for diagnostics.</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Modular</div>
+      <div class="info-value">Designed as a scalable framework. Add dashboards, channels, and modules without rebuilding.</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">AI-Assisted</div>
+      <div class="info-value">AI summary cards, anomaly detection, trend synthesis, next-step prompts embedded throughout.</div>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:1rem;">Connected Data Sources</h3>
+  <div class="metric-row">
+    <div class="metric-chip"><strong>Commerce</strong>Shopify · GA4</div>
+    <div class="metric-chip"><strong>Paid Social</strong>Meta Ads · TikTok Ads</div>
+    <div class="metric-chip"><strong>Organic Social</strong>Sprout Social · Instagram</div>
+    <div class="metric-chip"><strong>CRM / Email</strong>Klaviyo</div>
+    <div class="metric-chip"><strong>Reviews / UGC</strong>Yotpo</div>
+    <div class="metric-chip"><strong>Search Ads</strong>Google Ads</div>
+    <div class="metric-chip"><strong>SEO / GEO</strong>Search Console · LLM signals</div>
+    <div class="metric-chip"><strong>Competitor</strong>Particle · Market Intelligence</div>
+    <div class="metric-chip"><strong>Influencer</strong>Creator Campaign Data</div>
+  </div>
+
+  <h3 style="margin-bottom:1rem;">Navigation Structure — MVP Screens</h3>
+  <div class="grid-2" style="gap:0.75rem;">
+    <div class="card-sm" style="display:flex; align-items:center; gap:1rem;">
+      <div class="big-number" style="font-size:2.2rem; color:var(--pink-dark);">01</div>
+      <div>
+        <div style="font-weight:600; font-size:14px; color:var(--text-primary);">Strategy Dashboard</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">Command center · Daily homepage</div>
+        <span class="tag tag-pink" style="margin-top:4px;">MVP Priority</span>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex; align-items:center; gap:1rem;">
+      <div class="big-number" style="font-size:2.2rem; color:var(--green);">02</div>
+      <div>
+        <div style="font-weight:600; font-size:14px; color:var(--text-primary);">E-commerce Dashboard</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">Shopify + GA4 · Revenue intelligence</div>
+        <span class="tag tag-pink" style="margin-top:4px;">MVP Priority</span>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex; align-items:center; gap:1rem;">
+      <div class="big-number" style="font-size:2.2rem; color:var(--terra);">03</div>
+      <div>
+        <div style="font-weight:600; font-size:14px; color:var(--text-primary);">Marketing Dashboard</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">Meta · TikTok · Sprout · Yotpo</div>
+        <span class="tag tag-pink" style="margin-top:4px;">MVP Priority</span>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex; align-items:center; gap:1rem;">
+      <div class="big-number" style="font-size:2.2rem; color:var(--buff-dark);">04</div>
+      <div>
+        <div style="font-weight:600; font-size:14px; color:var(--text-primary);">Email / CRM Dashboard</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">Klaviyo · Shopify · Lifecycle</div>
+        <span class="tag tag-pink" style="margin-top:4px;">MVP Priority</span>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex; align-items:center; gap:1rem;">
+      <div class="big-number" style="font-size:2.2rem; color:var(--green-mid);">05</div>
+      <div>
+        <div style="font-weight:600; font-size:14px; color:var(--text-primary);">Competitor Intelligence</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">Particle · Market benchmarking</div>
+        <span class="tag tag-pink" style="margin-top:4px;">MVP Priority</span>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex; align-items:center; gap:1rem;">
+      <div class="big-number" style="font-size:2.2rem; color:var(--pink-dark);">06</div>
+      <div>
+        <div style="font-weight:600; font-size:14px; color:var(--text-primary);">GTM &amp; Campaign Strategy</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">AI insights · 90-day planning · Briefs</div>
+        <span class="tag tag-pink" style="margin-top:4px;">MVP Priority</span>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex; align-items:center; gap:1rem; opacity:0.65;">
+      <div class="big-number" style="font-size:2.2rem; color:var(--text-tertiary);">07</div>
+      <div>
+        <div style="font-weight:600; font-size:14px; color:var(--text-primary);">Influencer Hub</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">Creators · Campaigns · EMV</div>
+        <span class="tag tag-green" style="margin-top:4px;">Phase 2</span>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex; align-items:center; gap:1rem; opacity:0.65;">
+      <div class="big-number" style="font-size:2.2rem; color:var(--text-tertiary);">08</div>
+      <div>
+        <div style="font-weight:600; font-size:14px; color:var(--text-primary);">Google Ads</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">Search · Shopping · Performance Max</div>
+        <span class="tag tag-green" style="margin-top:4px;">Phase 2</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem; margin-bottom:1rem;">Global Filters — Applied Across All Dashboards</h3>
+  <div class="wf-diagram">
+    <div class="wf-row">
+      <div class="wf-label">Date Range</div>
+      <div class="wf-zones">
+        <div class="wf-zone primary">Today</div>
+        <div class="wf-zone primary">Last 7D</div>
+        <div class="wf-zone primary">Last 30D</div>
+        <div class="wf-zone primary">Last 90D</div>
+        <div class="wf-zone">MTD</div>
+        <div class="wf-zone">YTD</div>
+        <div class="wf-zone">Custom Range</div>
+        <div class="wf-zone accent">vs. Prior Period</div>
+        <div class="wf-zone accent">vs. Prior Year</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Channel</div>
+      <div class="wf-zones">
+        <div class="wf-zone">All Channels</div>
+        <div class="wf-zone">Organic</div>
+        <div class="wf-zone">Paid Social</div>
+        <div class="wf-zone">Email</div>
+        <div class="wf-zone">Google Ads</div>
+        <div class="wf-zone">Direct</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Audience</div>
+      <div class="wf-zones">
+        <div class="wf-zone">All</div>
+        <div class="wf-zone">New Customers</div>
+        <div class="wf-zone">Returning</div>
+        <div class="wf-zone">VIP / High LTV</div>
+        <div class="wf-zone">At-Risk</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Device</div>
+      <div class="wf-zones">
+        <div class="wf-zone">All</div>
+        <div class="wf-zone">Mobile</div>
+        <div class="wf-zone">Desktop</div>
+        <div class="wf-zone">Tablet</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Campaign</div>
+      <div class="wf-zones">
+        <div class="wf-zone">All Campaigns</div>
+        <div class="wf-zone">By Tag</div>
+        <div class="wf-zone">By Product</div>
+        <div class="wf-zone">By Objective</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 02 — KPI TREE
+     ============================================================ -->
+<section class="section" id="kpi-tree">
+  <div class="section-label">Section 02</div>
+  <h2 class="section-title">Shared Measurement Framework &amp; KPI Tree</h2>
+  <p class="section-desc">Every dashboard in the hub ladders into this central KPI tree. This is the backbone of the measurement framework — all channel, product, content, and retention signals connect upward to the six strategic pillars.</p>
+  <div class="divider"></div>
+
+  <div class="kpi-tree">
+    <div class="kpi-tree-title">Femme Connection — KPI Tree</div>
+    <div class="kpi-tier">
+      <div class="kpi-tier-label">North Star</div>
+      <div class="kpi-nodes">
+        <div class="kpi-node primary">Revenue Growth</div>
+        <div class="kpi-node primary">Profitable Scale</div>
+        <div class="kpi-node primary">Brand Equity</div>
+      </div>
+    </div>
+    <div class="kpi-tier">
+      <div class="kpi-tier-label">Strategic Pillars (Tier 1)</div>
+      <div class="kpi-nodes">
+        <div class="kpi-node secondary">Revenue &amp; Margin</div>
+        <div class="kpi-node secondary">LTV / Retention</div>
+        <div class="kpi-node secondary">CAC &amp; Acquisition</div>
+        <div class="kpi-node secondary">Organic Mix</div>
+        <div class="kpi-node secondary">Brand &amp; Content</div>
+        <div class="kpi-node secondary">Competitive Position</div>
+      </div>
+    </div>
+    <div class="kpi-tier">
+      <div class="kpi-tier-label">Revenue &amp; Margin Signals</div>
+      <div class="kpi-nodes">
+        <div class="kpi-node">Total Revenue</div>
+        <div class="kpi-node">AOV</div>
+        <div class="kpi-node">Gross Margin %</div>
+        <div class="kpi-node">Discount Impact</div>
+        <div class="kpi-node">Product Mix</div>
+        <div class="kpi-node">Conversion Rate</div>
+        <div class="kpi-node">Orders / Sessions</div>
+      </div>
+    </div>
+    <div class="kpi-tier">
+      <div class="kpi-tier-label">LTV &amp; Retention Signals</div>
+      <div class="kpi-nodes">
+        <div class="kpi-node">Repeat Purchase Rate</div>
+        <div class="kpi-node">LTV (12M)</div>
+        <div class="kpi-node">Email Revenue / Flow</div>
+        <div class="kpi-node">Churn Rate</div>
+        <div class="kpi-node">Segment Health</div>
+        <div class="kpi-node">Win-back Rate</div>
+      </div>
+    </div>
+    <div class="kpi-tier">
+      <div class="kpi-tier-label">Acquisition Signals</div>
+      <div class="kpi-nodes">
+        <div class="kpi-node">CAC (blended)</div>
+        <div class="kpi-node">ROAS (paid)</div>
+        <div class="kpi-node">CPM / CPC / CTR</div>
+        <div class="kpi-node">New Customer %</div>
+        <div class="kpi-node">Channel Mix</div>
+        <div class="kpi-node">nROAS</div>
+      </div>
+    </div>
+    <div class="kpi-tier">
+      <div class="kpi-tier-label">Organic Mix Signals</div>
+      <div class="kpi-nodes">
+        <div class="kpi-node">Organic Revenue Share</div>
+        <div class="kpi-node">SEO Sessions</div>
+        <div class="kpi-node">Email Revenue Share</div>
+        <div class="kpi-node">Direct Traffic %</div>
+        <div class="kpi-node">LLM Visibility Score</div>
+        <div class="kpi-node">Engagement Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card-sm">
+      <span class="tag tag-pink">Reporting Layer</span>
+      <h3>Executive</h3>
+      <p>North star + Tier 1 pillars. Weekly overview. Strategy Dashboard is primary view.</p>
+    </div>
+    <div class="card-sm">
+      <span class="tag tag-green">Reporting Layer</span>
+      <h3>Channel</h3>
+      <p>Each channel dashboard covers its own Tier 2–3 signals. Links back to shared KPI framework.</p>
+    </div>
+    <div class="card-sm">
+      <span class="tag tag-buff">Reporting Layer</span>
+      <h3>Product / Content / Retention</h3>
+      <p>Deep-dive modules within E-commerce, CRM, and GTM dashboards for granular analysis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 03 — DASHBOARDS
+     ============================================================ -->
+<section class="section" id="dashboards">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">Dashboard-by-Dashboard Specification</h2>
+  <p class="section-desc">Each dashboard is designed as a complete intelligence module — with a clear purpose, priority KPIs, module layout, data sources, AI insight opportunities, and drill-down pathways.</p>
+  <div class="divider"></div>
+
+  <!-- DASHBOARD 01 -->
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <div class="dash-card-number">01</div>
+        <div>
+          <div class="dash-card-name">Strategy Dashboard — Command Center</div>
+          <div style="font-size:12px; color:var(--text-tertiary);">Daily homepage · Executive overview · AI-prioritized next actions</div>
+        </div>
+      </div>
+      <span class="tag tag-pink">MVP · Priority 1</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2" style="margin-bottom:1rem;">
+        <div>
+          <h4>Purpose</h4>
+          <p>The homepage and command center. Surfaces cross-channel health at a glance, identifies what is working, what is declining, and what actions should be taken today. This is the screen the CEO opens every morning.</p>
+          <h4 style="margin-top:1rem;">Key Questions Answered</h4>
+          <ul>
+            <li>Where is the business performing vs. plan right now?</li>
+            <li>Which channels are growing, plateauing, or declining?</li>
+            <li>What are the top 3 opportunities or risks this week?</li>
+            <li>What actions should be taken across teams today?</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Core KPIs</h4>
+          <div class="sources-row">
+            <div class="source-badge">Total Revenue</div>
+            <div class="source-badge">Revenue vs. Plan</div>
+            <div class="source-badge">ROAS (blended)</div>
+            <div class="source-badge">CAC</div>
+            <div class="source-badge">CVR</div>
+            <div class="source-badge">LTV (12M)</div>
+            <div class="source-badge">Email Revenue</div>
+            <div class="source-badge">New Customers</div>
+            <div class="source-badge">Organic Revenue %</div>
+            <div class="source-badge">Top Channel</div>
+          </div>
+          <h4 style="margin-top:1rem;">Data Sources</h4>
+          <div class="sources-row">
+            <div class="source-badge">Shopify</div>
+            <div class="source-badge">GA4</div>
+            <div class="source-badge">Meta</div>
+            <div class="source-badge">TikTok</div>
+            <div class="source-badge">Klaviyo</div>
+            <div class="source-badge">Google Ads</div>
+          </div>
+        </div>
+      </div>
+      <h4>Modules</h4>
+      <div class="module-grid">
+        <div class="module-chip"><strong>AI Summary</strong>Daily narrative · anomaly alerts · action priority</div>
+        <div class="module-chip"><strong>Revenue Scorecard</strong>Total / AOV / CVR / Sessions trend</div>
+        <div class="module-chip"><strong>Channel Health Grid</strong>6-channel status cards with trend arrows</div>
+        <div class="module-chip"><strong>Performance vs. Plan</strong>Progress bar + deviation flags</div>
+        <div class="module-chip"><strong>Top Actions</strong>AI-ranked priority tasks with owner tags</div>
+        <div class="module-chip"><strong>Market Revenue Chart</strong>Weekly/monthly line + area chart</div>
+        <div class="module-chip"><strong>Age / Audience Breakdown</strong>Donut chart · cohort view</div>
+        <div class="module-chip"><strong>Campaign Performance</strong>Top campaigns by ROAS + status</div>
+        <div class="module-chip"><strong>Return Customer Rate</strong>Trend sparkline · vs. prior period</div>
+        <div class="module-chip"><strong>Best Sold Items</strong>Product performance bar chart</div>
+        <div class="module-chip"><strong>Most Returned Items</strong>Returns list with impact score</div>
+        <div class="module-chip"><strong>Earnings Breakdown</strong>Channel contribution donut</div>
+      </div>
+      <div class="ai-block">
+        <div class="ai-block-label">AI Insight Module — Example Prompts</div>
+        <div class="ai-block-text">"Revenue is +24% this week vs. last — driven entirely by the Meta Autumn launch. Email and organic remain flat. Recommend activating the welcome flow for new Meta acquirees before next weekend." · "Conversion rate dropped 1.2% on mobile over the past 3 days — landing page load time has increased. Flag to e-commerce team." · "Top 3 actions: (1) Activate abandoned cart flow for 482 open carts, (2) Review Meta ad fatigue on creative set FC-09, (3) Replenish Wrap Midi Dress inventory — 3 days of stock remaining."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD 02 -->
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <div class="dash-card-number">02</div>
+        <div>
+          <div class="dash-card-name">E-commerce Dashboard</div>
+          <div style="font-size:12px; color:var(--text-tertiary);">Shopify + GA4 · Revenue, conversion, merchandising, funnel</div>
+        </div>
+      </div>
+      <span class="tag tag-pink">MVP · Priority 2</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2" style="margin-bottom:1rem;">
+        <div>
+          <h4>Purpose</h4>
+          <p>Commercial performance intelligence. Tracks every layer from sessions through to purchase — with merchandising, product, discount, margin, and funnel visibility. The primary screen for the e-commerce manager and commercial leads.</p>
+          <h4 style="margin-top:1rem;">Key Questions Answered</h4>
+          <ul>
+            <li>What is revenue, AOV, and conversion rate this period?</li>
+            <li>Which products are driving and dragging performance?</li>
+            <li>Where is the checkout funnel losing customers?</li>
+            <li>What is the impact of discounts on margin?</li>
+            <li>How are new vs. returning customers trending?</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Core KPIs</h4>
+          <div class="sources-row">
+            <div class="source-badge">Revenue</div>
+            <div class="source-badge">AOV</div>
+            <div class="source-badge">CVR</div>
+            <div class="source-badge">Sessions</div>
+            <div class="source-badge">Orders</div>
+            <div class="source-badge">Gross Margin %</div>
+            <div class="source-badge">Discount Rate</div>
+            <div class="source-badge">New vs. Returning</div>
+            <div class="source-badge">Funnel Drop-off</div>
+            <div class="source-badge">Top Products</div>
+            <div class="source-badge">Device Split</div>
+          </div>
+        </div>
+      </div>
+      <h4>Modules</h4>
+      <div class="module-grid">
+        <div class="module-chip"><strong>Revenue Trend</strong>Line chart · daily/weekly · vs. prior period</div>
+        <div class="module-chip"><strong>KPI Scorecard Row</strong>Revenue · AOV · CVR · Sessions · Orders</div>
+        <div class="module-chip"><strong>Checkout Funnel</strong>Horizontal funnel: Visit → PDP → Cart → Checkout → Purchase</div>
+        <div class="module-chip"><strong>Product Performance</strong>Ranked table · revenue / units / return rate</div>
+        <div class="module-chip"><strong>Category Mix</strong>Stacked bar by category · trending up/down</div>
+        <div class="module-chip"><strong>Discount Impact</strong>Revenue at full price vs. discounted · margin erosion gauge</div>
+        <div class="module-chip"><strong>Device Split</strong>Mobile vs. desktop CVR + revenue donut</div>
+        <div class="module-chip"><strong>New vs. Returning</strong>Stacked area · cohort comparison</div>
+        <div class="module-chip"><strong>Landing Page Performance</strong>Top pages by sessions · CVR · bounce rate</div>
+        <div class="module-chip"><strong>Channel Attribution</strong>Sessions and revenue by acquisition channel</div>
+        <div class="module-chip"><strong>Inventory Signals</strong>Low stock alerts · high-demand flags</div>
+        <div class="module-chip"><strong>AI Merchandising Brief</strong>AI-ranked opportunity areas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD 03 -->
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <div class="dash-card-number">03</div>
+        <div>
+          <div class="dash-card-name">Marketing Dashboard</div>
+          <div style="font-size:12px; color:var(--text-tertiary);">Meta · TikTok · Sprout Social · Yotpo · Paid + Organic unified</div>
+        </div>
+      </div>
+      <span class="tag tag-pink">MVP · Priority 3</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2" style="margin-bottom:1rem;">
+        <div>
+          <h4>Purpose</h4>
+          <p>Unified paid and organic marketing intelligence. Spans Meta, TikTok, and social performance — surfaces ROAS, creative winners, audience trends, CAC, CPM benchmarks, channel contribution, and content performance signals in one view.</p>
+          <h4 style="margin-top:1rem;">Key Questions Answered</h4>
+          <ul>
+            <li>What is blended ROAS across Meta and TikTok?</li>
+            <li>Which creatives are winning and fatiguing?</li>
+            <li>What is CAC by channel and campaign?</li>
+            <li>How is organic content performing vs. paid?</li>
+            <li>What audience segments are most efficient?</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Core KPIs</h4>
+          <div class="sources-row">
+            <div class="source-badge">ROAS</div>
+            <div class="source-badge">CAC</div>
+            <div class="source-badge">CPM</div>
+            <div class="source-badge">CPC</div>
+            <div class="source-badge">CTR</div>
+            <div class="source-badge">Reach</div>
+            <div class="source-badge">Engagement Rate</div>
+            <div class="source-badge">Attributed Revenue</div>
+            <div class="source-badge">Ad Spend</div>
+            <div class="source-badge">Creative Score</div>
+          </div>
+          <h4 style="margin-top:1rem;">Data Sources</h4>
+          <div class="sources-row">
+            <div class="source-badge">Meta Ads</div>
+            <div class="source-badge">TikTok Ads</div>
+            <div class="source-badge">Sprout Social</div>
+            <div class="source-badge">Yotpo</div>
+            <div class="source-badge">GA4</div>
+          </div>
+        </div>
+      </div>
+      <h4>Modules</h4>
+      <div class="module-grid">
+        <div class="module-chip"><strong>Channel Comparison</strong>Meta vs. TikTok vs. Organic · ROAS · Spend · Revenue</div>
+        <div class="module-chip"><strong>Creative Leaderboard</strong>Top 5 ads by ROAS · CTR · creative thumbnail</div>
+        <div class="module-chip"><strong>Spend vs. Revenue</strong>Dual-axis chart · daily / weekly</div>
+        <div class="module-chip"><strong>Audience Efficiency</strong>CAC by segment + demographic</div>
+        <div class="module-chip"><strong>Campaign Table</strong>All campaigns · spend / ROAS / CVR / status</div>
+        <div class="module-chip"><strong>Organic Performance</strong>ER · reach · top posts · platform split</div>
+        <div class="module-chip"><strong>Content Themes</strong>Topic cluster performance matrix</div>
+        <div class="module-chip"><strong>Sentiment / Reviews</strong>Yotpo star ratings · NPS trend · top review themes</div>
+        <div class="module-chip"><strong>Funnel Attribution</strong>Channel contribution to each funnel stage</div>
+        <div class="module-chip"><strong>Frequency Alerts</strong>Ad fatigue warnings · creative refresh flags</div>
+        <div class="module-chip"><strong>nROAS Signal</strong>New customer ROAS vs. blended ROAS</div>
+        <div class="module-chip"><strong>AI Creative Brief</strong>Winning creative patterns + next recommendations</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD 04 -->
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <div class="dash-card-number">04</div>
+        <div>
+          <div class="dash-card-name">Email / CRM Dashboard</div>
+          <div style="font-size:12px; color:var(--text-tertiary);">Klaviyo · Shopify · Lifecycle intelligence</div>
+        </div>
+      </div>
+      <span class="tag tag-pink">MVP · Priority 4</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2" style="margin-bottom:1rem;">
+        <div>
+          <h4>Purpose</h4>
+          <p>Lifecycle and CRM intelligence. Shows how the existing customer base is performing — revenue from email, flow health, segment behaviour, retention signals, churn risk, repeat purchase trends, and lifecycle opportunities.</p>
+          <h4 style="margin-top:1rem;">Key Questions Answered</h4>
+          <ul>
+            <li>How much revenue is email generating this period?</li>
+            <li>Which flows are performing and which need attention?</li>
+            <li>What is the list growth and unsubscribe rate?</li>
+            <li>Which segments are most and least engaged?</li>
+            <li>Where are repeat purchase and win-back opportunities?</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Core KPIs</h4>
+          <div class="sources-row">
+            <div class="source-badge">Email Revenue</div>
+            <div class="source-badge">Revenue / Recipient</div>
+            <div class="source-badge">Open Rate</div>
+            <div class="source-badge">Click Rate</div>
+            <div class="source-badge">Placed Order Rate</div>
+            <div class="source-badge">Flow Revenue</div>
+            <div class="source-badge">List Growth</div>
+            <div class="source-badge">Churn Rate</div>
+            <div class="source-badge">Repeat Rate</div>
+            <div class="source-badge">Win-back Rate</div>
+          </div>
+        </div>
+      </div>
+      <h4>Modules</h4>
+      <div class="module-grid">
+        <div class="module-chip"><strong>Email Revenue KPIs</strong>Attributed revenue · RPR · unsubscribe delta</div>
+        <div class="module-chip"><strong>Flow Performance Table</strong>All active flows · revenue · OR · CR · CVR</div>
+        <div class="module-chip"><strong>Campaign Performance</strong>Recent sends · OR / CR / revenue / trend</div>
+        <div class="module-chip"><strong>List Growth Chart</strong>Subscribers added vs. lost · net growth trend</div>
+        <div class="module-chip"><strong>Segment Health Matrix</strong>Champions · Loyal · At-Risk · Lost · New</div>
+        <div class="module-chip"><strong>Lifecycle Stage Map</strong>Customer journey funnel · active volume per stage</div>
+        <div class="module-chip"><strong>Repeat Purchase Rate</strong>Cohort view · 30 / 60 / 90 day repurchase</div>
+        <div class="module-chip"><strong>Win-back Opportunity</strong>Lapsed customer count · last purchase date · potential revenue</div>
+        <div class="module-chip"><strong>Revenue Timeline</strong>Email revenue vs. total revenue · contribution line</div>
+        <div class="module-chip"><strong>Best-Sending Day</strong>Heatmap: day/hour vs. open rate</div>
+        <div class="module-chip"><strong>Churn Risk Panel</strong>At-risk segment size + recommended trigger</div>
+        <div class="module-chip"><strong>AI Lifecycle Brief</strong>Segment opportunities · flow gaps · next actions</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD 05 -->
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <div class="dash-card-number">05</div>
+        <div>
+          <div class="dash-card-name">Competitor Intelligence Dashboard</div>
+          <div style="font-size:12px; color:var(--text-tertiary);">Particle · Market benchmarking · Qualitative + quantitative signals</div>
+        </div>
+      </div>
+      <span class="tag tag-pink">MVP · Priority 5</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2" style="margin-bottom:1rem;">
+        <div>
+          <h4>Purpose</h4>
+          <p>Market and competitive intelligence. Benchmarks Femme Connection against key competitors across pricing, promo behaviour, social performance, product positioning, sentiment, and market share proxies. Includes Particle integration slot for live competitive data feeds.</p>
+          <h4 style="margin-top:1rem;">Key Questions Answered</h4>
+          <ul>
+            <li>How does our pricing compare to key competitors?</li>
+            <li>Which competitors are running promotions and at what intensity?</li>
+            <li>How does our social engagement compare?</li>
+            <li>What are competitor content and product trends?</li>
+            <li>Where are our relative strengths and gaps?</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Core KPIs</h4>
+          <div class="sources-row">
+            <div class="source-badge">Promo Intensity Index</div>
+            <div class="source-badge">Avg. Price Position</div>
+            <div class="source-badge">Social ER Benchmark</div>
+            <div class="source-badge">Follower Growth Delta</div>
+            <div class="source-badge">Sentiment Score</div>
+            <div class="source-badge">Share of Voice Proxy</div>
+            <div class="source-badge">Category Focus</div>
+            <div class="source-badge">New Product Cadence</div>
+          </div>
+          <h4 style="margin-top:1rem;">Data Sources</h4>
+          <div class="sources-row">
+            <div class="source-badge">Particle</div>
+            <div class="source-badge">Social Scraping</div>
+            <div class="source-badge">Manual Intelligence</div>
+            <div class="source-badge">Sprout Social</div>
+          </div>
+        </div>
+      </div>
+      <h4>Modules</h4>
+      <div class="module-grid">
+        <div class="module-chip"><strong>Competitor Matrix</strong>Side-by-side scorecard for 5–8 key competitors</div>
+        <div class="module-chip"><strong>Pricing Benchmark</strong>Price index chart · Femme vs. market band</div>
+        <div class="module-chip"><strong>Promo Calendar</strong>Promo intensity timeline by competitor</div>
+        <div class="module-chip"><strong>Social Performance</strong>ER / follower growth / posting frequency comparison</div>
+        <div class="module-chip"><strong>Sentiment Analysis</strong>NLP-style sentiment bars by brand</div>
+        <div class="module-chip"><strong>Share of Voice</strong>Estimated SOV chart · search + social signals</div>
+        <div class="module-chip"><strong>Product / Category Focus</strong>Category emphasis radar chart</div>
+        <div class="module-chip"><strong>Trend Themes</strong>Emerging content and product trends by competitor</div>
+        <div class="module-chip"><strong>SWOT Summary Panel</strong>AI-generated relative strength/weakness summary</div>
+        <div class="module-chip"><strong>Particle Feed</strong>Live competitor intelligence integration slot</div>
+        <div class="module-chip"><strong>Opportunity Flags</strong>Gaps in competitor positioning = Femme opportunities</div>
+        <div class="module-chip"><strong>AI Competitive Brief</strong>Weekly narrative · market movement summary</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD 06 -->
+  <div class="dash-card">
+    <div class="dash-card-header">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <div class="dash-card-number">06</div>
+        <div>
+          <div class="dash-card-name">GTM &amp; Campaign Strategy Dashboard</div>
+          <div style="font-size:12px; color:var(--text-tertiary);">AI insights · Low Hanging Fruit · Silver Bullet · 90-Day Planning · Campaign Briefs</div>
+        </div>
+      </div>
+      <span class="tag tag-pink">MVP · Priority 6</span>
+    </div>
+    <div class="dash-card-body">
+      <div class="grid-2" style="margin-bottom:1rem;">
+        <div>
+          <h4>Purpose</h4>
+          <p>Strategic planning and campaign generation. Translates all data intelligence into actionable go-to-market strategy — with AI-powered opportunity identification, 90-day channel planning, and fully structured campaign briefs covering art direction, copy, offer design, and channel strategy.</p>
+          <h4 style="margin-top:1rem;">Key Questions Answered</h4>
+          <ul>
+            <li>What are our low-hanging fruit opportunities right now?</li>
+            <li>What is the single biggest lever for growth (Silver Bullet)?</li>
+            <li>What should each channel focus on in the next 90 days?</li>
+            <li>What does the campaign brief look like for our next launch?</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Modules</h4>
+          <div class="sources-row">
+            <div class="source-badge">AI Opportunity Engine</div>
+            <div class="source-badge">Low Hanging Fruit Cards</div>
+            <div class="source-badge">Silver Bullet Strategy</div>
+            <div class="source-badge">90-Day Channel Plans</div>
+            <div class="source-badge">Campaign Brief Builder</div>
+            <div class="source-badge">Art Direction Notes</div>
+            <div class="source-badge">Tagline Generator</div>
+            <div class="source-badge">Channel Strategy Map</div>
+            <div class="source-badge">Copy Brief</div>
+            <div class="source-badge">Offer Matrix</div>
+            <div class="source-badge">Design Brief</div>
+          </div>
+        </div>
+      </div>
+      <h4>Module Layout</h4>
+      <div class="module-grid">
+        <div class="module-chip"><strong>Low Hanging Fruit</strong>AI-ranked quick-win opportunities by channel · effort vs. impact matrix</div>
+        <div class="module-chip"><strong>Silver Bullet</strong>The single biggest growth lever · strategic rationale · activation path</div>
+        <div class="module-chip"><strong>90-Day Plans</strong>Per-channel quarterly focus · week-by-week milestone view</div>
+        <div class="module-chip"><strong>Campaign Brief</strong>Objective · audience · offer · creative direction · channels · KPIs</div>
+        <div class="module-chip"><strong>Art Direction</strong>Mood references · color direction · imagery tone · format specs</div>
+        <div class="module-chip"><strong>Copy Brief</strong>Taglines · headers · body tone · CTA matrix · offer language</div>
+        <div class="module-chip"><strong>Offer Matrix</strong>Offer type vs. channel vs. audience segment grid</div>
+        <div class="module-chip"><strong>Channel Strategy</strong>Channel-specific approach per campaign · sequencing · spend recommendation</div>
+        <div class="module-chip"><strong>Launch Checklist</strong>Pre-launch readiness tracker per channel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 04 — WIREFRAME LOGIC
+     ============================================================ -->
+<section class="section" id="wireframes">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">Wireframe Logic — Desktop Layout System</h2>
+  <p class="section-desc">All screens are designed for 1680 × 1050 desktop. The layout system uses a consistent structure: global navigation (left), page header (top), KPI row, main content zones, and right-side insight panel. Spacing, hierarchy, and card density are defined here.</p>
+  <div class="divider"></div>
+
+  <h3 style="margin-bottom:1rem;">Universal Layout Structure — All Dashboards</h3>
+  <div class="wf-diagram" style="margin-bottom:2rem;">
+    <div class="wf-row">
+      <div class="wf-label">Global Nav</div>
+      <div class="wf-zones">
+        <div class="wf-zone primary" style="min-width:64px; max-width:80px; text-align:center;">80px wide · Fixed left · Logo + nav icons + user</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Page Header</div>
+      <div class="wf-zones">
+        <div class="wf-zone primary">Dashboard Title + Breadcrumb</div>
+        <div class="wf-zone accent">Date Range Picker</div>
+        <div class="wf-zone accent">Compare Toggle</div>
+        <div class="wf-zone">Export</div>
+        <div class="wf-zone">Settings</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Sub-Nav / Tabs</div>
+      <div class="wf-zones">
+        <div class="wf-zone">Overview</div>
+        <div class="wf-zone">By Channel</div>
+        <div class="wf-zone">By Product</div>
+        <div class="wf-zone">Diagnostics</div>
+        <div class="wf-zone">AI Insights</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">KPI Row</div>
+      <div class="wf-zones">
+        <div class="wf-zone primary">KPI Card 1</div>
+        <div class="wf-zone primary">KPI Card 2</div>
+        <div class="wf-zone primary">KPI Card 3</div>
+        <div class="wf-zone primary">KPI Card 4</div>
+        <div class="wf-zone primary">KPI Card 5</div>
+        <div class="wf-zone primary">KPI Card 6</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Main Content</div>
+      <div class="wf-zones">
+        <div class="wf-zone primary" style="flex:3;">Primary Chart Zone (60%)</div>
+        <div class="wf-zone accent" style="flex:2;">Secondary Chart / Table (40%)</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Deep Dive</div>
+      <div class="wf-zones">
+        <div class="wf-zone primary" style="flex:2;">Data Table / List View</div>
+        <div class="wf-zone" style="flex:1;">Supporting Chart</div>
+        <div class="wf-zone tertiary" style="flex:1;">AI Insight Panel</div>
+      </div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Bottom Zone</div>
+      <div class="wf-zones">
+        <div class="wf-zone">Module 1</div>
+        <div class="wf-zone">Module 2</div>
+        <div class="wf-zone accent">Recommendations</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:2rem;">
+    <div>
+      <h3 style="margin-bottom:1rem;">Left Navigation Sidebar — 80px Collapsed</h3>
+      <div class="card-surface">
+        <div style="display:flex; gap:1rem; align-items:flex-start; margin-bottom:0.75rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border);">
+          <div style="width:40px; height:40px; background:var(--pink); border-radius:8px; flex-shrink:0;"></div>
+          <div>
+            <div style="font-weight:600; font-size:13px; color:var(--text-primary);">Femme Connection logo</div>
+            <div style="font-size:11px; color:var(--text-tertiary);">Sticky top · collapses to icon</div>
+          </div>
+        </div>
+        <ul style="list-style:none; padding:0;">
+          <li style="padding:0.4rem 0; font-size:13px; color:var(--green); font-weight:600; border-left:3px solid var(--pink); padding-left:0.75rem; margin-bottom:0.25rem;">Homepage</li>
+          <li style="padding:0.4rem 0.75rem; font-size:13px; color:var(--text-secondary);">E-commerce</li>
+          <li style="padding:0.4rem 0.75rem; font-size:13px; color:var(--text-secondary);">Marketing</li>
+          <li style="padding:0.4rem 0.75rem; font-size:13px; color:var(--text-secondary);">Email / CRM</li>
+          <li style="padding:0.4rem 0.75rem; font-size:13px; color:var(--text-secondary);">Competitors</li>
+          <li style="padding:0.4rem 0.75rem; font-size:13px; color:var(--text-secondary);">GTM Strategy</li>
+          <li style="padding:0.4rem 0.75rem; font-size:13px; color:var(--text-secondary); opacity:0.5;">Google Ads ↑ P2</li>
+          <li style="padding:0.4rem 0.75rem; font-size:13px; color:var(--text-secondary); opacity:0.5;">Influencers ↑ P2</li>
+          <li style="padding:0.4rem 0.75rem; font-size:13px; color:var(--text-secondary); opacity:0.5;">SEO / LLM ↑ P2</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:1rem;">KPI Card Structure — Standard</h3>
+      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+        <div class="card-sm" style="background:var(--green); border-color:var(--green);">
+          <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.35rem; font-family:'DM Mono',monospace;">Total Revenue</div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:2.2rem; font-weight:500; color:#fff; line-height:1; margin-bottom:0.35rem;">$247,890</div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="background:var(--pink); color:var(--green); font-size:11px; font-weight:700; padding:2px 8px; border-radius:100px;">+20%</span>
+            <span style="font-size:12px; color:rgba(255,255,255,0.5);">vs. $20,452 prior period</span>
+          </div>
+          <div style="margin-top:0.6rem; height:32px; background:rgba(255,255,255,0.08); border-radius:4px;"></div>
+        </div>
+        <div class="card-sm">
+          <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:0.35rem; font-family:'DM Mono',monospace;">Conversion Rate</div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:2.2rem; font-weight:500; color:var(--text-primary); line-height:1; margin-bottom:0.35rem;">3.42%</div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="background:var(--terra-light); color:#8a3a22; font-size:11px; font-weight:700; padding:2px 8px; border-radius:100px;">-0.8%</span>
+            <span style="font-size:12px; color:var(--text-tertiary);">vs. 3.50% prior period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:1rem;">Recommended Chart Types by Dashboard</h3>
+  <div class="chart-guide">
+    <div class="chart-item"><div class="chart-icon">📈</div><div class="chart-info"><h5>Area / Line Chart</h5><p>Revenue trend, email revenue, list growth, ROAS over time</p></div></div>
+    <div class="chart-item"><div class="chart-icon">📊</div><div class="chart-info"><h5>Grouped Bar Chart</h5><p>Channel comparison, campaign performance, cohort revenue</p></div></div>
+    <div class="chart-item"><div class="chart-icon">🍩</div><div class="chart-info"><h5>Donut Chart</h5><p>Channel mix, audience age split, device split, revenue contribution</p></div></div>
+    <div class="chart-item"><div class="chart-icon">🔥</div><div class="chart-info"><h5>Heatmap</h5><p>Best sending day/time, product demand by day, audience activity</p></div></div>
+    <div class="chart-item"><div class="chart-icon">▶</div><div class="chart-info"><h5>Horizontal Funnel</h5><p>Checkout funnel, lifecycle stage, campaign pipeline</p></div></div>
+    <div class="chart-item"><div class="chart-icon">🕸</div><div class="chart-info"><h5>Radar / Spider Chart</h5><p>Competitor category focus, brand positioning comparison</p></div></div>
+    <div class="chart-item"><div class="chart-icon">✦</div><div class="chart-info"><h5>Scatter / Bubble</h5><p>Effort vs. impact matrix, CAC vs. LTV segment plot</p></div></div>
+    <div class="chart-item"><div class="chart-icon">≡</div><div class="chart-info"><h5>Data Table</h5><p>Product leaderboard, flow performance, campaign log, segment health</p></div></div>
+    <div class="chart-item"><div class="chart-icon">⚡</div><div class="chart-info"><h5>Sparkline</h5><p>Inline trend in KPI cards, competitor movement, stock signal</p></div></div>
+    <div class="chart-item"><div class="chart-icon">▬</div><div class="chart-info"><h5>Progress / Gauge</h5><p>Revenue vs. plan, promo intensity, LTV vs. target</p></div></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 05 — FIGMA MAKE PROMPT
+     ============================================================ -->
+<section class="section" id="figma-prompt">
+  <div class="section-label">Section 05</div>
+  <h2 class="section-title">Figma Make Generation Prompt</h2>
+  <p class="section-desc">The following prompts are structured for direct use in Figma Make. Use the master prompt to establish the design system and navigation, then use each dashboard-specific prompt to generate individual screens. All screens target 1680 × 1050px.</p>
+  <div class="divider"></div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Master System Prompt — Paste first into Figma Make</div>
+    <div class="prompt-text"><span class="comment">// ═══════════════════════════════════════════════════════════
+// FEMME CONNECTION — DATA INTELLIGENCE HUB
+// Prepared by Antimony Studio · Desktop-first · 1680 × 1050px
+// ═══════════════════════════════════════════════════════════</span>
+
+<span class="highlight">PRODUCT:</span> <span class="value">Femme Connection Data Intelligence Hub</span> — a premium centralized analytics and growth operating system for an Australian women's fashion retail brand. This is not a generic SaaS dashboard. It is a strategic intelligence platform that combines fashion editorial restraint with dense, functional data visualization.
+
+<span class="highlight">CANVAS SIZE:</span> <span class="value">1680 × 1050px</span> desktop. All screens at this exact size.
+
+<span class="highlight">DESIGN LANGUAGE:</span>
+- Premium, elegant, modern, fashion-forward — not generic analytics SaaS
+- Editorial restraint: generous whitespace, strong hierarchy, refined typography
+- Modular card system with clean borders and structured grid
+- Dark base with pink + green accent system (see palette)
+- Two modes: dark strategic (command center) + light operational (channel dashboards)
+
+<span class="highlight">COLOUR PALETTE:</span>
+- Dark base: <span class="value">#0f1a17</span> (deep forest green-black) — used for nav + dark-mode cards
+- Brand green: <span class="value">#1b443a</span> — primary brand color, headers, CTAs
+- Brand pink: <span class="value">#ff99b9</span> — primary accent, active states, highlights
+- Terracotta: <span class="value">#e2745d</span> — warnings, alerts, secondary accent
+- Buff: <span class="value">#e6d1c4</span> — warm neutral, secondary backgrounds
+- Surface: <span class="value">#f3efe9</span> — light card backgrounds
+- White: <span class="value">#ffffff</span> — card backgrounds in light mode
+- Text primary: <span class="value">#141414</span> — headings and key values
+- Text secondary: <span class="value">#5a5047</span> — supporting text
+
+<span class="highlight">TYPOGRAPHY:</span>
+- Display / headings: <span class="value">Cormorant Garamond</span> (or Silver South Serif) — elegant serif for dashboard titles, KPI values, section headers
+- UI / body: <span class="value">Brandon Grotesque</span> (or DM Sans / Average Sans) — clean sans-serif for labels, tables, body text, nav items
+- Mono: <span class="value">DM Mono</span> — for data labels, tags, codes, percentages
+- Heading sizes: 32px / 24px / 18px / 14px
+- Body: 14px / 13px / 12px
+- Weight: 400 regular, 500 medium, 600 semibold only
+
+<span class="highlight">NAVIGATION:</span>
+Left sidebar: 80px collapsed width. Dark green (#1b443a) background. Logo at top. Icon-only nav with text on hover. Navigation items: Homepage · E-commerce · Marketing · Email/CRM · Competitors · GTM Strategy · [Phase 2: Google Ads · Influencers · SEO/LLM]. Active state: pink (#ff99b9) left border + icon fill. Bottom: user avatar + settings icon.
+
+<span class="highlight">GLOBAL HEADER PATTERN (all screens):</span>
+Full-width header row at top of content area. Includes: dashboard title (Cormorant Garamond 28px), breadcrumb navigation, date range picker (pill button, date range), compare toggle, export button. Right-aligned: search icon, notifications bell, dark/light mode toggle, user avatar.
+
+<span class="highlight">KPI CARD SYSTEM:</span>
+Row of 5–6 equal-width KPI cards below header. Each card: label (DM Mono 11px uppercase), primary value (Cormorant Garamond 32px), delta badge (pill with % change, green for positive / terracotta for negative), sparkline trend (bottom of card). Dark variant: forest green card with pink accent. Light variant: white card with green border-left.
+
+<span class="highlight">CARD SYSTEM:</span>
+All cards: 12px border-radius, 1px border, 24px internal padding. Card variants: (1) White + thin border — standard, (2) Forest green + pink accent text — featured/primary, (3) Buff (#e6d1c4) — secondary/supporting, (4) Dark (#0f1a17) — AI insight / dark theme panels.
+
+<span class="highlight">CHART STYLING:</span>
+- Line/area charts: smooth curves, single or dual lines, filled area at 15% opacity
+- Bar charts: 6px border-radius on top corners, 80% bar width, generous gap
+- Donut charts: 6px stroke width, label in center (value + descriptor)
+- All charts: no grid lines by default (optional dotted at 20% opacity), axis labels in DM Mono 11px
+- Chart colors use brand palette: pink primary, green secondary, terracotta tertiary, buff quaternary
+
+<span class="highlight">AI INSIGHT PANEL COMPONENT:</span>
+Dark card (#0f1a17 background). Top: small "AI Insight" label in pink mono. Content: italic narrative text in 14px. Input field at bottom for user queries. Audio waveform visual (decorative, as seen in design references). Positioned as floating panel or embedded right column.
+
+<span class="highlight">LAYOUT GRID:</span>
+Content area (right of nav): 1600px wide, 32px horizontal padding. KPI row: 6-column equal grid. Main content: 60/40 or 65/35 split. Bottom zone: 3-column grid. Row gap: 20px. Card gap: 20px.
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Screen 1 — Strategy Dashboard (Command Center)</div>
+    <div class="prompt-text"><span class="highlight">SCREEN:</span> Strategy Dashboard — Femme Connection Homepage
+<span class="highlight">SIZE:</span> 1680 × 1050px (scrollable, full height ~2400px)
+<span class="highlight">MOOD:</span> Dark-first command center. The most prestigious screen. Confident, intelligent, fashion-forward.
+
+<span class="highlight">LAYOUT TOP TO BOTTOM:</span>
+
+<span class="value">1. Header Row:</span>
+"Femme Connection Homepage" in Cormorant Garamond 28px. Date picker: "Nov 1'24 – Dec 1'24". Period toggle: "Last Year". Export button (outlined, pill shape).
+
+<span class="value">2. Top Split (50/50):</span>
+LEFT — AI Assistant card: Dark green (#1b443a) background. "AI Assistant" header. Animated/static audio waveform visualization in pink. Query input field: "Analyse the products sold for 4 last months..." with search icon. Below: Sales Summary card (dark, nested): "+247% last 4 months growth & sale". 4 bar chart columns in dark with pink highlights. Month labels: Aug, Sept, Oct, Nov. % labels above each bar.
+RIGHT — "Future Graph Analysis" dark card with pink bar chart (12 months). Below split into two: Market Revenue line chart (pink/terracotta dual line) + Age Range donut chart (50% / 30% / 20% segments with legend).
+
+<span class="value">3. KPI Row (2 large cards):</span>
+LEFT — "Average Revenue" dark card: "$25,565" in Cormorant Garamond 36px. Green badge "+20%". "$20,452" previous. Sparkline area chart (M W T F S).
+RIGHT — "Return Customer Rate" dark card: "7956" large value. Red/terracotta badge "-15%". "6759" previous. Sparkline area chart.
+
+<span class="value">4. Chart Row (2/3 + 1/3):</span>
+LEFT — "Revenue vs Order" dual-line chart on dark pink (#ff99b9 background). Revenue line + Order line. Tooltip showing "$4,337 · $25,565 · 469". X-axis: Jan through Dec.
+RIGHT — "Total Revenue" grouped bar chart on pink background. Dark bars alternating with light. Small legend top right.
+
+<span class="value">5. Qualitative Insights Row (3 panels):</span>
+PANEL 1 — Dark card. Platform comparison table (tabs: All Sources / AI Assistance). Revenue breakdown: $29.9k / $367k / $428k / Balance. Horizontal progress bars by category (Beauty, Style, etc.) in orange/terracotta. Mini line chart at bottom.
+PANEL 2 — White card. Performance comparison table (tabs: All Brands / All Segment). Sessions: 13%. Clustered bar chart in pink shades. Mini trend chart.
+PANEL 3 — Narrow dark card. "Sales by Category" donut chart. "Top Products" ranked list with product thumbnails and green/red badges.
+
+<span class="value">6. Metrics + Campaign Row (3 panels):</span>
+LEFT — Dark green panel. 4 metric tiles in 2×2 grid: "12 Brands", "04 Items", "12 Sales", "12 Campaigns". Each small dark tile with icon.
+CENTER — "Earnings breakdown" card. "$25,565 Average Revenue" with sparkline. Earnings breakdown list: Instagram 48% / YouTube 48% / TikTok 48% / Twitter 48% with colored dots and bars.
+RIGHT — "Campaign Performance" dark pink card. "70.8%" large metric. 3-column grouped bar chart in dark on pink background. Expand icon top right.
+
+<span class="value">7. Bottom Insight Row (3 equal panels):</span>
+LEFT — "Best Sold Items" horizontal bar chart on pink. Category labels with terracotta/orange bars. Percentage values right-aligned.
+CENTER — "Most Returned Items" white card. Ranked list: Jeans 70% / 5 Pcs 44% / Jeans 46% / Cups 7% / Other 38%. Right-aligned percentage bars in terracotta.
+RIGHT — "Most Searched Items" dark card. Search terms ranked with green progress bars: Dress 35% / Style 16% / Dunk 60% / Cups 39% / Others 30%.
+</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Screen 2 — E-commerce Dashboard</div>
+    <div class="prompt-text"><span class="highlight">SCREEN:</span> E-commerce Dashboard
+<span class="highlight">MODE:</span> Light primary (operational). Dark accents for featured KPIs.
+<span class="highlight">DATA SOURCES SHOWN:</span> Shopify · GA4
+
+<span class="value">LAYOUT:</span>
+Header: "E-commerce Dashboard" · Sub-tabs: Overview / Products / Funnel / Merchandising / Diagnostics
+
+KPI ROW (6 cards, equal width):
+Revenue $247,890 (+20%) · AOV $118.40 (+8%) · CVR 3.42% (-0.8%) · Sessions 72,450 (+12%) · Orders 2,478 (+11%) · Gross Margin 61.2% (-1.4%)
+
+MAIN ROW (65/35):
+LEFT — Revenue Trend: smooth area line chart, last 90 days, vs. prior period overlay in dashed line. X-axis: dates. Pink primary line, buff secondary. Toggle: Revenue / Orders / Sessions / AOV.
+RIGHT — Checkout Funnel: horizontal funnel visualization. Stages: Sessions (100%) → PDP View (68%) → Add to Cart (31%) → Checkout Start (18%) → Purchase (3.42%). Drop-off % between each stage. Terracotta for drop-offs.
+
+SECOND ROW (40/60):
+LEFT — New vs. Returning: stacked area chart. New = pink, Returning = green. Dual metric cards above: "New Customers 1,847" and "Returning 631".
+RIGHT — Product Performance: compact data table. Columns: Product Name · Category · Revenue · Units · CVR · Return Rate · Trend. Top 10 rows. Sortable headers. Green/terracotta trend arrows. Thumbnail image in first column.
+
+THIRD ROW (33/33/33):
+LEFT — Device Split: donut chart. Mobile 67% / Desktop 28% / Tablet 5%. Below: CVR comparison bars by device.
+CENTER — Category Mix: stacked horizontal bar by product category. Month-over-month.
+RIGHT — Discount Impact: gauge showing 23% of revenue at discounted price. Below: margin erosion calculation card.
+
+AI PANEL (right fixed column, 280px):
+Dark green panel. "AI Insight" label pink. "Conversion rate is -0.8% vs prior period. Mobile checkout has 42% drop-off at payment step — likely UX friction or load speed issue on Safari. Recommend: audit mobile checkout form, test 1-step checkout." Action buttons: "View Funnel Diagnostics" · "Flag for Dev Team"</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Screen 3 — Marketing Dashboard</div>
+    <div class="prompt-text"><span class="highlight">SCREEN:</span> Marketing Dashboard
+<span class="highlight">MODE:</span> Mixed. Light base, dark-accented channel cards.
+<span class="highlight">DATA SOURCES SHOWN:</span> Meta Ads · TikTok Ads · Sprout Social · Yotpo
+
+<span class="value">LAYOUT:</span>
+Header: "Marketing Dashboard" · Sub-tabs: Overview / Paid / Organic / Creative / Audience
+
+KPI ROW (6 cards):
+Blended ROAS 3.8× (+0.4) · Ad Spend $32,450 · Attributed Revenue $123,310 · CAC $17.60 (-$2.10) · CTR 2.84% · Reach 1.2M (+34%)
+
+CHANNEL COMPARISON STRIP (full width, 3 panels):
+Meta Ads card (dark green): Spend $22k · ROAS 4.1× · CTR 3.2% · Status: ACTIVE green badge
+TikTok Ads card (dark): Spend $10k · ROAS 3.1× · CTR 2.1% · Status: SCALING amber badge
+Organic card (buff): ER 4.8% · Reach 480k · Posts 24 · Top Platform: Instagram
+
+MAIN ROW (60/40):
+LEFT — Spend vs. Revenue: dual-axis chart. Bars = weekly spend (pink). Line = revenue (green). Last 12 weeks. Tooltip on hover.
+RIGHT — Creative Leaderboard: ranked list of top 5 ads. Each row: creative thumbnail (placeholder square), ad name, ROAS, CTR, spend, status badge (Winning / Fatiguing / Scaling). Sort by ROAS default.
+
+SECOND ROW (50/50):
+LEFT — Campaign Table: all active campaigns. Columns: Campaign · Platform · Spend · ROAS · CVR · CPA · Status. Color-coded status pills.
+RIGHT — Audience Efficiency: scatter plot. X-axis: CAC. Y-axis: ROAS. Bubbles sized by spend. Label each bubble by segment name.
+
+THIRD ROW (33/33/33):
+LEFT — Organic Top Posts: Instagram + TikTok top 3 posts. Each: platform icon, ER, reach, engagement count, thumbnail.
+CENTER — Sentiment / Reviews (Yotpo): star rating trend line. Average: 4.6★. Top review themes as tag cloud in pink tones.
+RIGHT — nROAS Panel: "New Customer ROAS" vs "Blended ROAS". Two stacked bars. Annotation explaining the difference.
+
+AI PANEL: "Meta creative set FC-09 has frequency 4.2 — above optimal threshold of 3.5. Engagement rate has dropped 18% in the last 7 days. Recommend refreshing with new UGC creative before weekend spend increase."</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Screen 4 — Email / CRM Dashboard</div>
+    <div class="prompt-text"><span class="highlight">SCREEN:</span> Email / CRM Dashboard
+<span class="highlight">MODE:</span> Light operational. Segment lifecycle view.
+<span class="highlight">DATA SOURCES SHOWN:</span> Klaviyo · Shopify
+
+<span class="value">LAYOUT:</span>
+Header: "Email / CRM Dashboard" · Sub-tabs: Overview / Flows / Campaigns / Segments / Retention
+
+KPI ROW (6 cards):
+Email Revenue $47,230 (+32%) · RPR $0.82 · Open Rate 38.4% (+2.1%) · Click Rate 6.2% · Placed Order Rate 1.8% · List Growth +1,247 this month
+
+MAIN ROW (60/40):
+LEFT — Email Revenue Timeline: area chart showing email revenue contribution over 90 days. Pink fill. Benchmark line at average. Annotations for key campaign sends.
+RIGHT — Flow Performance Table: all active Klaviyo flows. Columns: Flow Name · Recipients · Open Rate · Click Rate · Revenue · CVR. Top flows: Welcome Series / Abandoned Cart / Post-Purchase / Win-back / Browse Abandon.
+
+SECOND ROW (full width):
+Segment Health Matrix: 5 columns representing RFM segments. Each column has: Segment Name (Champions / Loyal / At-Risk / Lost / New), customer count badge, revenue contribution bar, recommended action chip. Background: light segment cards color-coded. Champions = green, Loyal = buff, At-Risk = terracotta, Lost = muted, New = pink.
+
+THIRD ROW (33/33/33):
+LEFT — Repeat Purchase Rate: cohort bars. 30-day / 60-day / 90-day repurchase rates. vs. prior cohort overlay.
+CENTER — List Growth: net line chart (subscribers added minus unsubscribes). Monthly bars.
+RIGHT — Best Sending Time: heatmap grid. Days of week (rows) × hours (columns). Color intensity = open rate. Darkest cell = optimal send time.
+
+FOURTH ROW (50/50):
+LEFT — Campaign Performance: recent email campaigns. Each row: campaign name, subject line preview, send date, OR, CR, revenue, badge (Winner / Average / Below avg).
+RIGHT — Win-back Opportunity: large number "2,847 lapsed customers". Revenue potential: "$84,210 if 20% reactivated". CTA button: "Build Win-back Segment". Days since last purchase distribution chart.
+
+AI PANEL: "Win-back segment has grown 340 customers this month. Your welcome flow is converting at 2.1% — industry benchmark is 3.4%. Recommend: A/B test subject line with customer name + offer. Best send time for your list: Tuesday 10am AEST."</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Screen 5 — Competitor Intelligence Dashboard</div>
+    <div class="prompt-text"><span class="highlight">SCREEN:</span> Competitor Intelligence Dashboard
+<span class="highlight">MODE:</span> Dark-primary strategic. Premium intelligence feel.
+<span class="highlight">DATA SOURCES:</span> Particle integration slot · Manual intelligence · Social signals
+
+<span class="value">LAYOUT:</span>
+Header: "Competitor Intelligence" · Sub-tabs: Overview / Pricing / Social / Sentiment / Trends
+Top-right: "Powered by Particle" badge (integration slot) with connect/update button.
+
+COMPETITOR STRIP (full-width, horizontal scrollable):
+5 competitor cards. Each card (dark green): Brand name + logo placeholder. Key metrics: Avg. price · Social ER · Promo intensity (bar) · Sentiment score (star). Status badge: Growing / Stable / Declining.
+Femme Connection card highlighted with pink border — our position clearly marked.
+
+MAIN ROW (50/50):
+LEFT — Pricing Benchmark: horizontal bar chart. All competitors on Y-axis. X-axis: average price point. Femme Connection highlighted in pink. Price band range shown as extended bar.
+RIGHT — Promo Intensity Timeline: stacked area or event timeline. Each row = 1 competitor. Promo events marked as colored segments over last 6 months. Femme = bottom row in pink.
+
+SECOND ROW (33/33/33):
+LEFT — Social Performance: grouped bar chart. Metric: Engagement Rate. All brands side by side per platform (Instagram / TikTok). Femme bar in pink, competitors in muted tones.
+CENTER — Share of Voice: donut or treemap. Estimated SOV by brand from search + social signals. Our slice highlighted.
+RIGHT — Sentiment Score: horizontal bar with NLP sentiment scoring. Positive / Neutral / Negative breakdown per brand. Brands listed vertically.
+
+THIRD ROW (full width):
+Competitor Category Focus: radar chart per competitor. Overlay multiple brands. Axes: Dresses / Tops / Bottoms / Accessories / Occasion wear / Basics. Femme in pink, competitors in distinct muted lines.
+
+FOURTH ROW (50/50):
+LEFT — Trend Themes: content trend cards. Top emerging themes from competitors (AI-identified): "Quiet luxury", "Y2K revival", "Resort wear push". Each theme: brand adoption list, trend velocity badge.
+RIGHT — Opportunity Matrix: scatter/bubble chart. X: competitor strength. Y: Femme weakness. Quadrant labels. Bubbles = opportunity areas. Largest bubbles = highest priority gaps.
+
+AI PANEL: "Three competitors ran end-of-season sales in the last 10 days at 30-40% off — average promo intensity is up 2.1 points this month. Femme Connection's pricing remains 8% above market average in midi dresses. Recommend: hold price position and lead with quality messaging to differentiate from promotion-led competitors."</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-block-label">Screen 6 — GTM &amp; Campaign Strategy Dashboard</div>
+    <div class="prompt-text"><span class="highlight">SCREEN:</span> GTM &amp; Campaign Strategy Dashboard
+<span class="highlight">MODE:</span> Light editorial. Strategic planning workspace feel.
+
+<span class="value">LAYOUT:</span>
+Header: "GTM &amp; Campaign Strategy" · Sub-tabs: AI Strategy / 90-Day Plans / Campaign Briefs / Offer Matrix
+
+TOP SECTION — AI Strategy Engine (full width, dark green panel):
+Left column: "Low Hanging Fruit" — 3 opportunity cards. Each card: opportunity title, channel, estimated revenue impact, effort level (Easy/Medium), action button.
+Center column: "Silver Bullet" — single featured card. Large. The #1 strategic lever. Rationale text. Impact estimate. Activation steps numbered 1-3.
+Right column: "AI Insights Summary" — 4 insight chips. Each: icon, one-line insight, channel tag.
+
+MIDDLE SECTION — 90-Day Channel Plans (tab per channel):
+Tab row: Email · Meta · TikTok · Google Ads · Organic.
+Selected tab (Email) shows:
+- Month 1 / Month 2 / Month 3 columns
+- Each month: 3–4 initiative cards with week markers
+- KPI targets per month
+- Status badges: Planned / In Progress / Complete
+
+BOTTOM SECTION — Campaign Brief Builder (3-column):
+LEFT — Brief Overview card: Campaign name input · Objective selector · Audience selector · Offer type · Date range. "Generate Brief" button in green.
+CENTER — Generated Brief display: Structured card with Art Direction notes (typography direction, imagery tone, color palette swatches), Campaign taglines (3 options), Header options.
+RIGHT — Copy Brief card: Tone descriptors (checkboxes), CTA options, Offer language, Channel-specific messaging notes. Offer Matrix: 3×4 grid (Offer type × Channel).
+
+AI PANEL: "Based on your current data: the highest-impact opportunity is reactivating 2,847 lapsed customers with a targeted win-back campaign. Estimated recovery revenue: $84k. Silver Bullet for next 90 days: launch a referral program to convert your 4.6★ Yotpo advocates — you have untapped word-of-mouth equity."</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 06 — DESIGN SYSTEM
+     ============================================================ -->
+<section class="section" id="design-system">
+  <div class="section-label">Section 06</div>
+  <h2 class="section-title">Design System Translation</h2>
+  <p class="section-desc">Brand into dashboard rules. Every color, typographic decision, spacing unit, and interaction state is defined here to ensure consistent, premium output across all screens and components.</p>
+  <div class="divider"></div>
+
+  <h3 style="margin-bottom:1rem;">Color Palette — Dashboard Usage Rules</h3>
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div class="token-row">
+      <div class="token-swatch"><div class="swatch" style="background:#1b443a;"></div><div><div class="token-name">Brand Green</div><div class="token-hex">#1b443a — Navigation, primary CTA, featured card background, section headers</div></div></div>
+      <div class="token-swatch"><div class="swatch" style="background:#ff99b9;"></div><div><div class="token-name">Brand Pink</div><div class="token-hex">#ff99b9 — Primary accent, active nav, positive delta, AI labels, highlights</div></div></div>
+      <div class="token-swatch"><div class="swatch" style="background:#e2745d;"></div><div><div class="token-name">Terracotta</div><div class="token-hex">#e2745d — Negative delta, alerts, warnings, declining metrics</div></div></div>
+      <div class="token-swatch"><div class="swatch" style="background:#e6d1c4;"></div><div><div class="token-name">Buff</div><div class="token-hex">#e6d1c4 — Secondary backgrounds, card surfaces, neutral zones</div></div></div>
+      <div class="token-swatch"><div class="swatch" style="background:#0f1a17;"></div><div><div class="token-name">Deep Forest</div><div class="token-hex">#0f1a17 — Dark cards, AI panels, command center mode, featured metrics</div></div></div>
+      <div class="token-swatch"><div class="swatch" style="background:#f3efe9; border:1px solid #ddd5cc;"></div><div><div class="token-name">Warm Surface</div><div class="token-hex">#f3efe9 — Page background, card backgrounds in light mode</div></div></div>
+    </div>
+    <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
+      <p style="font-size:13px; margin:0;"><strong>Color as signal:</strong> Pink = positive, growth, active. Terracotta = negative, declining, alert. Green = brand, neutral-positive. Buff = supporting, secondary. Dark/forest = strategic, AI, command. White = operational, clean data.</p>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:2rem;">
+    <div>
+      <h3 style="margin-bottom:1rem;">Typography Hierarchy</h3>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:2rem; font-weight:500; color:var(--green); margin-bottom:0.5rem;">Dashboard Title — 28–32px Cormorant</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:1.4rem; font-weight:500; color:var(--text-primary); margin-bottom:0.5rem;">Card Title — 18–20px Cormorant</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:2.4rem; font-weight:500; color:var(--text-primary); line-height:1; margin-bottom:0.5rem;">$247,890</div>
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.15em; color:var(--text-tertiary); font-family:'DM Mono',monospace; margin-bottom:0.5rem;">METRIC LABEL — DM MONO 11PX</div>
+        <div style="font-size:14px; color:var(--text-secondary); margin-bottom:0.5rem;">Body text and supporting copy — DM Sans 14px regular, 1.6 line height.</div>
+        <div style="font-size:12px; color:var(--text-tertiary);">Small supporting text — 12px, secondary color</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:1rem;">Spacing &amp; Radius System</h3>
+      <div class="card">
+        <div class="info-row"><div class="info-label">Border Radius</div><div class="info-value"><code>6px</code> chips/tags · <code>10px</code> inputs · <code>16px</code> cards · <code>24px</code> feature cards · <code>100px</code> pills</div></div>
+        <div class="info-row"><div class="info-label">Card Padding</div><div class="info-value"><code>24px</code> standard cards · <code>16px</code> compact cards · <code>32px</code> feature / hero cards</div></div>
+        <div class="info-row"><div class="info-label">Grid Gap</div><div class="info-value"><code>20px</code> card gap · <code>32px</code> section gap · <code>12px</code> internal element gap</div></div>
+        <div class="info-row"><div class="info-label">Nav Width</div><div class="info-value"><code>80px</code> collapsed · <code>240px</code> expanded (hover or pin)</div></div>
+        <div class="info-row"><div class="info-label">Header Height</div><div class="info-value"><code>64px</code> global page header row · <code>48px</code> sub-tab row</div></div>
+        <div class="info-row"><div class="info-label">KPI Row Height</div><div class="info-value"><code>120px</code> standard KPI cards (6-column)</div></div>
+        <div class="info-row" style="border:none;"><div class="info-label">Border Width</div><div class="info-value"><code>1px</code> standard · <code>2px</code> active/featured border accent</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:2rem;">
+    <div>
+      <h3 style="margin-bottom:1rem;">Chart Styling Rules</h3>
+      <ul>
+        <li>Line and area charts: smooth bezier curves, 2px stroke, 12% fill opacity for area</li>
+        <li>Bar charts: 6px top border-radius, 80% column width, 8px column gap</li>
+        <li>Donut charts: 60px hole size, value + label centered, 3px segment gap</li>
+        <li>Axis labels: DM Mono 11px, secondary text color, no bold</li>
+        <li>Grid lines: off by default; optional horizontal only at 15% opacity</li>
+        <li>Tooltips: dark (#0f1a17) background, white text, 8px radius, 12px padding</li>
+        <li>Sparklines in KPI cards: 32px height, no axes, no tooltips, thin 1.5px line</li>
+        <li>Heatmap: use buff → terracotta → green color ramp (low to high)</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:1rem;">Interaction &amp; State Rules</h3>
+      <ul>
+        <li><strong>Hover:</strong> card border shifts from 1px neutral to 1.5px green. Background lightens +5%</li>
+        <li><strong>Active nav item:</strong> pink (#ff99b9) left border 3px + icon fill switches to pink</li>
+        <li><strong>Active tab:</strong> bottom border 2px pink, text weight shifts to 600</li>
+        <li><strong>Delta badge — positive:</strong> pink fill, green text, up arrow</li>
+        <li><strong>Delta badge — negative:</strong> terracotta-light fill, terracotta text, down arrow</li>
+        <li><strong>Alert/anomaly flag:</strong> terracotta left border 3px on affected card</li>
+        <li><strong>AI card:</strong> subtle pulse animation on waveform (loop, 3s)</li>
+        <li><strong>Loading state:</strong> buff skeleton shimmer — no spinners</li>
+        <li><strong>Empty state:</strong> soft illustration + "No data for this period" in secondary text</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-green" style="margin-bottom:0;">
+    <div class="card-title">Fashion-First Luxury Cues — Distinguish from Generic SaaS</div>
+    <div class="grid-3" style="margin-top:1rem; gap:1rem;">
+      <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:1rem;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:var(--pink); margin-bottom:0.5rem; font-family:'DM Mono',monospace;">Typography</div>
+        <p style="color:rgba(255,255,255,0.75); font-size:13px; margin:0;">Serif headings (Cormorant) signal editorial intelligence — not a spreadsheet. KPI values in large serif feel like a fashion masthead, not a data grid.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:1rem;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:var(--pink); margin-bottom:0.5rem; font-family:'DM Mono',monospace;">Palette</div>
+        <p style="color:rgba(255,255,255,0.75); font-size:13px; margin:0;">Pink and forest green together read as premium womenswear — not fintech blue or SaaS purple. Buff and terracotta add warmth. Avoid cool grays.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:1rem;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:var(--pink); margin-bottom:0.5rem; font-family:'DM Mono',monospace;">Restraint</div>
+        <p style="color:rgba(255,255,255,0.75); font-size:13px; margin:0;">Generous whitespace, minimal borders, no drop-shadows, clean chart lines. Let data breathe — like an editorial spread, not a data wall.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 07 — COMPONENT LIBRARY
+     ============================================================ -->
+<section class="section" id="components">
+  <div class="section-label">Section 07</div>
+  <h2 class="section-title">Reusable Component System</h2>
+  <p class="section-desc">A modular, composable component library — all components are built once and reused across all dashboards. Each component has defined variants, token usage, and content structure.</p>
+  <div class="divider"></div>
+
+  <div class="card" style="margin-bottom:1.5rem;">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Variants</th>
+          <th>Key Props</th>
+          <th>Used In</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>KPI Card</td><td>Dark / Light / Featured</td><td>label, value, delta %, sparkline, trend arrow, period label</td><td>All dashboards — row of 5–6</td></tr>
+        <tr><td>AI Insight Panel</td><td>Embedded / Floating / Full-width</td><td>insight text, confidence level, action buttons, query input, waveform</td><td>All dashboards — right column or bottom</td></tr>
+        <tr><td>Channel Summary Card</td><td>Compact / Expanded</td><td>platform logo, key metric (ROAS/revenue/ER), spend, status badge, sparkline</td><td>Strategy, Marketing, GTM</td></tr>
+        <tr><td>Trend Chart Container</td><td>Line / Area / Dual-axis</td><td>data series (1–3), period toggle, compare overlay, axis labels, tooltip</td><td>All dashboards — primary zone</td></tr>
+        <tr><td>Bar Chart Container</td><td>Vertical / Horizontal / Grouped / Stacked</td><td>data series, labels, value labels, legend, color map</td><td>All dashboards — secondary zone</td></tr>
+        <tr><td>Donut Chart</td><td>Standard / Mini (in-card)</td><td>segments (max 5), center label, legend row, % labels</td><td>Strategy, Marketing, E-commerce</td></tr>
+        <tr><td>Data Table</td><td>Compact / Standard / Expanded</td><td>columns config, sort state, pagination, row highlight, status badges, thumbnails</td><td>E-commerce, CRM, Marketing, Competitors</td></tr>
+        <tr><td>Checkout Funnel</td><td>Horizontal / Vertical</td><td>stages array, counts, drop-off %, stage colors</td><td>E-commerce dashboard</td></tr>
+        <tr><td>Segment Health Matrix</td><td>Card grid / Table row</td><td>segment name, size, revenue share, recommended action, color tier</td><td>Email / CRM dashboard</td></tr>
+        <tr><td>Creative Card</td><td>Leaderboard row / Grid tile</td><td>thumbnail, ad name, ROAS, CTR, spend, status badge, platform icon</td><td>Marketing dashboard</td></tr>
+        <tr><td>Competitor Card</td><td>Horizontal strip card</td><td>brand name, logo, price index, ER, promo intensity, sentiment, status</td><td>Competitor Intelligence</td></tr>
+        <tr><td>Opportunity Card</td><td>Low Hanging Fruit / Silver Bullet</td><td>title, channel tag, estimated impact, effort level, action CTA</td><td>GTM Strategy dashboard</td></tr>
+        <tr><td>Campaign Brief Card</td><td>Draft / Generated</td><td>objective, audience, offer, taglines, art direction notes, copy brief</td><td>GTM Strategy dashboard</td></tr>
+        <tr><td>Flow Performance Row</td><td>Table row with mini metrics</td><td>flow name, recipients, OR, CR, revenue, status</td><td>Email / CRM dashboard</td></tr>
+        <tr><td>Alert Banner</td><td>Warning / Insight / Opportunity / Critical</td><td>type, message, channel, recommended action, dismiss</td><td>All dashboards — top of screen or in AI panel</td></tr>
+        <tr><td>Status Badge / Pill</td><td>Positive / Negative / Neutral / Active / Scaled / Paused</td><td>label, color variant</td><td>All dashboards — tables, cards</td></tr>
+        <tr><td>Heatmap</td><td>Time-based / Category-based</td><td>rows, columns, value range, color ramp, axis labels</td><td>Email CRM (send time), Marketing (day performance)</td></tr>
+        <tr><td>Radar / Spider Chart</td><td>Single brand / Multi-brand overlay</td><td>axes (5–8), series, colors, labels</td><td>Competitor Intelligence</td></tr>
+        <tr><td>Progress Bar / Gauge</td><td>Horizontal / Radial / Mini inline</td><td>value, target, label, color, percentage display</td><td>Strategy, E-commerce, GTM</td></tr>
+        <tr><td>Date Range Picker</td><td>Standard / Compact</td><td>start date, end date, preset options, compare toggle</td><td>All dashboards — global header</td></tr>
+        <tr><td>Filter Row</td><td>Chip-based / Dropdown</td><td>filter types (channel, audience, device, campaign), active count, clear all</td><td>All dashboards — sticky below header</td></tr>
+        <tr><td>90-Day Plan Column</td><td>Month card</td><td>month label, initiative cards, KPI targets, milestone markers</td><td>GTM Strategy dashboard</td></tr>
+        <tr><td>Offer Matrix Grid</td><td>3×4 / 4×4</td><td>rows (offer types), columns (channels), cell value or checkmark</td><td>GTM Strategy dashboard</td></tr>
+        <tr><td>Particle Integration Slot</td><td>Connected / Disconnected</td><td>status, last updated, connect CTA, data feed indicator</td><td>Competitor Intelligence</td></tr>
+        <tr><td>Win-back Opportunity Panel</td><td>Full-width feature card</td><td>lapsed count, revenue potential, days-since histogram, CTA</td><td>Email / CRM dashboard</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-3">
+    <div class="card-pink">
+      <div class="card-title">Component Naming Convention</div>
+      <ul>
+        <li>All components: <code>FC/[Category]/[Name]</code></li>
+        <li>Example: <code>FC/KPI/Card--Dark</code></li>
+        <li>Example: <code>FC/Chart/AreaLine--Primary</code></li>
+        <li>Example: <code>FC/AI/InsightPanel--Embedded</code></li>
+        <li>Example: <code>FC/Status/Badge--Positive</code></li>
+        <li>Use Figma variants for all multi-state components</li>
+      </ul>
+    </div>
+    <div class="card-terra">
+      <div class="card-title">Component Hierarchy</div>
+      <ul>
+        <li><strong>Atoms:</strong> badge, icon, sparkline, tag, delta chip</li>
+        <li><strong>Molecules:</strong> KPI card, chart container, filter chip</li>
+        <li><strong>Organisms:</strong> KPI row, AI panel, data table, funnel</li>
+        <li><strong>Templates:</strong> dashboard layout frame with nav + header + KPI row</li>
+        <li><strong>Pages:</strong> fully assembled dashboard screens</li>
+      </ul>
+    </div>
+    <div class="card-buff">
+      <div class="card-title">Auto Layout Rules</div>
+      <ul>
+        <li>All cards: Auto Layout vertical, 16px padding, 12px gap</li>
+        <li>KPI row: Auto Layout horizontal, fill container, equal sizing</li>
+        <li>Tables: Fixed column widths, Auto Layout rows</li>
+        <li>Nav: Auto Layout vertical, fixed 80px width, stretch height</li>
+        <li>Dashboard grid: use Figma grid 12-column at 1680px</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 08 — CHECKLIST
+     ============================================================ -->
+<section class="section" id="checklist">
+  <div class="section-label">Section 08</div>
+  <h2 class="section-title">Screen-by-Screen Build Checklist</h2>
+  <p class="section-desc">Use this checklist to track design completion across all screens. MVP outputs first, Phase 2 below.</p>
+  <div class="divider"></div>
+
+  <div class="grid-2">
+    <div>
+      <h3 style="margin-bottom:1rem;">MVP Screens — Phase 1</h3>
+      <ul class="checklist">
+        <li><div class="check-box"></div>Design system setup — tokens, typography, color, spacing<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Component library — atoms + molecules built in Figma<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Navigation sidebar — collapsed + expanded states<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Global header pattern — filters + controls<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Strategy Dashboard — dark command center<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>E-commerce Dashboard — Shopify + GA4<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Marketing Dashboard — Meta + TikTok + Organic<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Email / CRM Dashboard — Klaviyo + Lifecycle<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Competitor Intelligence Dashboard — Particle slot<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>GTM &amp; Campaign Strategy Dashboard — AI briefs<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>AI Insight Panel — all embedded variants<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Mobile responsive logic documented (desktop-first)<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Figma Make prompts — all 6 MVP screens<span class="priority-tag priority-mvp">MVP</span></li>
+        <li><div class="check-box"></div>Client presentation deck prepared by Antimony<span class="priority-tag priority-mvp">MVP</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:1rem;">Phase 2 — Post MVP Confirmation</h3>
+      <ul class="checklist">
+        <li><div class="check-box"></div>Influencer &amp; Brand Ambassador Hub<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>Google Ads Dashboard — Search + Shopping + PMax<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>SEO / GEO / LLM Dashboard — organic + AI visibility<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>Drill-down sub-screens for E-commerce<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>Drill-down sub-screens for Marketing<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>Particle live data feed integration design<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>Dark mode variant — all light-mode screens<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>Onboarding / empty states<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>Settings &amp; integration management screen<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>Export / report generation flow<span class="priority-tag priority-p2">Phase 2</span></li>
+        <li><div class="check-box"></div>User permissions and multi-user access design<span class="priority-tag priority-p2">Phase 2</span></li>
+      </ul>
+
+      <div class="card-green" style="margin-top:1.5rem;">
+        <div class="card-title">Design Direction Summary</div>
+        <p style="color:rgba(255,255,255,0.75); font-size:14px;">The Femme Connection Data Intelligence Hub is a premium strategic operating system — not a generic BI dashboard. It earns its fashion-forward identity through Cormorant serif type, a deep green and warm pink palette, editorial card restraint, and AI intelligence woven throughout. Every screen supports a decision. Every data point ladders to the shared KPI tree. This is the single source of truth for how Femme Connection grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">Femme Connection × Antimony Studio</div>
+  <div>Data Intelligence Hub · Design System Brief · 2026</div>
+  <div>Desktop-first · 1680 × 1050px · Figma Make Ready</div>
+</footer>
+
+<script>
+const navLinks = document.querySelectorAll('.nav-bar a');
+const sections = document.querySelectorAll('.section');
+function updateActive() {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActive, { passive: true });
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
