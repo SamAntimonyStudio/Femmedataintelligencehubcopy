@@ -43,13 +43,23 @@ import PageHeader from "../components/PageHeader";
 import { AIWidget } from "../components/AIWidget";
 import { ActionStrip, ActionStripData } from "../components/ActionStrip";
 import { DetailedBriefModal, DetailedBriefData } from "../components/DetailedBriefModal";
-import marketingHero from "../../imports/kp525751_1_v1639125498561133729_750x750_1.jpg";
-import contentImg1 from "../../imports/kp734293_1_v1639125496755888385_750x750_1.jpg";
-import contentImg2 from "../../imports/kp525903_1_v1639125496333876102_750x750_1.jpg";
-import contentImg3 from "../../imports/kp525751_1_v1639125498561133729_750x750_1.jpg";
-import contentImg4 from "../../imports/kp734239_1_v1639125494834433804_750x750_1.jpg";
-import contentImg5 from "../../imports/kp522820_1_v1639125499266696291_750x750_1.jpg";
-import contentImg6 from "../../imports/kp510194_1_v1639125494525318380_750x750_1.jpg";
+// Image imports commented out to fix build - images not found in repository
+// import marketingHero from "../../imports/kp525751_1_v1639125498561133729_750x750_1.jpg";
+// import contentImg1 from "../../imports/kp734293_1_v1639125496755888385_750x750_1.jpg";
+// import contentImg2 from "../../imports/kp525903_1_v1639125496333876102_750x750_1.jpg";
+// import contentImg3 from "../../imports/kp525751_1_v1639125498561133729_750x750_1.jpg";
+// import contentImg4 from "../../imports/kp734239_1_v1639125494834433804_750x750_1.jpg";
+// import contentImg5 from "../../imports/kp522820_1_v1639125499266696291_750x750_1.jpg";
+// import contentImg6 from "../../imports/kp510194_1_v1639125494525318380_750x750_1.jpg";
+
+// Placeholder images
+const marketingHero = "https://via.placeholder.com/1200x400?text=Marketing+Dashboard";
+const contentImg1 = "https://via.placeholder.com/750x750?text=Content+1";
+const contentImg2 = "https://via.placeholder.com/750x750?text=Content+2";
+const contentImg3 = "https://via.placeholder.com/750x750?text=Content+3";
+const contentImg4 = "https://via.placeholder.com/750x750?text=Content+4";
+const contentImg5 = "https://via.placeholder.com/750x750?text=Content+5";
+const contentImg6 = "https://via.placeholder.com/750x750?text=Content+6";
 
 type Channel = "all" | "organic-social" | "paid-social" | "email" | "google-ads" | "direct";
 type DateRange = "7d" | "30d" | "90d";
@@ -432,25 +442,25 @@ const visualContentFeed = [
 const aiInsights = {
   marketing: {
     title: "Marketing Performance Deep Dive",
-    overview: "Your TikTok engagement rate is 2.8x higher than Instagram, but you're allocating 70% of budget to Meta. Recommendation: shift $1,200/week to TikTok creative testing. Your UGC content performs 42% better than studio content — prioritize customer testimonials.",
+    overview: "Your TikTok engagement rate is 2.8x higher than Instagram, but you're allocating 70% of budget to Meta. Recommendation: shift $1,200/week to TikTok creative testing. Your UGC conte[...]",
     details: [
       {
         finding: "TikTok Opportunity Gap",
         impact: "High - Underutilized high-performing channel",
         description: "TikTok delivers 8.4% engagement rate vs 3.2% on Instagram, yet receives only 22% of paid budget. Cost per engagement on TikTok is $0.08 vs $0.24 on Meta.",
-        recommendation: "Increase TikTok budget from $2.8K to $4.2K monthly. Focus on short-form video content featuring product styling and customer testimonials. Test native TikTok creators for authentic content.",
+        recommendation: "Increase TikTok budget from $2.8K to $4.2K monthly. Focus on short-form video content featuring product styling and customer testimonials. Test native TikTok creators for[...]",
       },
       {
         finding: "UGC Content Performance",
         impact: "Critical - Content strategy optimisation",
         description: "User-generated content drives 42% higher engagement and 3.2x more saves than professional photoshoots. Customer testimonial videos generate 2.8x more conversions.",
-        recommendation: "Launch customer content program: incentivize photo/video submissions with discount codes. Feature 3-4 customer posts weekly. Create dedicated #FemmeConnection hashtag campaign.",
+        recommendation: "Launch customer content program: incentivize photo/video submissions with discount codes. Feature 3-4 customer posts weekly. Create dedicated #FemmeConnection hashtag cam[...]",
       },
       {
         finding: "Email Marketing Excellence",
         impact: "Positive - Strong performing channel",
         description: "Email achieves 12.4x ROAS, highest of all channels. 24.6% engagement rate with segmented campaigns outperforming broadcasts by 4.1x.",
-        recommendation: "Maintain email as core channel. Expand segmentation to 8 groups. Increase send frequency for VIP segment from weekly to 3x/week with personalized product recommendations.",
+        recommendation: "Maintain email as core channel. Expand segmentation to 8 groups. Increase send frequency for VIP segment from weekly to 3x/week with personalized product recommendations.[...]",
       },
     ],
     recommendations: [
@@ -463,25 +473,25 @@ const aiInsights = {
   },
   campaigns: {
     title: "Campaign Optimisation Insights",
-    overview: "Retargeting campaigns deliver 6.8x ROAS vs 3.8x for cold traffic. Easter campaign window is April 5-12. Suggested budget: $8,400 (split 45% Meta retargeting, 35% TikTok, 20% email). Focus creative on pastel tones, spring styling, and limited-time offer messaging.",
+    overview: "Retargeting campaigns deliver 6.8x ROAS vs 3.8x for cold traffic. Easter campaign window is April 5-12. Suggested budget: $8,400 (split 45% Meta retargeting, 35% TikTok, 20% email)[...]",
     details: [
       {
         finding: "Retargeting Performance Gap",
         impact: "Critical - Budget allocation inefficiency",
         description: "Retargeting campaigns achieve 6.8x ROAS with $3,400 spend while cold acquisition at 3.8x ROAS gets $6,200 spend. Retargeting audiences are underfunded by ~45%.",
-        recommendation: "Increase retargeting budget to $6,000/month. Expand retargeting pools: website visitors (30 days), cart abandoners, product viewers. Test sequential retargeting with progressive offers.",
+        recommendation: "Increase retargeting budget to $6,000/month. Expand retargeting pools: website visitors (30 days), cart abandoners, product viewers. Test sequential retargeting with prog[...]",
       },
       {
         finding: "Seasonal Campaign Timing",
         impact: "High - Time-sensitive opportunity",
         description: "Historical data shows Easter shopping peaks April 5-12. Early campaign launches (3 weeks prior) drive 38% higher ROAS than last-minute campaigns.",
-        recommendation: "Launch Easter teaser campaign April 1-4 with early-bird discount. Main campaign April 5-12 with daily content drops. Allocate $8,400 total budget with heavy retargeting focus.",
+        recommendation: "Launch Easter teaser campaign April 1-4 with early-bird discount. Main campaign April 5-12 with daily content drops. Allocate $8,400 total budget with heavy retargeting f[...]",
       },
       {
         finding: "Creative Performance Patterns",
         impact: "Medium - Creative optimisation needed",
-        description: "Video ads outperform static images by 2.4x. Carousel ads showing outfit combinations drive 1.8x higher add-to-cart rate. Pastel color palettes generate 32% more engagement in spring months.",
-        recommendation: "Shift creative mix to 70% video, 20% carousel, 10% static. Focus Easter campaign on pastel tones, spring florals, outfit inspiration. Minimum 15 unique creatives to combat ad fatigue.",
+        description: "Video ads outperform static images by 2.4x. Carousel ads showing outfit combinations drive 1.8x higher add-to-cart rate. Pastel color palettes generate 32% more engagement i[...]",
+        recommendation: "Shift creative mix to 70% video, 20% carousel, 10% static. Focus Easter campaign on pastel tones, spring florals, outfit inspiration. Minimum 15 unique creatives to comba[...]",
       },
     ],
     recommendations: [
@@ -494,12 +504,12 @@ const aiInsights = {
   },
   social: {
     title: "Social Media Content Strategy",
-    overview: "Organic social generates 108K reach with 8.2% engagement rate, outperforming paid social's 4.8%. Content featuring customer styling receives 3.1x more engagement than brand lifestyle shots. Instagram Reels drive 4.2x more reach than feed posts.",
+    overview: "Organic social generates 108K reach with 8.2% engagement rate, outperforming paid social's 4.8%. Content featuring customer styling receives 3.1x more engagement than brand lifesty[...]",
     details: [
       {
         finding: "Content Format Performance",
         impact: "High - Reach and engagement optimisation",
-        description: "Instagram Reels average 42K reach vs 10K for feed posts. TikTok videos generate 68K average reach with 12.4% engagement. Stories have lowest reach (8K) but highest conversion rate (6.8%).",
+        description: "Instagram Reels average 42K reach vs 10K for feed posts. TikTok videos generate 68K average reach with 12.4% engagement. Stories have lowest reach (8K) but highest conversio[...]",
         recommendation: "Shift content strategy: 60% Reels/TikTok, 25% feed posts, 15% Stories. Maintain Stories for product launches and flash sales due to high conversion despite lower reach.",
       },
       {
@@ -512,7 +522,7 @@ const aiInsights = {
         finding: "Posting Cadence Optimisation",
         impact: "Medium - Consistency and algorithm performance",
         description: "Daily posting on Instagram drives 38% more reach than 3x/week. TikTok algorithm rewards 2x daily posting with 2.4x reach increase. Best posting times: 11am, 2pm, 7pm EST.",
-        recommendation: "Increase posting frequency: Instagram 1x daily (Reels), TikTok 2x daily, Stories 3-5x daily. Schedule for peak engagement times. Use content batching for sustainability.",
+        recommendation: "Increase posting frequency: Instagram 1x daily (Reels), TikTok 2x daily, Stories 3-5x daily. Schedule for peak engagement times. Use content batching for sustainability.[...]",
       },
     ],
     recommendations: [
@@ -557,7 +567,7 @@ export default function MarketingDashboard() {
   const silverBulletBrief: DetailedBriefData = {
     title: "TikTok Budget Reallocation Strategy",
     category: "Silver Bullet · Paid Social",
-    overview: "Meta ad performance has plateaued with CPM at $18.40 (target $14.50) and declining ROAS. TikTok shows stronger engagement rates (4.2% vs Meta's 2.1%) and younger audience alignment with your brand positioning. Testing shows TikTok creative performs 3.1x better organically, suggesting paid amplification opportunity. Reallocating $1,200/week from underperforming Meta campaigns to TikTok creative testing could generate additional $4,800 monthly revenue at projected 3.8x ROAS.",
+    overview: "Meta ad performance has plateaued with CPM at $18.40 (target $14.50) and declining ROAS. TikTok shows stronger engagement rates (4.2% vs Meta's 2.1%) and younger audience alignment[...]",
     goals: [
       "Reallocate $1,200 weekly budget from Meta to TikTok for 8-week creative testing period",
       "Achieve 3.8x ROAS on TikTok (vs current Meta 2.4x) generating +$4,800 monthly revenue",
@@ -565,30 +575,30 @@ export default function MarketingDashboard() {
       "Build library of 20+ high-performing TikTok creatives for ongoing campaign use"
     ],
     detailedBrief: {
-      challenge: "Meta CPM has increased 42% YoY while ROAS declined from 3.2x to 2.4x. Platform saturation, iOS14 targeting limitations, and creative fatigue are driving diminishing returns. TikTok represents untapped opportunity with 68% of target demographic (women 25-45) actively using platform, but currently only 8% of paid budget allocated there.",
-      approach: "Phase 1 (Weeks 1-4): Redirect $1,200/week from Meta carousel ads (lowest ROAS at 1.8x) to TikTok spark ads featuring top-performing UGC content. Test 3 creative formats: product showcases, styling tutorials, and behind-the-scenes. Phase 2 (Weeks 5-8): Scale winning formats, expand to TikTok shopping ads, and implement dynamic product ads. Maintain Meta presence for retargeting only. Use TikTok Creative Centre for trend identification and rapid creative iteration.",
+      challenge: "Meta CPM has increased 42% YoY while ROAS declined from 3.2x to 2.4x. Platform saturation, iOS14 targeting limitations, and creative fatigue are driving diminishing returns. Tik[...]",
+      approach: "Phase 1 (Weeks 1-4): Redirect $1,200/week from Meta carousel ads (lowest ROAS at 1.8x) to TikTok spark ads featuring top-performing UGC content. Test 3 creative formats: product [...]",
       timeline: "8 weeks (4-week test + 4-week scale)",
       budget: "$9,600 total ($1,200/week for 8 weeks)"
     },
     nextSteps: [
       {
         step: "TikTok Ads Manager Setup & Creative Production",
-        description: "Set up TikTok Business Centre, install pixel, configure conversion tracking. Produce 12 initial video creatives (4 per format type) using existing UGC and product footage. Brief creator partners on TikTok-native content requirements.",
+        description: "Set up TikTok Business Centre, install pixel, configure conversion tracking. Produce 12 initial video creatives (4 per format type) using existing UGC and product footage. B[...]",
         owner: "Paid Social Manager"
       },
       {
         step: "Meta Budget Reallocation",
-        description: "Reduce Meta carousel ad spend by $1,200/week. Maintain retargeting campaigns (these have 4.2x ROAS). Pause underperforming prospecting campaigns. Set up daily budget monitoring and ROAS tracking dashboard.",
+        description: "Reduce Meta carousel ad spend by $1,200/week. Maintain retargeting campaigns (these have 4.2x ROAS). Pause underperforming prospecting campaigns. Set up daily budget monitor[...]",
         owner: "Performance Marketing Lead"
       },
       {
         step: "Launch TikTok Test Campaigns",
-        description: "Launch 3 ad groups ($400/week each) testing product showcases, styling tutorials, and behind-the-scenes content. Target women 25-45, interests: fashion, sustainable living, Australian brands. Run A/B tests on CTAs, music, and video length (15s vs 30s).",
+        description: "Launch 3 ad groups ($400/week each) testing product showcases, styling tutorials, and behind-the-scenes content. Target women 25-45, interests: fashion, sustainable living, [...]",
         owner: "Social Media Manager"
       },
       {
         step: "Performance Monitoring & Optimisation",
-        description: "Daily monitoring of TikTok ROAS, CPM, and engagement metrics. Weekly creative refresh based on performance data. After 4 weeks, analyse results and scale winning formats or adjust strategy. Document learnings for future campaigns.",
+        description: "Daily monitoring of TikTok ROAS, CPM, and engagement metrics. Weekly creative refresh based on performance data. After 4 weeks, analyse results and scale winning formats or [...]",
         owner: "Analytics Team"
       }
     ],
@@ -609,7 +619,7 @@ export default function MarketingDashboard() {
   const lowHangingFruitBrief: DetailedBriefData = {
     title: "User-Generated Content Incentive Program",
     category: "Low-Hanging Fruit · Organic Social",
-    overview: "Analysis shows UGC posts generate 3.1x higher engagement than studio content (4.8% vs 1.5%) and 2.4x more saves, indicating stronger purchase intent. Customer photos feel more authentic and relatable to your target audience. Currently only 12% of customers share their purchases organically. Launching a structured UGC incentive program with 15% discount codes for content submissions could unlock library of 40+ authentic customer photos monthly at minimal cost, while increasing repeat purchase rate.",
+    overview: "Analysis shows UGC posts generate 3.1x higher engagement than studio content (4.8% vs 1.5%) and 2.4x more saves, indicating stronger purchase intent. Customer photos feel more auth[...]",
     goals: [
       "Generate 40+ customer UGC submissions per month through 15% incentive program",
       "Increase organic social engagement rate from 1.5% to 3.2% by featuring authentic customer content",
@@ -617,30 +627,30 @@ export default function MarketingDashboard() {
       "Drive repeat purchases with 15% discount incentive (estimated 22% redemption rate)"
     ],
     detailedBrief: {
-      challenge: "Studio photoshoots cost $2,400/month but generate lower engagement than authentic customer content. Current UGC is sporadic and uncoordinated—customers share organically but you lack permission to repurpose content. Need scalable, cost-effective way to generate authentic lifestyle imagery that resonates with your audience while building customer loyalty.",
-      approach: "Create #FemmeConnection hashtag campaign incentivizing customers to share styled outfit photos for 15% off next purchase. Email post-purchase asking customers to share photos with specific guidelines (natural lighting, full outfit visible, tag @femmeconnection). Feature best submissions on Instagram feed and Stories with credit. Repurpose approved content across paid ads, email campaigns, and website. Gamify with monthly 'Style Spotlight' winner receiving $100 store credit.",
+      challenge: "Studio photoshoots cost $2,400/month but generate lower engagement than authentic customer content. Current UGC is sporadic and uncoordinated—customers share organically but y[...]",
+      approach: "Create #FemmeConnection hashtag campaign incentivizing customers to share styled outfit photos for 15% off next purchase. Email post-purchase asking customers to share photos wit[...]",
       timeline: "3 days setup + ongoing program",
       budget: "$0 setup, ~$800/month in discount redemptions (estimated 22% redemption on 40 submissions)"
     },
     nextSteps: [
       {
         step: "Program Design & Guidelines",
-        description: "Create clear UGC submission guidelines (photo quality, lighting, outfit styling, brand tags). Design branded graphic templates for reposting customer content with proper credit. Write program terms & conditions including content usage rights and discount mechanics.",
+        description: "Create clear UGC submission guidelines (photo quality, lighting, outfit styling, brand tags). Design branded graphic templates for reposting customer content with proper cre[...]",
         owner: "Social Media Manager"
       },
       {
         step: "Klaviyo Email Flow Setup",
-        description: "Build post-purchase email flow (sent 3 days after delivery) inviting customers to share photos with #FemmeConnection for 15% off. Include photo examples, styling tips, and easy submission process. Set up automated unique discount code generation.",
+        description: "Build post-purchase email flow (sent 3 days after delivery) inviting customers to share photos with #FemmeConnection for 15% off. Include photo examples, styling tips, and e[...]",
         owner: "Email Marketing Manager"
       },
       {
         step: "Instagram & TikTok Campaign Launch",
-        description: "Announce program via Instagram Stories, feed post, and TikTok video showing examples of customer styling. Create Story highlight for ongoing submissions. Set up monitoring for #FemmeConnection hashtag and brand mentions to track submissions.",
+        description: "Announce program via Instagram Stories, feed post, and TikTok video showing examples of customer styling. Create Story highlight for ongoing submissions. Set up monitoring f[...]",
         owner: "Content Creator"
       },
       {
         step: "Content Curation & Repurposing",
-        description: "Weekly review of UGC submissions, select best content for reposting, request usage permission from customers. Feature 5-7 customer photos weekly on Instagram and TikTok. Create monthly 'Style Spotlight' campaign highlighting top contributor. Organise approved content into library for paid ads and email use.",
+        description: "Weekly review of UGC submissions, select best content for reposting, request usage permission from customers. Feature 5-7 customer photos weekly on Instagram and TikTok. Cre[...]",
         owner: "Social Media Coordinator"
       }
     ],
@@ -735,7 +745,7 @@ export default function MarketingDashboard() {
         {/* AI Widget */}
         <AIWidget
           insightLabel="Marketing Intelligence"
-          insightText="TikTok engagement is 2.8x higher than Instagram (8.4% vs 3.2%), yet receives only 22% of paid budget. UGC content drives 42% higher engagement than studio content. Recommendation: shift $1.2K/week to TikTok and launch customer content program."
+          insightText="TikTok engagement is 2.8x higher than Instagram (8.4% vs 3.2%), yet receives only 22% of paid budget. UGC content drives 42% higher engagement than studio content. Recommen[...]"
         />
 
         {/* Filter Controls */}
@@ -829,11 +839,11 @@ export default function MarketingDashboard() {
               <CardTitle>AI Marketing Insight</CardTitle>
             </div>
             <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-4">
-              Your TikTok engagement rate is 2.8x higher than Instagram, but you're allocating 70% of budget to Meta. Recommendation: shift $1,200/week to TikTok creative testing. Your UGC content performs 42% better than studio content.
+              Your TikTok engagement rate is 2.8x higher than Instagram, but you're allocating 70% of budget to Meta. Recommendation: shift $1,200/week to TikTok creative testing. Your UGC conten[...]
             </p>
             <button
               onClick={() => setShowMarketingInsight(true)}
-              className="w-full px-4 py-2 bg-[var(--pink)] text-white rounded-[var(--radius-md)] hover:opacity-90 transition-opacity text-[13px] font-medium flex items-center justify-center gap-2"
+              className="w-full px-4 py-2 bg-[var(--pink)] text-white rounded-[var(--radius-md)] hover:opacity-90 transition-opacity text-[13px] font-medium flex items-center justify-center gap-2[...]"
             >
               <Sparkles className="w-4 h-4" />
               Deep Dive: Marketing Strategy
@@ -846,11 +856,11 @@ export default function MarketingDashboard() {
               <CardTitle>Campaign Opportunity</CardTitle>
             </div>
             <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-4">
-              Easter campaign launch window is April 5-12. Suggested budget: $8,400 (split 55% Meta, 35% TikTok, 10% Pinterest). Focus creative on pastel tones, spring styling, and limited-time offer messaging. Forecast: 280-320 conversions.
+              Easter campaign launch window is April 5-12. Suggested budget: $8,400 (split 55% Meta, 35% TikTok, 10% Pinterest). Focus creative on pastel tones, spring styling, and limited-time o[...]
             </p>
             <button
               onClick={() => setShowCampaignInsight(true)}
-              className="w-full px-4 py-2 bg-[var(--terra)] text-white rounded-[var(--radius-md)] hover:opacity-90 transition-opacity text-[13px] font-medium flex items-center justify-center gap-2"
+              className="w-full px-4 py-2 bg-[var(--terra)] text-white rounded-[var(--radius-md)] hover:opacity-90 transition-opacity text-[13px] font-medium flex items-center justify-center gap-[...]"
             >
               <Sparkles className="w-4 h-4" />
               Deep Dive: Campaign Optimisation
@@ -1030,11 +1040,11 @@ export default function MarketingDashboard() {
               <CardTitle>AI Social Content Insight</CardTitle>
             </div>
             <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-4">
-              Organic social generates 108K reach with 8.2% engagement rate, outperforming paid social's 4.8%. Content featuring customer styling receives 3.1x more engagement than brand lifestyle shots. Instagram Reels drive 4.2x more reach than feed posts.
+              Organic social generates 108K reach with 8.2% engagement rate, outperforming paid social's 4.8%. Content featuring customer styling receives 3.1x more engagement than brand lifesty[...]
             </p>
             <button
               onClick={() => setShowSocialInsight(true)}
-              className="w-full px-4 py-2 bg-[var(--green)] text-white rounded-[var(--radius-md)] hover:opacity-90 transition-opacity text-[13px] font-medium flex items-center justify-center gap-2"
+              className="w-full px-4 py-2 bg-[var(--green)] text-white rounded-[var(--radius-md)] hover:opacity-90 transition-opacity text-[13px] font-medium flex items-center justify-center gap[...]"
             >
               <Sparkles className="w-4 h-4" />
               Deep Dive: Social Strategy
