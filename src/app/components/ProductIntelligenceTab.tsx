@@ -1,18 +1,18 @@
 import { Card, CardTitle, MetricCard, AIInsightCard, Tag } from "./ui/Card";
 import { StatGrid } from "./ui/Filters";
 import { TrendingUp, TrendingDown, AlertTriangle } from "lucide-react";
-const femme1 = "https://via.placeholder.com/750x750?text=femme1";
-const femme2 = "https://via.placeholder.com/750x750?text=femme2";
-const femme3 = "https://via.placeholder.com/750x750?text=femme3";
-const femme4 = "https://via.placeholder.com/750x750?text=femme4";
-const reformation1 = "https://via.placeholder.com/750x750?text=reformation1";
-const reformation2 = "https://via.placeholder.com/750x750?text=reformation2";
-const reformation4 = "https://via.placeholder.com/750x750?text=reformation4";
-const sezane1 = "https://via.placeholder.com/750x750?text=sezane1";
-const sezane2 = "https://via.placeholder.com/750x750?text=sezane2";
-const sezane3 = "https://via.placeholder.com/750x750?text=sezane3";
-const sezane4 = "https://via.placeholder.com/750x750?text=sezane4";
-const sezane5 = "https://via.placeholder.com/750x750?text=sezane5";
+const femme1 = "https://placehold.co/750x750?text=femme1";
+const femme2 = "https://placehold.co/750x750?text=femme2";
+const femme3 = "https://placehold.co/750x750?text=femme3";
+const femme4 = "https://placehold.co/750x750?text=femme4";
+const reformation1 = "https://placehold.co/750x750?text=reformation1";
+const reformation2 = "https://placehold.co/750x750?text=reformation2";
+const reformation4 = "https://placehold.co/750x750?text=reformation4";
+const sezane1 = "https://placehold.co/750x750?text=sezane1";
+const sezane2 = "https://placehold.co/750x750?text=sezane2";
+const sezane3 = "https://placehold.co/750x750?text=sezane3";
+const sezane4 = "https://placehold.co/750x750?text=sezane4";
+const sezane5 = "https://placehold.co/750x750?text=sezane5";
 
 interface ProductIntelligenceTabProps {
   setShowProductModal: (show: boolean) => void;

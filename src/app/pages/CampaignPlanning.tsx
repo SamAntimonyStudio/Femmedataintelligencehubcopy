@@ -12,7 +12,7 @@ import { Calendar, DollarSign, Target, Users, TrendingUp, CheckCircle2, Clock, A
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as RechartsoPieChart, Pie, Cell } from "recharts";
 
 // Use placeholder image instead of missing import
-const campaignHeroImage = "https://via.placeholder.com/1200x400?text=Campaign+Planning";
+const campaignHeroImage = "https://placehold.co/1200x400?text=Campaign+Planning";
 
 // Rest of the component code continues as before...
 // All image imports have been replaced with placeholder URLs

@@ -3,12 +3,12 @@ import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, R
 import { TrendingUp, TrendingDown, Mail, MessageSquare, Zap, Users, Eye, MousePointer, ShoppingCart, Clock, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-const blueIllusionEmail = "https://via.placeholder.com/750x750?text=blueIllusionEmail";
-const decjubaEmail = "https://via.placeholder.com/750x750?text=decjubaEmail";
-const hmEmail = "https://via.placeholder.com/750x750?text=hmEmail";
-const stFrockEmail = "https://via.placeholder.com/750x750?text=stFrockEmail";
-const zaraEmail = "https://via.placeholder.com/750x750?text=zaraEmail";
-const zimmermannEmail = "https://via.placeholder.com/750x750?text=zimmermannEmail";
+const blueIllusionEmail = "https://placehold.co/750x750?text=blueIllusionEmail";
+const decjubaEmail = "https://placehold.co/750x750?text=decjubaEmail";
+const hmEmail = "https://placehold.co/750x750?text=hmEmail";
+const stFrockEmail = "https://placehold.co/750x750?text=stFrockEmail";
+const zaraEmail = "https://placehold.co/750x750?text=zaraEmail";
+const zimmermannEmail = "https://placehold.co/750x750?text=zimmermannEmail";
 
 interface EmailIntelligenceTabProps {
   setShowEmailModal: (show: boolean) => void;

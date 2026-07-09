@@ -53,13 +53,13 @@ import { DetailedBriefModal, DetailedBriefData } from "../components/DetailedBri
 // import contentImg6 from "../../imports/kp510194_1_v1639125494525318380_750x750_1.jpg";
 
 // Placeholder images
-const marketingHero = "https://via.placeholder.com/1200x400?text=Marketing+Dashboard";
-const contentImg1 = "https://via.placeholder.com/750x750?text=Content+1";
-const contentImg2 = "https://via.placeholder.com/750x750?text=Content+2";
-const contentImg3 = "https://via.placeholder.com/750x750?text=Content+3";
-const contentImg4 = "https://via.placeholder.com/750x750?text=Content+4";
-const contentImg5 = "https://via.placeholder.com/750x750?text=Content+5";
-const contentImg6 = "https://via.placeholder.com/750x750?text=Content+6";
+const marketingHero = "https://placehold.co/1200x400?text=Marketing+Dashboard";
+const contentImg1 = "https://placehold.co/750x750?text=Content+1";
+const contentImg2 = "https://placehold.co/750x750?text=Content+2";
+const contentImg3 = "https://placehold.co/750x750?text=Content+3";
+const contentImg4 = "https://placehold.co/750x750?text=Content+4";
+const contentImg5 = "https://placehold.co/750x750?text=Content+5";
+const contentImg6 = "https://placehold.co/750x750?text=Content+6";
 
 type Channel = "all" | "organic-social" | "paid-social" | "email" | "google-ads" | "direct";
 type DateRange = "7d" | "30d" | "90d";

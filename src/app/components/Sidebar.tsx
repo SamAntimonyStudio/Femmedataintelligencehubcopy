@@ -19,8 +19,8 @@ import {
   ChevronRight,
   Database,
 } from "lucide-react";
-const melPhoto = "https://via.placeholder.com/750x750?text=melPhoto";
-const femmeLogo = "https://via.placeholder.com/750x750?text=femmeLogo";
+const melPhoto = "https://placehold.co/750x750?text=melPhoto";
+const femmeLogo = "https://placehold.co/750x750?text=femmeLogo";
 
 const navigationGroups = [
   {

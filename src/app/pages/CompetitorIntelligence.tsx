@@ -3,7 +3,7 @@ import { Card, CardTitle } from "../components/ui/Card";
 import PageHeader from "../components/PageHeader";
 
 // Use placeholder image
-const competitorImage = "https://via.placeholder.com/1200x400?text=Competitor+Intelligence";
+const competitorImage = "https://placehold.co/1200x400?text=Competitor+Intelligence";
 
 export default function CompetitorIntelligence() {
   return (

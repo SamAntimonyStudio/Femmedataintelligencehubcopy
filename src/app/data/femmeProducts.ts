@@ -1,10 +1,10 @@
 // Real Femme Connection product data extracted from femmeconnection.com.au
-const kp510194 = "https://via.placeholder.com/750x750?text=kp510194";
-const kp522820 = "https://via.placeholder.com/750x750?text=kp522820";
-const kp525751 = "https://via.placeholder.com/750x750?text=kp525751";
-const kp525903 = "https://via.placeholder.com/750x750?text=kp525903";
-const kp734239 = "https://via.placeholder.com/750x750?text=kp734239";
-const kp734293 = "https://via.placeholder.com/750x750?text=kp734293";
+const kp510194 = "https://placehold.co/750x750?text=kp510194";
+const kp522820 = "https://placehold.co/750x750?text=kp522820";
+const kp525751 = "https://placehold.co/750x750?text=kp525751";
+const kp525903 = "https://placehold.co/750x750?text=kp525903";
+const kp734239 = "https://placehold.co/750x750?text=kp734239";
+const kp734293 = "https://placehold.co/750x750?text=kp734293";
 
 export interface FemmeProduct {
   id: string;

@@ -20,6 +20,7 @@ import SocialReport from "./pages/reports/SocialReport";
 import YotpoReport from "./pages/reports/YotpoReport";
 import InfluencerReport from "./pages/reports/InfluencerReport";
 import GTMReport from "./pages/reports/GTMReport";
+import Settings from "./pages/Settings";
 
 // Served under the Vite base path (e.g. "/Femmedataintelligencehubcopy/" on
 // GitHub Pages, "/" in dev). React Router wants no trailing slash.
@@ -51,6 +52,7 @@ export const router = createBrowserRouter([
       { path: "reports/yotpo", Component: YotpoReport },
       { path: "reports/influencer", Component: InfluencerReport },
       { path: "reports/gtm", Component: GTMReport },
+      { path: "settings", Component: Settings },
     ],
   },
 ], { basename });

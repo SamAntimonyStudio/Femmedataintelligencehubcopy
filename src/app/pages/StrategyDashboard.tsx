@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardTitle } from "../components/ui/Card";
 import PageHeader from "../components/PageHeader";
 
-const strategyImage = "https://via.placeholder.com/1200x400?text=Strategy+Dashboard";
+const strategyImage = "https://placehold.co/1200x400?text=Strategy+Dashboard";
 
 export default function StrategyDashboard() {
   return (
