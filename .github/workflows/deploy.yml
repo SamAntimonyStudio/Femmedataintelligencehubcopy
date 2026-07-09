@@ -4,30 +4,36 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
+# Permissions the official GitHub Pages deployment requires. Unlike a
+# personal token, GITHUB_TOKEN's `pages: write` can (re)configure Pages
+# to deploy from Actions, so no manual Settings > Pages change is needed.
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
       - name: Install dependencies
         run: pnpm install
@@ -35,9 +41,23 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+      - name: Configure Pages
+        # Switches the Pages source to "GitHub Actions" (overrides the old
+        # branch source) using GITHUB_TOKEN's pages:write permission.
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
