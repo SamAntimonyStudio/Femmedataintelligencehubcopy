@@ -19,8 +19,8 @@ import {
   ChevronRight,
   Database,
 } from "lucide-react";
-import melPhoto from "../../imports/1759909171679.jpeg";
-import femmeLogo from "../../imports/01/91ececdecbb3848d6d05449255d0c40b634b984b.png";
+const melPhoto = "https://via.placeholder.com/750x750?text=melPhoto";
+const femmeLogo = "https://via.placeholder.com/750x750?text=femmeLogo";
 
 const navigationGroups = [
   {

@@ -3,12 +3,12 @@ import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, R
 import { TrendingUp, TrendingDown, Mail, MessageSquare, Zap, Users, Eye, MousePointer, ShoppingCart, Clock, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import blueIllusionEmail from "../../imports/blue_illusion__20260417_from_our_family_to_yours__.png";
-import decjubaEmail from "../../imports/decjuba_20260429_win_a__3_000_winter_wardrobe.png";
-import hmEmail from "../../imports/h&m_-_au_20260326_new_arrivals.png";
-import stFrockEmail from "../../imports/st_frock_20231004_take_notes___.png";
-import zaraEmail from "../../imports/zara_-_au_20260411_woman___winter_wardrobe.png";
-import zimmermannEmail from "../../imports/zimmermann_20231005_natura__the_unveiling_of_our_spring_2024_runway.png";
+const blueIllusionEmail = "https://via.placeholder.com/750x750?text=blueIllusionEmail";
+const decjubaEmail = "https://via.placeholder.com/750x750?text=decjubaEmail";
+const hmEmail = "https://via.placeholder.com/750x750?text=hmEmail";
+const stFrockEmail = "https://via.placeholder.com/750x750?text=stFrockEmail";
+const zaraEmail = "https://via.placeholder.com/750x750?text=zaraEmail";
+const zimmermannEmail = "https://via.placeholder.com/750x750?text=zimmermannEmail";
 
 interface EmailIntelligenceTabProps {
   setShowEmailModal: (show: boolean) => void;

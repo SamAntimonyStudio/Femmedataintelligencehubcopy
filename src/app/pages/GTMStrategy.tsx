@@ -6,7 +6,7 @@ import PageHeader from "../components/PageHeader";
 import { AIWidget } from "../components/AIWidget";
 import { ActionStrip, ActionStripData } from "../components/ActionStrip";
 import { DetailedBriefModal, DetailedBriefData } from "../components/DetailedBriefModal";
-import gtmHero from "../../imports/kp510194_1_v1639125494525318380_750x750_1.jpg";
+const gtmHero = "https://via.placeholder.com/750x750?text=gtmHero";
 import { useFilters } from "../context/FilterContext";
 import { BarChart, Bar, LineChart, Line, PieChart as RechartsPieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 

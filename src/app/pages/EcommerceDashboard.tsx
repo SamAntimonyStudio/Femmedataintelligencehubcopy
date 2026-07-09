@@ -7,7 +7,7 @@ import PageHeader from "../components/PageHeader";
 import { AIWidget } from "../components/AIWidget";
 import { ActionStrip, ActionStripData } from "../components/ActionStrip";
 import { DetailedBriefModal, DetailedBriefData } from "../components/DetailedBriefModal";
-import ecomHero from "../../imports/kp522820_1_v1639125499266696291_750x750_1.jpg";
+const ecomHero = "https://via.placeholder.com/750x750?text=ecomHero";
 
 type Channel = "all" | "organic-social" | "paid-social" | "email" | "google-ads" | "direct";
 type DateRange = "7d" | "30d" | "90d";

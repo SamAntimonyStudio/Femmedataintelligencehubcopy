@@ -7,7 +7,7 @@ import { TrendingUp, Users, Gift, Star, Award, Crown } from "lucide-react";
 import { ActionStrip, ActionStripData } from "../components/ActionStrip";
 import { DetailedBriefModal, DetailedBriefData } from "../components/DetailedBriefModal";
 import PageHeader from "../components/PageHeader";
-import loyaltyHero from "../../imports/kp734239_1_v1639125494834433804_750x750_1.jpg";
+const loyaltyHero = "https://via.placeholder.com/750x750?text=loyaltyHero";
 
 // Base data
 const baseTierData = [

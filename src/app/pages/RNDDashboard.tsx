@@ -9,7 +9,7 @@ import { ActionStrip, ActionStripData } from "../components/ActionStrip";
 import { DetailedBriefModal, DetailedBriefData } from "../components/DetailedBriefModal";
 import { SeasonalPlannerModal, SeasonalItemData } from "../components/SeasonalPlannerModal";
 import { ColorTrendModal } from "../components/ColorTrendModal";
-import rndHero from "../../imports/kp734293_1_v1639125496755888385_750x750_1.jpg";
+const rndHero = "https://via.placeholder.com/750x750?text=rndHero";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as RechartsPieChart, Pie, Cell } from "recharts";
 
 const trendSignals = [

@@ -8,16 +8,16 @@ import { FileText, Sparkles, Target, Users, Image, Video, CheckCircle2, Clock, A
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 // Import FEM content images
-import femmeImg1 from "../../imports/Femme_1.jpeg";
-import femmeImg2 from "../../imports/Femme_2.jpeg";
-import femmeImg3 from "../../imports/Femme_3.jpeg";
-import femmeImg4 from "../../imports/Femme_4.jpeg";
-import reformationImg1 from "../../imports/Reformation_1.jpeg";
-import reformationImg2 from "../../imports/Reformation_2.jpeg";
-import reformationImg4 from "../../imports/Reformation_4.jpeg";
-import sezaneImg1 from "../../imports/Sezane_1-1.jpeg";
-import sezaneImg2 from "../../imports/Sezane_2-1.jpeg";
-import sezaneImg3 from "../../imports/Sezane_3-1.jpeg";
+const femmeImg1 = "https://via.placeholder.com/750x750?text=femmeImg1";
+const femmeImg2 = "https://via.placeholder.com/750x750?text=femmeImg2";
+const femmeImg3 = "https://via.placeholder.com/750x750?text=femmeImg3";
+const femmeImg4 = "https://via.placeholder.com/750x750?text=femmeImg4";
+const reformationImg1 = "https://via.placeholder.com/750x750?text=reformationImg1";
+const reformationImg2 = "https://via.placeholder.com/750x750?text=reformationImg2";
+const reformationImg4 = "https://via.placeholder.com/750x750?text=reformationImg4";
+const sezaneImg1 = "https://via.placeholder.com/750x750?text=sezaneImg1";
+const sezaneImg2 = "https://via.placeholder.com/750x750?text=sezaneImg2";
+const sezaneImg3 = "https://via.placeholder.com/750x750?text=sezaneImg3";
 
 const contentLibrary = [
   {

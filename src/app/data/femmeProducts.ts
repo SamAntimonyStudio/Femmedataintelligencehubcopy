@@ -1,10 +1,10 @@
 // Real Femme Connection product data extracted from femmeconnection.com.au
-import kp510194 from "../../imports/kp510194_1_v1639125494525318380_750x750_1.jpg";
-import kp522820 from "../../imports/kp522820_1_v1639125499266696291_750x750_1.jpg";
-import kp525751 from "../../imports/kp525751_1_v1639125498561133729_750x750_1.jpg";
-import kp525903 from "../../imports/kp525903_1_v1639125496333876102_750x750_1.jpg";
-import kp734239 from "../../imports/kp734239_1_v1639125494834433804_750x750_1.jpg";
-import kp734293 from "../../imports/kp734293_1_v1639125496755888385_750x750_1.jpg";
+const kp510194 = "https://via.placeholder.com/750x750?text=kp510194";
+const kp522820 = "https://via.placeholder.com/750x750?text=kp522820";
+const kp525751 = "https://via.placeholder.com/750x750?text=kp525751";
+const kp525903 = "https://via.placeholder.com/750x750?text=kp525903";
+const kp734239 = "https://via.placeholder.com/750x750?text=kp734239";
+const kp734293 = "https://via.placeholder.com/750x750?text=kp734293";
 
 export interface FemmeProduct {
   id: string;
@@ -140,7 +140,6 @@ export const categoryPerformance = [
     units: 1120,
     margin: 52,
     returnRate: 18,
-    returnRate: 14,
   },
   {
     category: "Basics",
