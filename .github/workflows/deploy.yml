@@ -41,6 +41,11 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Add SPA fallback for client-side routing
+        # GitHub Pages has no server rewrite, so serve index.html for any
+        # unknown path; React Router then resolves the route client-side.
+        run: cp dist/index.html dist/404.html
+
       - name: Configure Pages
         # Switches the Pages source to "GitHub Actions" (overrides the old
         # branch source) using GITHUB_TOKEN's pages:write permission.
